@@ -1,4 +1,4 @@
-package com.rudie.severin.textadventure;
+package com.rudie.severin.textadventure.UtilityClasses;
 
 /**
  * Created by erikrudie on 7/18/16.

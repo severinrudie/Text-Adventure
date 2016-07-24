@@ -11,8 +11,7 @@ import com.rudie.severin.textadventure.UtilityClasses.PH;
  */
 
 /*
-This class will return dummy numbers until later in development.  All SQL requests will be made
-from this class
+All SQL queries are made from this class
  */
 
 public class DBInterfacer extends SQLiteOpenHelper {
