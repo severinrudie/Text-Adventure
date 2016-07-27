@@ -13,6 +13,7 @@ import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 
 public class LauncherActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

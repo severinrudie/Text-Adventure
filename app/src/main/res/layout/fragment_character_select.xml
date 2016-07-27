@@ -6,46 +6,136 @@
     android:orientation="vertical"
     tools:context="FragmentClasses.CharacterSelectFragment">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+    <!--Begin Spacers-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="2"
-        >
+        <!--End Spacers-->
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/darker_gray"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:padding="30dp">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:text="I'm a fragment"
-        android:layout_weight="3"
-        android:background="@android:color/black"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is your name?"/>
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="150dp"
+                android:id="@+id/edittextCharacterSelectFragment"/>
 
-    </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Randomize"
+                    android:id="@+id/buttonCharacterSelectFragmentRandomizeName"
+                    />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rank your skills from best to worst"
+                    android:gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonCharacterSelectFragmentTopDown"
+                    android:src="@drawable/arrow_down"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/strength"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/textviewCharacterFragmentTop"
+                    android:layout_weight="5"
+                    android:layout_gravity="center" />
+
+                <Space
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonCharacterSelectFragmentMidDown"
+                    android:src="@drawable/arrow_down"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/agility"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/textviewCharacterFragmentMid"
+                    android:layout_weight="5"
+                    android:layout_gravity="center" />
+
+                <ImageButton
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonCharacterSelectFragmentMidUp"
+                    android:src="@drawable/arrow_down"
+                    android:rotation="180"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comradery"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/textviewCharacterFragmentBot"
+                    android:layout_weight="5"
+                    android:layout_gravity="center" />
+
+                <ImageButton
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonCharacterSelectFragmentBotUp"
+                    android:src="@drawable/arrow_down"
+                    android:rotation="180"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Begin Game"
+                android:id="@+id/buttonCharacterSelectFragmentBeginGame" />
 
 
+
+        </LinearLayout>
+
+
+        <!--Begin Spacers-->
+
+
+    <!--End Spacers-->
 </LinearLayout>

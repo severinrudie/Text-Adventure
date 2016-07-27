@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Text Adventure</string>
+    <string name="comradery">Comradery</string>
+    <string name="agility">Agility</string>
+    <string name="strength">Strength</string>
 
 </resources>
