@@ -3,6 +3,7 @@ package com.rudie.severin.textadventure.FragmentClasses;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,32 @@ import java.util.HashMap;
 public class CharacterSelectFragment extends Fragment {
 
     String[] firstNames = new String[] {"Butch", "Max", "Flint", "Gunner", "Axel",
-            "Hunter", "Drake", "Victor", "Rex", "Ryker"};
-    String[] nickNames = new String[] {"'Tank'", "'Dutch'", "'Stone'", "'Maverick'", "'the Cleaner'"};
-    String[] lastNames = new String[] {"Hazard", "Rock", "Fletcher", "Bronson", "Archer", "Power"};
+            "Hunter", "Drake", "Victor", "Rex", "Ryker", "Lance","Dirk","Brick","Rick","Chuck",
+            "Flash","Slash","Smash","Crash","Beef","Rock","Biff","Buff","Lloyd","Brock","Guy",
+            "Slab","Drake","Blake","Rip","Zap","Hack","Hunk","Chunk","Blast","Rage","Mace","Mac",
+            "Crunk","Dick","Rod","Ken","Kirk","Clint","Flint","Buck","Volt","Bolt","Stack","Butch",
+            "Splint","Bull","Fist","Doug","Blade","Slag","Dash","Flak","Punch","Bud","Pork",
+            "Wolf","Frag","Blitz","Sid","Hulk","Max","Spike","Clutch","Scab","Mitch","Wayne","Spud",
+            "Lug","Vic","Stud","Skid","Stag","Pike","Bash","Rush","Thrust","Wedge","Clench","Fritz",
+            "Punt","Edge","Smug","Shunt","Clamp"};
+    String[] nickNames = new String[]{"Tank", "Dutch", "Stone", "Maverick", "Cleaner", "Thunder",
+            "Boulder", "Vander", "Hard", "Light", "Iron", "Steel", "Storm", "Golden", "Stern", "Power",
+            "Ripping", "Shatter", "Blaster", "Slaughter", "Lion", "Dragon", "Hammer", "Doom",
+            "Gryphon", "Muscle", "Shining", "Fire", "Blazing", "Glory", "Mangle",
+            "Strangler", "Gristle", "Manly", "Killer", "Razor", "Gleaming", "Lethal", "Royal",
+            "Mighty", "Heavy", "Falcon", "Phoenix", "Saber", "Rocket", "War", "Anger", "Mega",
+            "Holy", "Burning", "Mondo", "Battle", "Hulking", "Beefy", "Tackle", "Strong", "Brawny",
+            "Burly", "Wonder", "Strapping", "Rugged", "Meaty", "Thick", "Bulky", "Sunder", "Husky",
+            "Oxen", "Anvil", "Bold", "Brave", "Smashing", "Eagle", "Steak", "Ham", "Roaring",
+            "Macho", "Noble", "Righteous", "Pickle", "Sizzle", "Quick", "Lightning", "Mortar"};
+
+//    String theNickNames = new String[] {};
+
+    String[] lastNames = new String[] {"Hazard", "Rock", "Fletcher", "Bronson", "Archer", "Power",
+            "Beef","Blast","Blow","Buff","Bulk","Bullet","Burp","Crumple","Fist","Hard",
+            "Iron","Lamp","Large","Plank","Pork","Rock","Slam","Steel","Thorn","Thud","Thunder",
+            "Vander"};
+    String[] prefixNames = new String[] {"Mac", "Mc", "Van", "Von", "O"};
 
     String STRENGTH = "Strength";
     String AGILITY = "Agility";
@@ -103,8 +127,17 @@ public class CharacterSelectFragment extends Fragment {
         String first = firstNames[(int) (Math.random()*firstNames.length)];
         String nick = nickNames[(int) (Math.random()*nickNames.length)];
         String last = lastNames[(int) (Math.random()*lastNames.length)];
-
-        return first + " " + nick + " " + last;
+        double random = Math.random();
+        if (random < .3) {
+            String lastPrefix = prefixNames[(int) (Math.random()*(prefixNames.length))];
+            lastPrefix += last;
+            last = lastPrefix;
+        } else if (random < .6) {
+            String nickPrefix = "the ";
+            nickPrefix += nick;
+            nick = nickPrefix;
+        }
+        return first + " '" + nick + "' " + last;
     }
 
     public void swapSkills(TextView from, TextView to) {
@@ -143,8 +176,8 @@ public class CharacterSelectFragment extends Fragment {
             }
         }
 //        apostraphes will be added on to nicknames after withdrawal from the DB
-        nickName = nickName.replace("'", "");
-        nickName = nickName.replace("\"", "");
+//        nickName = nickName.replace("'", "");
+//        nickName = nickName.replace("\"", "");
         return new String[] {firstName, nickName, lastName};
     }
 

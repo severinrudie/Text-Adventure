@@ -41,7 +41,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(PH.create_tables);
+        for (String string : PH.create_tables) {
+            db.execSQL(string);
+        }
     }
 
     @Override
@@ -60,6 +62,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public void enterCharacterIntoDB(String firstName, String nickName, String lastName, Map<String,
             Integer> skills, Integer atNode, Integer backUpFor) {
 
+        insertCharacterDetails(firstName, nickName, lastName, atNode, backUpFor);
+
+
+        // TODO: insert skills too
+    }
+
+    public void insertCharacterDetails(String firstName, String nickName, String lastName,
+                                       Integer atNode, Integer backUpFor) {
         String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
                 + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
                 + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ") VALUES ('" +
@@ -67,8 +77,17 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
+    }
 
-        // TODO: insert skills too
+    public void insertCharacterSkills(String firstName, String nickName, String lastName,
+                                       Integer atNode, Integer backUpFor) {
+        String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
+                + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
+                + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ") VALUES ('" +
+                firstName + "', '" + nickName + "', '" + lastName + "', '" + atNode + "', '" + backUpFor
+                + "');";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
     }
 
 

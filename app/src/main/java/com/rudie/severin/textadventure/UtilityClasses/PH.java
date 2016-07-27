@@ -45,9 +45,10 @@ public class PH {
     public static final String tbl_character_at_node = "character_at_node";
     public static final String tbl_character_is_backup_for = "character_is_backup_for";
 
-    public static final String[] all_tables = {tbl_choices, tbl_inventory, tbl_statistics, tbl_nodes, tbl_character};
+    public static final String[] all_tables = {tbl_choices, tbl_inventory, tbl_statistics,
+            tbl_nodes, tbl_character, tbl_item_type};
 
-    public static final String create_tables =
+    public static final String[] create_tables = new String[] {
 
             "CREATE TABLE " + tbl_choices + " (" +
                     tbl_choices_id + " integer PRIMARY KEY AUTOINCREMENT, " +
@@ -59,33 +60,33 @@ public class PH {
                     tbl_choices_test_type_id + " integer, " +
                     tbl_choices_test_difficulty + " text " +
                     ");" +
-                    "" +
+                    "",
             "CREATE TABLE " + tbl_inventory +" (" +
                     tbl_inventory_id + " integer PRIMARY KEY AUTOINCREMENT," +
                     tbl_inventory_name + " text," +
                     tbl_inventory_power + " text," +
                     tbl_inventory_type_id + " integer" +
                     ");" +
-                    "" +
+                    "",
             "CREATE TABLE " + tbl_statistics + " (" +
                     tbl_statistics_type_id + " integer," +
                     tbl_statistics_stat_name + " text," +
                     tbl_statistics_stat_value + " integer," +
                     tbl_statistics_character_id + " integer" +
                     ");" +
-                    "" +
+                    "",
             "CREATE TABLE " + tbl_nodes + " (" +
                     tbl_nodes_id + " integer," +
                     tbl_nodes_text + " text," +
                     tbl_nodes_image + " text," +
                     tbl_nodes_animation + " text"+
                     ");" +
-                    "" +
+                    " ",
             "CREATE TABLE " + tbl_item_type + " (" +
-                    tbl_item_type_id + " text PRIMARY KEY AUTOINCREMENT," +
+                    tbl_item_type_id + " integer PRIMARY KEY AUTOINCREMENT," +
                     tbl_item_type_name + " text" +
                     ");" +
-                    "" +
+                    "",
             "CREATE TABLE " + tbl_character + " (" +
                     tbl_character_id + " integer PRIMARY KEY AUTOINCREMENT," +
                     tbl_character_firstname + " text," +
@@ -93,5 +94,5 @@ public class PH {
                     tbl_character_nickname + " text," +
                     tbl_character_at_node + " integer," +
                     tbl_character_is_backup_for + " integer" +
-                    ");";
+                    ");"};
 }
