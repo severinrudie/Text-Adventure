@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
+import java.util.Map;
+
 /**
  * Created by erikrudie on 7/23/16.
  */
@@ -13,6 +15,8 @@ import com.rudie.severin.textadventure.UtilityClasses.PH;
 /*
 All SQL queries are made from this class
  */
+
+//    REMINDER: NICKNAMES ARE STORED W/O APOSTRAPHES OR QUOTATION MARKS
 
 public class DBInterfacer extends SQLiteOpenHelper {
 
@@ -42,11 +46,31 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        dropAllTables();
+        this.onCreate(db);
+    }
+
+    public void dropAllTables() {
+        SQLiteDatabase db = this.getWritableDatabase();
         for (String string : PH.all_tables) {
             db.execSQL("DROP TABLE IF EXISTS " + string);
         }
-        this.onCreate(db);
     }
+
+    public void enterCharacterIntoDB(String firstName, String nickName, String lastName, Map<String,
+            Integer> skills, Integer atNode, Integer backUpFor) {
+
+        String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
+                + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
+                + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ") VALUES ('" +
+                firstName + "', '" + nickName + "', '" + lastName + "', '" + atNode + "', '" + backUpFor
+                + "');";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
+
+        // TODO: insert skills too
+    }
+
 
 
 }

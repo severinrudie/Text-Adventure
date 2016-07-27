@@ -33,6 +33,13 @@ public class LauncherActivity extends AppCompatActivity {
             }
         });
 
+
+
+//        TODO: temp code
+        db.dropAllTables();
+        db.onCreate(db.getWritableDatabase());
+//        TODO: end temp code
+
     }
 
 
