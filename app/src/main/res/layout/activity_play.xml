@@ -33,11 +33,10 @@
                 android:id="@+id/textviewPlayContent"
                 android:layout_gravity="right" />
 
-            <android.support.v7.recyclerview:layoutManager
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/recyclerviewPlayChoices">
-            </android.support.v7.recyclerview:layoutManager>
+                android:id="@+id/recyclerviewPlayChoices"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -49,3 +48,10 @@
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+
+
+<!--<android.support.v7.recyclerview:layoutManager-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--android:id="@+id/recyclerviewPlayChoices">-->
+<!--</android.support.v7.recyclerview:layoutManager>-->

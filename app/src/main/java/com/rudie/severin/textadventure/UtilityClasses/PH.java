@@ -7,6 +7,7 @@ public class PH {
 
     // BEGIN non-final variables
 //    public static int CURRENT_CHARACTER_ID = 0;
+    public static String CURRENT_CHARACTER = "CURRENT_CHARACTER";
     // END non-final variables
 
     // BEGIN character insertion constants

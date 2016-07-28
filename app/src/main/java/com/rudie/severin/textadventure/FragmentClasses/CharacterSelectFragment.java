@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.rudie.severin.textadventure.PlayActivity;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
+import com.rudie.severin.textadventure.UtilityClasses.PH;
 
 import java.util.HashMap;
 
@@ -109,10 +110,12 @@ public class CharacterSelectFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (editText.getText().toString().length() > 0) {
-                    passCharacterToDb(editText, topSkill, midSkill, botSkill);
-                    // this currently goes to PlayActivity, but once animations are in it will direct
-                    // there for the opening animation instead
+                    int currentCharacterId = passCharacterToDb(editText, topSkill, midSkill, botSkill);
+                    // TODO: this currently goes to PlayActivity, but once animations are in it will direct
+                    // TODO; there for the opening animation instead
                     Intent intent = new Intent(getActivity(), PlayActivity.class);
+                    intent.putExtra(PH.CURRENT_CHARACTER, currentCharacterId);
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
@@ -155,7 +158,7 @@ public class CharacterSelectFragment extends Fragment {
 //    getNames and getSkills contain all logic for deciding names/skills.  Node here is set to 0
 //    (the first node) and backup for to null (this is a new character).  This method only passes
 //    information to the DBInterfacer
-    public void passCharacterToDb(EditText editText, TextView top, TextView mid, TextView bot) {
+    public int passCharacterToDb(EditText editText, TextView top, TextView mid, TextView bot) {
         String[] names = getNames(editText);
         String firstName = names[0];
         String nickName = names[1];
@@ -164,7 +167,8 @@ public class CharacterSelectFragment extends Fragment {
         HashMap<String, Integer> skills = getSkills(top, mid, bot);
 
         DBInterfacer db = DBInterfacer.getInstance(this.getContext());
-        db.enterCharacterIntoDb(firstName, nickName, lastName, skills, 0, null);
+        int currentCharacterId = db.enterCharacterIntoDb(firstName, nickName, lastName, skills, 0, null);
+        return currentCharacterId;
     }
 
     public String[] getNames(EditText editText) {
