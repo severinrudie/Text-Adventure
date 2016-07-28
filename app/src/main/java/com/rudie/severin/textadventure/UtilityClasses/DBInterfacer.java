@@ -43,6 +43,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
         for (String string : PH.create_tables) {
             db.execSQL(string);
         }
+        for (String[] sArray : PH.nodeDetails) {
+            insertNodeDetails(sArray[0], sArray[1], sArray[2]);
+        }
     }
 
     @Override
@@ -109,6 +112,15 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + PH.tbl_statistics_type_id + ") VALUES ('" + charID + "', '" + skillName + "', '"
                 + value + "', '" + skillId + "');";
         return sql;
+    }
+
+    public void insertNodeDetails(String text, String image, String animation) {
+        text = text.replace("'", "''");
+        String sql = "INSERT INTO " + PH.tbl_nodes + " (" + PH.tbl_nodes_text + ", "
+                + PH.tbl_nodes_image + ", " + PH.tbl_nodes_animation + ") VALUES ('" + text + "', '"
+                + image + "', '" + animation + "');";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
     }
 
 }

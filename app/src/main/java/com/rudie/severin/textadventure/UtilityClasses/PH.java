@@ -3,10 +3,10 @@ package com.rudie.severin.textadventure.UtilityClasses;
 /**
  * Created by erikrudie on 7/23/16.
  */
+// Parameter Holder, where the unending sea of constants lives
 public class PH {
 
     // BEGIN non-final variables
-//    public static int CURRENT_CHARACTER_ID = 0;
     public static String CURRENT_CHARACTER = "CURRENT_CHARACTER";
     // END non-final variables
 
@@ -93,7 +93,7 @@ public class PH {
                     ");" +
                     "",
             "CREATE TABLE " + tbl_nodes + " (" +
-                    tbl_nodes_id + " integer," +
+                    tbl_nodes_id + " integer PRIMARY KEY AUTOINCREMENT," +
                     tbl_nodes_text + " text," +
                     tbl_nodes_image + " text," +
                     tbl_nodes_animation + " text"+
@@ -114,4 +114,15 @@ public class PH {
                     tbl_character_hp + " integer" +
                     ");"};
     // END db constants
+
+    // BEGIN node details
+    public static final String NULL = "NULL";
+    
+    public static final String [][] nodeDetails = new String[][] {
+            new String[] {"You's in a drop pod", NULL, NULL},
+            new String[] {"You's out of da drop pod", NULL, NULL},
+            new String[] {"You's in a tree patch", NULL, NULL}
+    };
+
+    // END node details
 }

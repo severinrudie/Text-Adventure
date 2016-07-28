@@ -41,18 +41,11 @@ public class CharacterSelectFragment extends Fragment {
             "Burly", "Wonder", "Strapping", "Rugged", "Meaty", "Thick", "Bulky", "Sunder", "Husky",
             "Oxen", "Anvil", "Bold", "Brave", "Smashing", "Eagle", "Steak", "Ham", "Roaring",
             "Macho", "Noble", "Righteous", "Pickle", "Sizzle", "Quick", "Lightning", "Mortar"};
-
-//    String theNickNames = new String[] {};
-
     String[] lastNames = new String[] {"Hazard", "Rock", "Fletcher", "Bronson", "Archer", "Power",
             "Beef","Blast","Blow","Buff","Bulk","Bullet","Burp","Crumple","Fist","Hard",
             "Iron","Lamp","Large","Plank","Pork","Rock","Slam","Steel","Thorn","Thud","Thunder",
             "Vander"};
     String[] prefixNames = new String[] {"Mac", "Mc", "Van", "Von", "O"};
-
-    String STRENGTH = "Strength";
-    String AGILITY = "Agility";
-    String COMRADERY = "Comradery";
 
     TextView topSkill, midSkill, botSkill;
 
@@ -116,7 +109,6 @@ public class CharacterSelectFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), PlayActivity.class);
                     intent.putExtra(PH.CURRENT_CHARACTER, currentCharacterId);
                     startActivity(intent);
-
                 } else {
                     Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
                 }
@@ -185,7 +177,6 @@ public class CharacterSelectFragment extends Fragment {
                 nickName += " " + names[i];
             }
         }
-//        apostraphes will be added on to nicknames after withdrawal from the DB
         nickName = nickName.replace("'", "");
         nickName = nickName.replace("\"", "");
         return new String[] {firstName, nickName, lastName};
