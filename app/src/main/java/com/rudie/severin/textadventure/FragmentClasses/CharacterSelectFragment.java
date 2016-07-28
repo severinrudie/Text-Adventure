@@ -1,6 +1,8 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rudie.severin.textadventure.DBInterfacer;
 import com.rudie.severin.textadventure.R;
@@ -109,7 +112,7 @@ public class CharacterSelectFragment extends Fragment {
                 if (editText.getText().toString().length() > 0) {
                     passCharacterToDb(editText, topSkill, midSkill, botSkill);
                 } else {
-//                    TODO: make a toast or something if the field is blank
+                    Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

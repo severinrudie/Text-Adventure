@@ -65,8 +65,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
         // this inserts character stats, then returns character ID to allow skill insertions
         int charId = insertCharacterDetails(firstName, nickName, lastName, atNode, backUpFor);
-        // TODO: insert skills too
         insertCharacterSkills(charId, skills);
+        PH.CURRENT_CHARACTER_ID = charId;
     }
 
     // this method returns the character ID of the inserted row after inserting character details
@@ -98,19 +98,17 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         for (int i = 0; i < skillNames.length; i++) {
-            String sql = skillQueryConstructor(charId, skillNames[i], skillIds[i], skillValues[i]);
+            String sql = skillInsertionConstructor(charId, skillNames[i], skillIds[i], skillValues[i]);
             db.execSQL(sql);
         }
     }
 
-    public String skillQueryConstructor(int charID, String skillName, int skillId, int value) {
+    public String skillInsertionConstructor(int charID, String skillName, int skillId, int value) {
         String sql = "INSERT INTO " + PH.tbl_statistics + " (" + PH.tbl_statistics_character_id
                 + ", " + PH.tbl_statistics_stat_name + ", " + PH.tbl_statistics_stat_value + ", "
                 + PH.tbl_statistics_type_id + ") VALUES ('" + charID + "', '" + skillName + "', '"
                 + value + "', '" + skillId + "');";
         return sql;
     }
-
-
 
 }

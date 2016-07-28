@@ -5,15 +5,20 @@ package com.rudie.severin.textadventure.UtilityClasses;
  */
 public class PH {
 
-    public static int CURRENT_CHARACTER = 0;
+    // BEGIN non-final variables
+    public static int CURRENT_CHARACTER_ID = 0;
+    // END non-final variables
 
+    // BEGIN character insertion constants
     public static final String STRENGTH = "Strength";
     public static final String AGILITY = "Agility";
     public static final String COMRADERY = "Comradery";
     public static final int STRENGTH_ID = 1;
     public static final int AGILITY_ID = 2;
     public static final int COMRADERY_ID = 3;
+    // END character insertion constants
 
+    // BEGIN db constants
     public static final String tbl_choices = "table_choices";
     public static final String tbl_choices_id = "choice_id";
     public static final String tbl_choices_node_id = "node_id";
@@ -104,4 +109,5 @@ public class PH {
                     tbl_character_at_node + " integer," +
                     tbl_character_is_backup_for + " integer" +
                     ");"};
+    // END db constants
 }
