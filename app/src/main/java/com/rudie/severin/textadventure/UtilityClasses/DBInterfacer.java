@@ -1,11 +1,9 @@
-package com.rudie.severin.textadventure;
+package com.rudie.severin.textadventure.UtilityClasses;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.rudie.severin.textadventure.UtilityClasses.PH;
 
 import java.util.Map;
 
@@ -60,23 +58,25 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
     }
 
-    public void enterCharacterIntoDB(String firstName, String nickName, String lastName, Map<String,
+    // Coordinates entering character and stat information into the DB, then returns the new
+    // character ID
+    public int enterCharacterIntoDb(String firstName, String nickName, String lastName, Map<String,
             Integer> skills, Integer atNode, Integer backUpFor) {
 
         // this inserts character stats, then returns character ID to allow skill insertions
         int charId = insertCharacterDetails(firstName, nickName, lastName, atNode, backUpFor);
         insertCharacterSkills(charId, skills);
-        PH.CURRENT_CHARACTER_ID = charId;
+        return charId;
     }
 
-    // this method returns the character ID of the inserted row after inserting character details
+    // This method returns the character ID of the inserted row after inserting character details
     public int insertCharacterDetails(String firstName, String nickName, String lastName,
                                        Integer atNode, Integer backUpFor) {
         String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
                 + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
-                + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ") VALUES ('" +
-                firstName + "', '" + nickName + "', '" + lastName + "', '" + atNode + "', '" + backUpFor
-                + "');";
+                + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ", "
+                + PH.tbl_character_hp + ") VALUES ('" + firstName + "', '" + nickName + "', '"
+                + lastName + "', '" + atNode + "', '" + backUpFor + "', '" + PH.STARTING_HP + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
 
@@ -88,7 +88,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return charID;
     }
 
-    // this loops over three arrays (each of size 3), inserting numbers for strength, agility,
+    // This loops over three arrays (each of size 3), inserting numbers for strength, agility,
     // and comradery
     public void insertCharacterSkills(Integer charId, Map<String, Integer> skills) {
         String[] skillNames = new String[]{PH.STRENGTH, PH.AGILITY, PH.COMRADERY};

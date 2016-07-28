@@ -1,6 +1,7 @@
 package com.rudie.severin.textadventure;
 
 import android.support.v4.app.Fragment;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
@@ -34,6 +35,7 @@ public class CharacterSelectFragmentUnitTest {
         frag.swapSkills(tv1, tv2);
         assertEquals(tv1.getText().toString(), text2);
         assertEquals(tv2.getText().toString(), text1);
+        // TODO: ask why this doesn't work
     }
 
 }

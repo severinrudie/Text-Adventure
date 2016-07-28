@@ -1,11 +1,9 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rudie.severin.textadventure.DBInterfacer;
+import com.rudie.severin.textadventure.PlayActivity;
+import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
 
 import java.util.HashMap;
@@ -111,6 +110,10 @@ public class CharacterSelectFragment extends Fragment {
             public void onClick(View view) {
                 if (editText.getText().toString().length() > 0) {
                     passCharacterToDb(editText, topSkill, midSkill, botSkill);
+                    // this currently goes to PlayActivity, but once animations are in it will direct
+                    // there for the opening animation instead
+                    Intent intent = new Intent(getActivity(), PlayActivity.class);
+
                 } else {
                     Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
                 }
@@ -161,7 +164,7 @@ public class CharacterSelectFragment extends Fragment {
         HashMap<String, Integer> skills = getSkills(top, mid, bot);
 
         DBInterfacer db = DBInterfacer.getInstance(this.getContext());
-        db.enterCharacterIntoDB(firstName, nickName, lastName, skills, 0, null);
+        db.enterCharacterIntoDb(firstName, nickName, lastName, skills, 0, null);
     }
 
     public String[] getNames(EditText editText) {

@@ -6,7 +6,7 @@ package com.rudie.severin.textadventure.UtilityClasses;
 public class PH {
 
     // BEGIN non-final variables
-    public static int CURRENT_CHARACTER_ID = 0;
+//    public static int CURRENT_CHARACTER_ID = 0;
     // END non-final variables
 
     // BEGIN character insertion constants
@@ -16,6 +16,7 @@ public class PH {
     public static final int STRENGTH_ID = 1;
     public static final int AGILITY_ID = 2;
     public static final int COMRADERY_ID = 3;
+    public static final int STARTING_HP = 10;
     // END character insertion constants
 
     // BEGIN db constants
@@ -58,6 +59,7 @@ public class PH {
     public static final String tbl_character_nickname = "character_nickname";
     public static final String tbl_character_at_node = "character_at_node";
     public static final String tbl_character_is_backup_for = "character_is_backup_for";
+    public static final String tbl_character_hp = "character_hp";
 
     public static final String[] all_tables = {tbl_choices, tbl_inventory, tbl_statistics,
             tbl_nodes, tbl_character, tbl_item_type};
@@ -107,7 +109,8 @@ public class PH {
                     tbl_character_lastname + " text," +
                     tbl_character_nickname + " text," +
                     tbl_character_at_node + " integer," +
-                    tbl_character_is_backup_for + " integer" +
+                    tbl_character_is_backup_for + " integer," +
+                    tbl_character_hp + " integer" +
                     ");"};
     // END db constants
 }

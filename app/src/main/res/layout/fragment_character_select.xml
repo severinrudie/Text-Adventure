@@ -29,7 +29,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="150dp"
-                android:id="@+id/edittextCharacterSelectFragment"/>
+                android:id="@+id/edittextCharacterSelectFragment"
+                android:maxLines="1"
+                android:inputType="textCapWords|textNoSuggestions"
+                />
 
                 <Button
                     android:layout_width="wrap_content"
