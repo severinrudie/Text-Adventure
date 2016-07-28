@@ -35,7 +35,7 @@ public class LauncherActivity extends AppCompatActivity {
 
 
 
-//        TODO: temp code
+//        TODO: temp code. resets DB on every new instance
         db.dropAllTables();
         db.onCreate(db.getWritableDatabase());
 //        TODO: end temp code

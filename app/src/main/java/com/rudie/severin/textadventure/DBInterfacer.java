@@ -1,6 +1,7 @@
 package com.rudie.severin.textadventure;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -62,13 +63,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public void enterCharacterIntoDB(String firstName, String nickName, String lastName, Map<String,
             Integer> skills, Integer atNode, Integer backUpFor) {
 
-        insertCharacterDetails(firstName, nickName, lastName, atNode, backUpFor);
-
-
+        // this inserts character stats, then returns character ID to allow skill insertions
+        int charId = insertCharacterDetails(firstName, nickName, lastName, atNode, backUpFor);
         // TODO: insert skills too
+        insertCharacterSkills(charId, skills);
     }
 
-    public void insertCharacterDetails(String firstName, String nickName, String lastName,
+    // this method returns the character ID of the inserted row after inserting character details
+    public int insertCharacterDetails(String firstName, String nickName, String lastName,
                                        Integer atNode, Integer backUpFor) {
         String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
                 + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
@@ -77,17 +79,36 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
+
+        sql = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        int charID = cursor.getInt(0);
+        cursor.close();
+        return charID;
     }
 
-    public void insertCharacterSkills(String firstName, String nickName, String lastName,
-                                       Integer atNode, Integer backUpFor) {
-        String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
-                + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
-                + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ") VALUES ('" +
-                firstName + "', '" + nickName + "', '" + lastName + "', '" + atNode + "', '" + backUpFor
-                + "');";
+    // this loops over three arrays (each of size 3), inserting numbers for strength, agility,
+    // and comradery
+    public void insertCharacterSkills(Integer charId, Map<String, Integer> skills) {
+        String[] skillNames = new String[]{PH.STRENGTH, PH.AGILITY, PH.COMRADERY};
+        int[] skillIds = new int[] {PH.STRENGTH_ID, PH.AGILITY_ID, PH.COMRADERY_ID};
+        int[] skillValues = new int[] {skills.get(PH.STRENGTH), skills.get(PH.AGILITY),
+                skills.get(PH.COMRADERY)};
+
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL(sql);
+        for (int i = 0; i < skillNames.length; i++) {
+            String sql = skillQueryConstructor(charId, skillNames[i], skillIds[i], skillValues[i]);
+            db.execSQL(sql);
+        }
+    }
+
+    public String skillQueryConstructor(int charID, String skillName, int skillId, int value) {
+        String sql = "INSERT INTO " + PH.tbl_statistics + " (" + PH.tbl_statistics_character_id
+                + ", " + PH.tbl_statistics_stat_name + ", " + PH.tbl_statistics_stat_value + ", "
+                + PH.tbl_statistics_type_id + ") VALUES ('" + charID + "', '" + skillName + "', '"
+                + value + "', '" + skillId + "');";
+        return sql;
     }
 
 

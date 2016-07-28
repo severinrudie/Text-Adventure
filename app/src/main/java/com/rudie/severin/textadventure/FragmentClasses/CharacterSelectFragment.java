@@ -176,8 +176,8 @@ public class CharacterSelectFragment extends Fragment {
             }
         }
 //        apostraphes will be added on to nicknames after withdrawal from the DB
-//        nickName = nickName.replace("'", "");
-//        nickName = nickName.replace("\"", "");
+        nickName = nickName.replace("'", "");
+        nickName = nickName.replace("\"", "");
         return new String[] {firstName, nickName, lastName};
     }
 

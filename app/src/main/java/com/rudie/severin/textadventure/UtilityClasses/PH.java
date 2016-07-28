@@ -5,6 +5,15 @@ package com.rudie.severin.textadventure.UtilityClasses;
  */
 public class PH {
 
+    public static int CURRENT_CHARACTER = 0;
+
+    public static final String STRENGTH = "Strength";
+    public static final String AGILITY = "Agility";
+    public static final String COMRADERY = "Comradery";
+    public static final int STRENGTH_ID = 1;
+    public static final int AGILITY_ID = 2;
+    public static final int COMRADERY_ID = 3;
+
     public static final String tbl_choices = "table_choices";
     public static final String tbl_choices_id = "choice_id";
     public static final String tbl_choices_node_id = "node_id";
