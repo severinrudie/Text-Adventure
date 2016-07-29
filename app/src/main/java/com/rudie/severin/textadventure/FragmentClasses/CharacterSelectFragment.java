@@ -44,8 +44,8 @@ public class CharacterSelectFragment extends Fragment {
     String[] lastNames = new String[] {"Hazard", "Rock", "Fletcher", "Bronson", "Archer", "Power",
             "Beef","Blast","Blow","Buff","Bulk","Bullet","Burp","Crumple","Fist","Hard",
             "Iron","Lamp","Large","Plank","Pork","Rock","Slam","Steel","Thorn","Thud","Thunder",
-            "Vander"};
-    String[] prefixNames = new String[] {"Mac", "Mc", "Van", "Von", "O"};
+            "Vander", "Hamcrest"};
+    String[] prefixNames = new String[] {"Mac", "Mc", "Van", "Von", "O'"};
 
     TextView topSkill, midSkill, botSkill;
 
@@ -165,6 +165,10 @@ public class CharacterSelectFragment extends Fragment {
 
     public String[] getNames(EditText editText) {
         String[] names = editText.getText().toString().split(" ");
+//        for (String name : names) {
+//            name = name.replace("'", "''");
+//            name = name.replace("\"", "\\\"");
+//        }
         String firstName = names[0];
         String nickName = "";
         String lastName = "";
@@ -177,8 +181,6 @@ public class CharacterSelectFragment extends Fragment {
                 nickName += " " + names[i];
             }
         }
-        nickName = nickName.replace("'", "");
-        nickName = nickName.replace("\"", "");
         return new String[] {firstName, nickName, lastName};
     }
 

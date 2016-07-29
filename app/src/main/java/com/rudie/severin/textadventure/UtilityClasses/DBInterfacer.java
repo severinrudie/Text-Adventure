@@ -79,6 +79,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
     // This method returns the character ID of the inserted row after inserting character details
     public int insertCharacterDetails(String firstName, String nickName, String lastName,
                                        Integer atNode, Integer backUpFor) {
+        firstName = cleanTextForDb(firstName);
+        nickName = cleanTextForDb(nickName);
+        lastName = cleanTextForDb(lastName);
         String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
                 + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
                 + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ", "
@@ -127,17 +130,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-//    "CREATE TABLE " + tbl_choices + " (" +
-//    tbl_choices_id + " integer PRIMARY KEY AUTOINCREMENT, " +
-//    tbl_choices_node_id + " integer, " +
-//    tbl_choices_text + " text, " +
-//    tbl_choices_connected_node + " integer, " +
-//    tbl_choices_item_type_required + " integer, " +
-//    tbl_choices_item_type_improves + " text, " +
-//    tbl_choices_test_type_id + " integer, " +
-//    tbl_choices_test_difficulty + " text " +
-
-//    insertChoiceDetails(5, "hey i'm on tv", 6, 1, 2, 3, 4);
     public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
@@ -153,6 +145,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
     public String cleanTextForDb(String string) {
         string = string.replace("'", "''");
+        string = string.replace("\"", "\\\"");
         return string;
     }
 
