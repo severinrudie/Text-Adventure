@@ -159,16 +159,12 @@ public class CharacterSelectFragment extends Fragment {
         HashMap<String, Integer> skills = getSkills(top, mid, bot);
 
         DBInterfacer db = DBInterfacer.getInstance(this.getContext());
-        int currentCharacterId = db.enterCharacterIntoDb(firstName, nickName, lastName, skills, 0, null);
+        int currentCharacterId = db.enterCharacterIntoDb(firstName, nickName, lastName, skills, 1, null);
         return currentCharacterId;
     }
 
     public String[] getNames(EditText editText) {
         String[] names = editText.getText().toString().split(" ");
-//        for (String name : names) {
-//            name = name.replace("'", "''");
-//            name = name.replace("\"", "\\\"");
-//        }
         String firstName = names[0];
         String nickName = "";
         String lastName = "";

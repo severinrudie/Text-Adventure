@@ -21,7 +21,7 @@ public class PH {
     // END character insertion constants
 
     // BEGIN db constants
-    public static final String tbl_choices = "table_choices";
+    public static final String tbl_choices = "table_choice";
     public static final String tbl_choices_id = "choice_id";
     public static final String tbl_choices_node_id = "node_id";
     public static final String tbl_choices_text = "choice_text";
