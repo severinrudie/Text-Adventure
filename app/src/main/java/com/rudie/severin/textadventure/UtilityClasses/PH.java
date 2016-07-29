@@ -73,9 +73,9 @@ public class PH {
                     tbl_choices_text + " text, " +
                     tbl_choices_connected_node + " integer, " +
                     tbl_choices_item_type_required + " integer, " +
-                    tbl_choices_item_type_improves + " text, " +
+                    tbl_choices_item_type_improves + " integer, " +
                     tbl_choices_test_type_id + " integer, " +
-                    tbl_choices_test_difficulty + " text " +
+                    tbl_choices_test_difficulty + " integer " +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_inventory +" (" +
@@ -116,6 +116,7 @@ public class PH {
     // END db constants
 
     // BEGIN node details
+    // These are ingested into the DB upon DB creation
     public static final String NULL = "NULL";
     
     public static final String [][] nodeDetails = new String[][] {
@@ -123,6 +124,21 @@ public class PH {
             new String[] {"You's out of da drop pod", NULL, NULL},
             new String[] {"You's in a tree patch", NULL, NULL}
     };
-
     // END node details
+
+//    insertChoiceDetails(5, "hey i'm on tv", 6, 1, 2, 3, 4);
+    // BEGIN choices details
+    // These are ingested into the DB upon DB creation
+public static final ChoiceData [] choiceDetails = new ChoiceData[]{
+        new ChoiceData("Hey I'm on TV!",5, 6, 1, 2, 3, 4),
+        new ChoiceData("I'm still here!",1, 2, 3, 4, 5, 6)
+    };
+
+
+
+
+
+
+
+    // END choices details
 }

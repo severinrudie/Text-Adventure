@@ -46,6 +46,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
         for (String[] sArray : PH.nodeDetails) {
             insertNodeDetails(sArray[0], sArray[1], sArray[2]);
         }
+        for (ChoiceData data : PH.choiceDetails) {
+            int[] i = data.getInts();
+            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5]);
+        }
     }
 
     @Override
@@ -115,12 +119,41 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public void insertNodeDetails(String text, String image, String animation) {
-        text = text.replace("'", "''");
+        text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_nodes + " (" + PH.tbl_nodes_text + ", "
                 + PH.tbl_nodes_image + ", " + PH.tbl_nodes_animation + ") VALUES ('" + text + "', '"
                 + image + "', '" + animation + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
+    }
+
+//    "CREATE TABLE " + tbl_choices + " (" +
+//    tbl_choices_id + " integer PRIMARY KEY AUTOINCREMENT, " +
+//    tbl_choices_node_id + " integer, " +
+//    tbl_choices_text + " text, " +
+//    tbl_choices_connected_node + " integer, " +
+//    tbl_choices_item_type_required + " integer, " +
+//    tbl_choices_item_type_improves + " text, " +
+//    tbl_choices_test_type_id + " integer, " +
+//    tbl_choices_test_difficulty + " text " +
+
+//    insertChoiceDetails(5, "hey i'm on tv", 6, 1, 2, 3, 4);
+    public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
+                                    int itemImproves, int testType, int difficulty) {
+        text = cleanTextForDb(text);
+        String sql = "INSERT INTO " + PH.tbl_choices + " (" + PH.tbl_choices_node_id + ", "
+                + PH.tbl_choices_text  + ", " + PH.tbl_choices_connected_node + ", "
+                + PH.tbl_choices_item_type_required + ", " + PH.tbl_choices_item_type_improves
+                + ", " + PH.tbl_choices_test_type_id + ", " + PH.tbl_choices_test_difficulty + ") VALUES ('"
+                + nodeId + "', '" + text + "', '" + connectedNode  + "', '" + itemRequired
+                + "', '" + itemImproves + "', '" +testType + "', '" + difficulty + "');";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
+    }
+
+    public String cleanTextForDb(String string) {
+        string = string.replace("'", "''");
+        return string;
     }
 
 }
