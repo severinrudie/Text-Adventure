@@ -230,7 +230,7 @@ def main_loop():
 		print("Node " + str(node.number) + ": " + node.text[:30])
 	for choice in choice_list:
 		print("Choice: " + choice.text[:30])
-	if ((print("")) & (request_yesno_input("Would you like to write these to file?"))):
+	if (request_yesno_input("Would you like to write these to file?")):
 		write_to_file()
 	else: 
 		main_loop()

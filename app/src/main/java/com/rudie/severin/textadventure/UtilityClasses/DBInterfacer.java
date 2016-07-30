@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         for (String[] sArray : PH.nodeDetails) {
             insertNodeDetails(sArray[0], sArray[1], sArray[2]);
         }
+        Log.d("SEVTEST: ", "" + PH.choiceDetails.length);
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
             insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5]);
