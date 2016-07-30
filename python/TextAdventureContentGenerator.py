@@ -16,6 +16,7 @@ def request_yesno_input(query):
 	elif (yesno == "Y"):
 		return True
 		
+"""
 def request_int_input(query, base=0, ceiling=0, nullable=False):
 	next_input = int;
 	try:
@@ -47,7 +48,33 @@ def request_int_input(query, base=0, ceiling=0, nullable=False):
 	else:
 		print("")
 	request_int_input(query, base, ceiling)
-	
+"""
+
+def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
+
+    #Asks the question
+    if (nullable):
+        next_input=input(query + " or [N] if none required: ")
+    else:
+        next_input=input(query + ":  ")
+
+    #Processes the response, re-asks the question if input is invalid
+    if (nullable and next_input.upper()=="N"):
+        return -1
+    else:
+        try:
+            next_input = int(next_input)
+        except ValueError:
+            print("You've entered an invalid value, try again")
+            return request_int_input(query, base, ceiling, nullable)
+        
+    if (next_input > base and next_input < ceiling):
+            return next_input
+    else:
+            print("You've entered an invalid value, try again")
+            return request_int_input(query, base, ceiling, nullable)
+
+
 def requestInputType():
 	print("")
 	next_type = request_int_input("Are you inputting a node[1], inputting a choice[2], or are you finished inputting data[3]?", ceiling=4)
