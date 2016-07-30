@@ -1,5 +1,0 @@
-new ChoiceData("asdfjasdf", 1, 2, -1, -1, -1, -1),
-
-new String[] {"asdf", NULL, NULL},
-new ChoiceData("asdfjasdf", 1, 2, -1, -1, -1, -1),
-
