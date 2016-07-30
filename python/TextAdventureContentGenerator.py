@@ -49,7 +49,8 @@ def request_int_input(query, base=0, ceiling=0, nullable=False):
 	request_int_input(query, base, ceiling)
 	
 def requestInputType():
-	next_type = request_int_input("\nAre you inputting a node[1], inputting a choice[2], or are you finished inputting data[3]?", ceiling=4)
+	print("")
+	next_type = request_int_input("Are you inputting a node[1], inputting a choice[2], or are you finished inputting data[3]?", ceiling=4)
 	if (next_type == 1):
 		get_node_values()
 	elif (next_type == 2):
@@ -62,6 +63,7 @@ def value_or_n(query):
 	return value;
 	
 def is_this_correct(type):
+	print("")
 	verify_correct = input("Is this correct? [Y/N]").upper()
 	if ((verify_correct != "Y") & (verify_correct != "N")):
 		print("Please repond with either Y or N")
@@ -116,7 +118,8 @@ def get_node_values():
 	 	newNode = Node_Class()
  	 	# get_node_number calls following methods on its own
 	 	newNode.get_values()
-	 	if (request_yesno_input("\nWould you like to enter more Nodes?")  == False):
+	 	print("")
+	 	if (request_yesno_input("Would you like to enter more Nodes?")  == False):
 	 		set_more = False
 	requestInputType()
 
@@ -176,7 +179,8 @@ def get_choice_values():
 	 	newChoice = Choice_Class()
  	 	# get_node_number calls following methods on its own
 	 	newChoice.get_values()
-	 	if (request_yesno_input("\nWould you like to enter more Choices?")  == False):
+	 	print("")
+	 	if (request_yesno_input("Would you like to enter more Choices?")  == False):
 	 		set_more = False
 	requestInputType()
 	
@@ -192,31 +196,41 @@ def clean_string(dirtyString):
 	
 def write_to_file():
 	clean_text_for_java()
-	file = open('java_inputs.txt', 'a')
-	print("\nWriting the following text to file:")
+	print("")
+	print("Writing the following text to file:")
+	print("")
+	total_string = ""
 	for node in node_list:
 		write_string = "new String[] {\"" + node.text + "\", " + node.image + ", " + node.animation + "},"
-		file.write(write_string)
-		file.write("\n")
+		total_string += write_string
+		total_string += "\n"
+		# file.write(write_string)
+		# file.write("\n")
 		print(write_string)
 	print("")
 	for choice in choice_list:
 		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedNode) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
-		file.write(write_string)
-		file.write("\n")
+		total_string += write_string
+		total_string += "\n"
+		# file.write(write_string)
+		# file.write("\n")
 		print(write_string)
 		# print("\n")
+	total_string += "\n"
+	file = open('java_inputs.txt', 'a')
+	file.write(total_string)
 	file.close()
 	main_loop()
 	
 def main_loop():
 	requestInputType()   #this will call getNodeValues / getChoiceValues
-	print("\nPrinting current data")
+	print("")
+	print("Printing current data")
 	for node in node_list:
 		print("Node " + str(node.number) + ": " + node.text[:30])
 	for choice in choice_list:
 		print("Choice: " + choice.text[:30])
-	if (request_yesno_input("\nWould you like to write these to file?")):
+	if ((print("")) & (request_yesno_input("Would you like to write these to file?"))):
 		write_to_file()
 	else: 
 		main_loop()

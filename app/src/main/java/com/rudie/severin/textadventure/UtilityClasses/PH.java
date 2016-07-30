@@ -126,7 +126,6 @@ public class PH {
     };
     // END node details
 
-//    insertChoiceDetails(5, "hey i'm on tv", 6, 1, 2, 3, 4);
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{

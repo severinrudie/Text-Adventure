@@ -3,9 +3,12 @@ package com.rudie.severin.textadventure.UtilityClasses;
 /**
  * Created by erikrudie on 7/28/16.
  */
+
+/*
+This class holds all information relevent to Choices, and is used to build the database
+ */
 public class ChoiceData {
-//    public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
-//                                    int itemImproves, int testType, int difficulty) {
+
     private final String text;
     private final int nodeId;
     private final int connectedNode;
