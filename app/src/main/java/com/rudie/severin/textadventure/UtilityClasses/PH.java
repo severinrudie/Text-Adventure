@@ -130,8 +130,8 @@ public class PH {
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
-        new ChoiceData("Hey I'm on TV!",5, 6, 1, 2, 3, 4),
-        new ChoiceData("I'm still here!",1, 2, 3, 4, 5, 6)
+        new ChoiceData("Hey I'm on TV!", 5, 6, 1, 2, 3, 4),
+        new ChoiceData("I'm still here!", 1, 2, 3, 4, 5, 6)
     };
 
 

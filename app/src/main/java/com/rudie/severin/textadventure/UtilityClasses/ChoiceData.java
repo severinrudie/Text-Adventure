@@ -6,14 +6,14 @@ package com.rudie.severin.textadventure.UtilityClasses;
 public class ChoiceData {
 //    public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
 //                                    int itemImproves, int testType, int difficulty) {
-    private String text;
-    private int nodeId;
-    private int connectedNode;
-    private int itemRequired;
-    private int itemImproves;
-    private int testType;
-    private int difficulty;
-    private int[] ints;
+    private final String text;
+    private final int nodeId;
+    private final int connectedNode;
+    private final int itemRequired;
+    private final int itemImproves;
+    private final int testType;
+    private final int difficulty;
+    private final int[] ints;
 
     public ChoiceData(String text, int nodeId, int connectedNode, int itemRequired,
                       int itemImproves, int testType, int difficulty) {
@@ -30,6 +30,30 @@ public class ChoiceData {
 
     public String getText() {
         return text;
+    }
+
+    public int getNodeId() {
+        return nodeId;
+    }
+
+    public int getConnectedNode() {
+        return connectedNode;
+    }
+
+    public int getItemRequired() {
+        return itemRequired;
+    }
+
+    public int getItemImproves() {
+        return itemImproves;
+    }
+
+    public int getTestType() {
+        return testType;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
     }
 
     public int[] getInts() {
