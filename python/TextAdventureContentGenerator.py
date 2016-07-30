@@ -59,7 +59,7 @@ def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
         next_input=input(query + ":  ")
 
     #Processes the response, re-asks the question if input is invalid
-    if (nullable and next_input=="N"):
+    if (nullable and next_input.upper()=="N"):
         return -1
     else:
         try:
