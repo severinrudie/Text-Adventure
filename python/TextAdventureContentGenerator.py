@@ -52,13 +52,13 @@ def request_int_input(query, base=0, ceiling=0, nullable=False):
 
 def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
 
-    print(query)
-
+    #Asks the question
     if (nullable):
-        next_input=input("Enter a value above " + str(base) + " and below" + str(ceiling) + " or [N] if none required:")
+        next_input=input(query + " or [N] if none required: ")
     else:
-        next_input=input("Enter a value above " + str(base) + " and below " + str(ceiling) + ": ")
+        next_input=input(query + ":  ")
 
+    #Processes the response, re-asks the question if input is invalid
     if (nullable and next_input=="N"):
         return -1
     else:
