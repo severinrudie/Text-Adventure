@@ -4,13 +4,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
+import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
+import java.util.List;
+
 public class PlayActivity extends AppCompatActivity {
+
+    List<ChoiceData> choiceList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,40 +31,25 @@ public class PlayActivity extends AppCompatActivity {
             finish();
         }
 
-        int currentNode = getCurrentNode(currentCharacterId);
-        String nodeText = getCurrentNodeText(currentNode);
+        DBInterfacer helper = DBInterfacer.getInstance(this);
+        // get current nodeId and node.text from the DB
+        int currentNode = helper.getCurrentNode(currentCharacterId, this);
+        String nodeText = helper.getCurrentNodeText(currentNode, this);
 
         TextView textviewText = (TextView) findViewById(R.id.textviewPlayContent);
         textviewText.setText(nodeText);
 
 
+        // RecyclerView code
+        RecyclerView rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
+
+        choiceList = helper.getAvailableChoices(currentNode, this);
+        ChoiceAdapter adapter = new ChoiceAdapter(this, choiceList);
+        rvChoices.setAdapter(adapter);
+        rvChoices.setLayoutManager(new LinearLayoutManager(this));
+
+
 
     }  // end onCreate
-
-    private int getCurrentNode(int currentCharacterId) {
-        // get current node from table_character using character_id
-        String sql = "SELECT " + PH.tbl_character_at_node + " FROM " + PH.tbl_character + " WHERE "
-                + PH.tbl_character_id + " = '" + currentCharacterId + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(this);
-        SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        int currentNode = cursor.getInt(0);
-        cursor.close();
-        return currentNode;
-    }
-
-    private String getCurrentNodeText(int currentNode) {
-        // get node text from table_nodes using node_id
-        String sql = "SELECT " + PH.tbl_nodes_text + " FROM " + PH.tbl_nodes + " WHERE "
-                + PH.tbl_nodes_id + " = '" + currentNode + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(this);
-        SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery(sql, null);
-        cursor.moveToFirst();
-        String nodeText = cursor.getString(0);
-        cursor.close();
-        return nodeText;
-    }
 
 }

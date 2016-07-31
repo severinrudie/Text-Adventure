@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,11 +49,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
         for (String[] sArray : PH.nodeDetails) {
             insertNodeDetails(sArray[0], sArray[1], sArray[2]);
         }
-        Log.d("SEVTEST: ", "" + PH.choiceDetails.length);
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
             insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5]);
-            Log.d("SEVTEST2: ", "inserting " + data.getText());
         }
     }
 
@@ -64,7 +64,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public void dropAllTables() {
         SQLiteDatabase db = this.getWritableDatabase();
         for (String string : PH.all_tables) {
-            Log.d("SEVTEST3: ", "dropping: " + string);
             db.execSQL("DROP TABLE IF EXISTS " + string);
         }
     }
@@ -152,5 +151,54 @@ public class DBInterfacer extends SQLiteOpenHelper {
         string = string.replace("\"", "\\\"");
         return string;
     }
+
+    // get current node from table_character using character_id
+    public int getCurrentNode(int currentCharacterId, Context context) {
+        String sql = "SELECT " + PH.tbl_character_at_node + " FROM " + PH.tbl_character + " WHERE "
+                + PH.tbl_character_id + " = '" + currentCharacterId + "';";
+        DBInterfacer helper = DBInterfacer.getInstance(context);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        int currentNode = cursor.getInt(0);
+        cursor.close();
+        return currentNode;
+    }
+
+    // get node text from table_nodes using node_id
+    public String getCurrentNodeText(int currentNode, Context context) {
+        String sql = "SELECT " + PH.tbl_nodes_text + " FROM " + PH.tbl_nodes + " WHERE "
+                + PH.tbl_nodes_id + " = '" + currentNode + "';";
+        DBInterfacer helper = DBInterfacer.getInstance(context);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        String nodeText = cursor.getString(0);
+        cursor.close();
+        return nodeText;
+    }
+
+    public List<ChoiceData> getAvailableChoices(int nodeId, Context context) {
+        String sql = "SELECT * FROM " + PH.tbl_choice + " WHERE " + PH.tbl_choice_node_id + " = '"
+                + nodeId + "';";
+        DBInterfacer helper = DBInterfacer.getInstance(context);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        List<ChoiceData> list = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_choice_text));
+            int connectedNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_node));
+            int itemReq = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_required));
+            int itemImp = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_improves));
+            int testType = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_type_id));
+            int difficulty = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_difficulty));
+            list.add(new ChoiceData(text, nodeId, connectedNode, itemReq, itemImp, testType, difficulty));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
 
 }
