@@ -22,6 +22,10 @@ import java.util.List;
 public class PlayActivity extends AppCompatActivity {
 
     List<ChoiceData> choiceList;
+    RecyclerView rvChoices;
+    ChoiceAdapter adapter;
+    DBInterfacer helper;
+    TextView textviewText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +34,18 @@ public class PlayActivity extends AppCompatActivity {
 
         int currentCharacterId = getIntent().getIntExtra(PH.CURRENT_CHARACTER, -1);
         if (currentCharacterId == -1) {
-            Log.d("SEVCRASH: ", "currentCharacterId is set to -1");
+            Log.e("SEVCRASH: ", "currentCharacterId is set to -1");
             finish();
         }
 
-        DBInterfacer helper = DBInterfacer.getInstance(this);
-        // get current nodeId and node.text from the DB
+//        Some basic information regarding the current node is collected here, but most associated
+//        logic is found in the setNewNode method
+        helper = DBInterfacer.getInstance(this);
         int currentNode = helper.getCurrentNode(currentCharacterId, this);
-        String nodeText = helper.getCurrentNodeText(currentNode, this);
+        textviewText = (TextView) findViewById(R.id.textviewPlayContent);
+        rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
+        setNewNode(currentNode);
 
-        TextView textviewText = (TextView) findViewById(R.id.textviewPlayContent);
-        textviewText.setText(nodeText);
-
-
-        // RecyclerView code
-        RecyclerView rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
-
-        choiceList = helper.getAvailableChoices(currentNode, this);
-        final ChoiceAdapter adapter = new ChoiceAdapter(this, choiceList);
-        rvChoices.setAdapter(adapter);
-        rvChoices.setLayoutManager(new LinearLayoutManager(this));
 
 //  TODO:      make unavailable RBs unclickable
 
@@ -68,11 +64,21 @@ public class PlayActivity extends AppCompatActivity {
 
     }  // end onCreate
 
-    private void setNewNode() {
+    private void setNewNode(int nodeId) {
         // image
         // animation
-
-
+        if (choiceList == null) {
+            choiceList = helper.getAvailableChoices(nodeId, this);
+            adapter = new ChoiceAdapter(this, choiceList);
+            rvChoices.setAdapter(adapter);
+            rvChoices.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            choiceList.clear();
+            choiceList.addAll(helper.getAvailableChoices(nodeId, this));
+            adapter.notifyDataSetChanged();
+        }
+        String nodeText = helper.getCurrentNodeText(nodeId, this);
+        textviewText.setText(nodeText);
     }
 
 }

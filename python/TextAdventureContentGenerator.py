@@ -113,14 +113,16 @@ def get_node_values():
 class Choice_Class(object):
 	text = str
 	nodeId = int
-	connectedNode = int
+	connectedSuccessNode = int
+	connectedFailNode = int
 	itemRequired = int
 	itemImproves = int
 	testType = int
 	testDifficulty = int
 	def get_values(self):
 		self.nodeId = request_int_input("At which node will this be displayed?")
-		self.connectedNode = request_int_input("To which node will this take you?");
+		self.connectedSuccessNode = request_int_input("If successful, to which node will this take you?");
+		self.connectedFailNode = request_int_input("If a failure, to which node will this take you?", nullable=True);
 		self.text = input("What is the choice text? :")
 		self.itemRequired = request_int_input("What item type is required?", nullable=True);
 		self.testType = request_int_input("What type of test does this use? Strength[1], Agility[2], or Comradery[3]", ceiling=4, nullable=True);
@@ -132,7 +134,8 @@ class Choice_Class(object):
 			self.itemImproves = -1
 		print("These are the currently saved values")
 		print("NodeID: ", str(self.nodeId))
-		print("ConnectedNode: ", str(self.connectedNode))
+		print("ConnectedSuccessNode: ", str(self.connectedSuccessNode))
+		print("ConnectedFailNode: ", str(self.connectedFailNode))
 		print("Text: ", self.text)
 		if (self.itemRequired == -1):
 			print("NO ITEM REQUIRED")
@@ -191,7 +194,7 @@ def write_to_file():
 		print(write_string)
 	print("")
 	for choice in choice_list:
-		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedNode) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
+		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedSuccessNode)  + ", " + str(choice.connectedFailNode) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
 		total_string += write_string
 		total_string += "\n"
 		print(write_string)
