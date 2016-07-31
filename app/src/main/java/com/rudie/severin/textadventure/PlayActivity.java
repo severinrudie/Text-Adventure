@@ -55,7 +55,7 @@ public class PlayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (adapter.getSelectedButtonPos() != -1) {
                     int selectedButtonPos = adapter.getSelectedButtonPos();
-                    int nextNode = choiceList.get(selectedButtonPos).getConnectedNode();
+//                    int nextNode = choiceList.get(selectedButtonPos).getConnectedNode();
 //                    setNewNode(nextNode);
                 }
             }

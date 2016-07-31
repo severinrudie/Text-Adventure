@@ -51,7 +51,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
-            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5]);
+            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6]);
         }
     }
 
@@ -134,15 +134,16 @@ public class DBInterfacer extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
+    public void insertChoiceDetails(String text, int nodeId, int connectedSuccess, int connectedFail, int itemRequired,
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_choice + " (" + PH.tbl_choice_node_id + ", "
-                + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_node + ", "
-                + PH.tbl_choice_item_type_required + ", " + PH.tbl_choice_item_type_improves
-                + ", " + PH.tbl_choice_test_type_id + ", " + PH.tbl_choice_test_difficulty + ") VALUES ('"
-                + nodeId + "', '" + text + "', '" + connectedNode  + "', '" + itemRequired
-                + "', '" + itemImproves + "', '" +testType + "', '" + difficulty + "');";
+                + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_success_node + ", "
+                + PH.tbl_choice_connected_fail_node + ", " + PH.tbl_choice_item_type_required + ", "
+                + PH.tbl_choice_item_type_improves + ", " + PH.tbl_choice_test_type_id + ", "
+                + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + text + "', '"
+                + connectedSuccess  + "', '" + connectedFail  + "', '" + itemRequired + "', '"
+                + itemImproves + "', '" + testType + "', '" + difficulty + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
@@ -189,12 +190,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
         List<ChoiceData> list = new ArrayList<>();
         while (!cursor.isAfterLast()) {
             String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_choice_text));
-            int connectedNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_node));
+            int connectedSuccessNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_success_node));
+            int connectedFailNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_fail_node));
             int itemReq = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_required));
             int itemImp = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_improves));
             int testType = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_type_id));
             int difficulty = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_difficulty));
-            list.add(new ChoiceData(text, nodeId, connectedNode, itemReq, itemImp, testType, difficulty));
+            list.add(new ChoiceData(text, nodeId, connectedSuccessNode, connectedFailNode, itemReq,
+                    itemImp, testType, difficulty));
             cursor.moveToNext();
         }
         cursor.close();

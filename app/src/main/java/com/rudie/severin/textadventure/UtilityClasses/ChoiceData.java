@@ -11,23 +11,25 @@ public class ChoiceData {
 
     private final String text;
     private final int nodeId;
-    private final int connectedNode;
+    private final int connectedSuccessNode;
+    private final int connectedFailNode;
     private final int itemRequired;
     private final int itemImproves;
     private final int testType;
     private final int difficulty;
     private final int[] ints;
 
-    public ChoiceData(String text, int nodeId, int connectedNode, int itemRequired,
-                      int itemImproves, int testType, int difficulty) {
+    public ChoiceData(String text, int nodeId, int connectedSuccess, int connectedFail,
+                      int itemRequired, int itemImproves, int testType, int difficulty) {
         this.text = text;
         this.nodeId = nodeId;
-        this.connectedNode = connectedNode;
+        this.connectedSuccessNode = connectedSuccess;
+        this.connectedFailNode = connectedFail;
         this.itemRequired = itemRequired;
         this.itemImproves = itemImproves;
         this.testType = testType;
         this.difficulty = difficulty;
-        this.ints = new int[] {nodeId, connectedNode, itemRequired, itemImproves, testType,
+        this.ints = new int[] {nodeId, connectedSuccess, connectedFail, itemRequired, itemImproves, testType,
                 difficulty};
     }
 
@@ -39,8 +41,12 @@ public class ChoiceData {
         return nodeId;
     }
 
-    public int getConnectedNode() {
-        return connectedNode;
+    public int getConnectedSuccessNode() {
+        return connectedSuccessNode;
+    }
+
+    public int getConnectedFailNode() {
+        return connectedFailNode;
     }
 
     public int getItemRequired() {

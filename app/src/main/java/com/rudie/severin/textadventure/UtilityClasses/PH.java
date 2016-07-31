@@ -25,7 +25,8 @@ public class PH {
     public static final String tbl_choice_id = "choice_id";
     public static final String tbl_choice_node_id = "node_id";
     public static final String tbl_choice_text = "choice_text";
-    public static final String tbl_choice_connected_node = "connected_node";
+    public static final String tbl_choice_connected_success_node = "connected_success_node";
+    public static final String tbl_choice_connected_fail_node = "connected_fail_node";
     public static final String tbl_choice_item_type_required = "item_type_required";
     public static final String tbl_choice_item_type_improves = "item_type_improves";
     public static final String tbl_choice_test_type_id = "test_type_id";
@@ -37,13 +38,13 @@ public class PH {
     public static final String tbl_inventory_power = "item_power";
     public static final String tbl_inventory_type_id = "item_type_id";
 
-    public static final String tbl_statistics = "table_statistics";
+    public static final String tbl_statistics = "table_statistic";
     public static final String tbl_statistics_type_id = "stat_type_id";
     public static final String tbl_statistics_stat_name = "stat_name";
     public static final String tbl_statistics_stat_value = "stat_value";
     public static final String tbl_statistics_character_id = "character_id";
 
-    public static final String tbl_nodes = "table_nodes";
+    public static final String tbl_nodes = "table_node";
     public static final String tbl_nodes_id = "node_id";
     public static final String tbl_nodes_text = "node_text";
     public static final String tbl_nodes_image = "node_image";
@@ -71,7 +72,8 @@ public class PH {
                     tbl_choice_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_choice_node_id + " integer, " +
                     tbl_choice_text + " text, " +
-                    tbl_choice_connected_node + " integer, " +
+                    tbl_choice_connected_success_node + " integer, " +
+                    tbl_choice_connected_fail_node + " integer, " +
                     tbl_choice_item_type_required + " integer, " +
                     tbl_choice_item_type_improves + " integer, " +
                     tbl_choice_test_type_id + " integer, " +
@@ -131,18 +133,13 @@ public class PH {
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
-        new ChoiceData("Search for equipment", 1, 2, -1, -1, -1, -1),
-        new ChoiceData("Check Hazard's pod", 1, 3, -1, -1, -1, -1),
-        new ChoiceData("Continue with the mission", 1, 4, -1, -1, -1, -1),
-        new ChoiceData("Hey I'm on TV!", 5, 6, 1, 2, 3, 4),
-        new ChoiceData("I'm still here!", 7, 2, 3, 4, 5, 6)
+        new ChoiceData("hi", 1, 2, -1, -1, -1, -1, -1),
+        new ChoiceData("h", 2, 5, 8, -1, -1, -1, -1),
+        new ChoiceData("Search for equipment", 1, 2, 3, -1, -1, -1, -1),
+        new ChoiceData("Check Hazard's pod", 1, 3, 4, -1, -1, -1, -1),
+        new ChoiceData("Continue with the mission", 1, 4, 5, -1, -1, -1, -1),
+        new ChoiceData("Hey I'm on TV!", 5, 6, 7, 1, 2, 3, 4),
+        new ChoiceData("I'm still here!", 7, 2, 3, 3, 4, 5, 6)
     };
-
-
-
-
-
-
-
     // END choices details
 }
