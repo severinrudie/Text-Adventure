@@ -123,7 +123,6 @@ public class PH {
     
     public static final String [][] nodeDetails = new String[][] {
             new String[] {"1", "You've landed in a burning field.", NULL, NULL},
-            new String[] {"8", "k", "j", "w"},
             new String[] {"2", "You's in a drop pod", NULL, NULL},
             new String[] {"3", "You's out of da drop pod", NULL, NULL},
             new String[] {"4", "You's in a tree patch", NULL, NULL}
@@ -133,8 +132,6 @@ public class PH {
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
-        new ChoiceData("hi", 1, 2, -1, -1, -1, -1, -1),
-        new ChoiceData("h", 2, 5, 8, -1, -1, -1, -1),
         new ChoiceData("Search for equipment", 1, 2, 3, -1, -1, -1, -1),
         new ChoiceData("Check Hazard's pod", 1, 3, 4, -1, -1, -1, -1),
         new ChoiceData("Continue with the mission", 1, 4, 5, -1, -1, -1, -1),

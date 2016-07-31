@@ -12,3 +12,6 @@ new ChoiceData("choice2", 1, 3, -1, -1, -1, -1),
 new ChoiceData("hi", 1, 2, -1, -1, -1, -1, -1),
 new ChoiceData("h", 2, 5, 8, -1, -1, -1, -1),
 
+new String[] {"1", "you're here", "dead pod", "NULL"},
+new ChoiceData("Shoot the enemy with your megalaser", 1, 2, 1, 1, 1, 2, 2),
+

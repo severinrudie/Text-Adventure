@@ -2,8 +2,11 @@
 # append ALL nodes and choices to the end of the file.  If you wish to flush the current list of nodes and choices,
 # please exit and reexecute the program.
 
+import sys
+
 node_list = []
 choice_list = []
+previously_used_nodes = []
 
 def request_yesno_input(query):
 	# try:
@@ -48,6 +51,8 @@ def requestInputType():
 		get_node_values()
 	elif (next_type == 2):
 		get_choice_values()
+	elif (next_type == 3):
+		finished_inputting()
 		
 def value_or_n(query):
 	value = input(query + " (N for none) :")
@@ -75,7 +80,12 @@ class Node_Class(object):
 	image = str
 	animation = str
 	def get_values(self):
-		self.number = request_int_input("Which node is this?")
+		tempNum = request_int_input("Which node is this?")
+		if (tempNum not in previously_used_nodes):
+			self.number = tempNum
+		else:
+			print("You have already written this node.  Please enter another number.")
+			return self.get_values()
 		self.text = input("What is the node text? :")
 		self.image = value_or_n("What is the node image?")
 		self.animation = value_or_n("What is the node animation?")
@@ -91,8 +101,10 @@ class Node_Class(object):
 			print("Animation: ", self.animation)
 		if (is_this_correct("Node")):
 			node_list.append(self)
+			previously_used_nodes.append(self.number)
 		else:
-			self.get_values();
+			# self.get_values();
+			return requestInputType()
 	def __str__(self):
 		temp_string = "Node " + str(self.number)
 		return(temp_string)
@@ -153,7 +165,8 @@ class Choice_Class(object):
 		if (is_this_correct("Choice")):
 			choice_list.append(self)
 		else:
-			self.get_values();
+			# self.get_values();
+			return requestInputType()
 	def __str__(self):
 		temp_string = "Node " + str(self.number)
 		return(temp_string)
@@ -203,10 +216,23 @@ def write_to_file():
 	file = open('java_inputs.txt', 'a')
 	file.write(total_string)
 	file.close()
-	main_loop()
+	sys.exit()
+	# main_loop()
 	
 def main_loop():
 	requestInputType()   #this will call getNodeValues / getChoiceValues
+	# print("")
+	# print("Printing current data")
+	# for node in node_list:
+	# 	print("Node " + str(node.number) + ": " + node.text[:30])
+	# for choice in choice_list:
+	# 	print("Choice: " + choice.text[:30])
+	# if (request_yesno_input("Would you like to write these to file?")):
+	# 	write_to_file()
+	# else: 
+	# 	main_loop()
+
+def finished_inputting():
 	print("")
 	print("Printing current data")
 	for node in node_list:
