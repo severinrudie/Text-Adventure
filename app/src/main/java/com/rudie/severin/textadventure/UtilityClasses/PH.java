@@ -21,15 +21,15 @@ public class PH {
     // END character insertion constants
 
     // BEGIN db constants
-    public static final String tbl_choices = "table_choice";
-    public static final String tbl_choices_id = "choice_id";
-    public static final String tbl_choices_node_id = "node_id";
-    public static final String tbl_choices_text = "choice_text";
-    public static final String tbl_choices_connected_node = "connected_node";
-    public static final String tbl_choices_item_type_required = "item_type_required";
-    public static final String tbl_choices_item_type_improves = "item_type_improves";
-    public static final String tbl_choices_test_type_id = "test_type_id";
-    public static final String tbl_choices_test_difficulty = "test_difficulty";
+    public static final String tbl_choice = "table_choice";
+    public static final String tbl_choice_id = "choice_id";
+    public static final String tbl_choice_node_id = "node_id";
+    public static final String tbl_choice_text = "choice_text";
+    public static final String tbl_choice_connected_node = "connected_node";
+    public static final String tbl_choice_item_type_required = "item_type_required";
+    public static final String tbl_choice_item_type_improves = "item_type_improves";
+    public static final String tbl_choice_test_type_id = "test_type_id";
+    public static final String tbl_choice_test_difficulty = "test_difficulty";
 
     public static final String tbl_inventory = "table_inventory";
     public static final String tbl_inventory_id = "item_id";
@@ -62,20 +62,20 @@ public class PH {
     public static final String tbl_character_is_backup_for = "character_is_backup_for";
     public static final String tbl_character_hp = "character_hp";
 
-    public static final String[] all_tables = {tbl_choices, tbl_inventory, tbl_statistics,
+    public static final String[] all_tables = {tbl_choice, tbl_inventory, tbl_statistics,
             tbl_nodes, tbl_character, tbl_item_type};
 
     public static final String[] create_tables = new String[] {
 
-            "CREATE TABLE " + tbl_choices + " (" +
-                    tbl_choices_id + " integer PRIMARY KEY AUTOINCREMENT, " +
-                    tbl_choices_node_id + " integer, " +
-                    tbl_choices_text + " text, " +
-                    tbl_choices_connected_node + " integer, " +
-                    tbl_choices_item_type_required + " integer, " +
-                    tbl_choices_item_type_improves + " integer, " +
-                    tbl_choices_test_type_id + " integer, " +
-                    tbl_choices_test_difficulty + " integer " +
+            "CREATE TABLE " + tbl_choice + " (" +
+                    tbl_choice_id + " integer PRIMARY KEY AUTOINCREMENT, " +
+                    tbl_choice_node_id + " integer, " +
+                    tbl_choice_text + " text, " +
+                    tbl_choice_connected_node + " integer, " +
+                    tbl_choice_item_type_required + " integer, " +
+                    tbl_choice_item_type_improves + " integer, " +
+                    tbl_choice_test_type_id + " integer, " +
+                    tbl_choice_test_difficulty + " integer " +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_inventory +" (" +
@@ -120,7 +120,6 @@ public class PH {
     public static final String NULL = "NULL";
     
     public static final String [][] nodeDetails = new String[][] {
-            new String[] {"asdf", NULL, NULL},
             new String[] {"You's in a drop pod", NULL, NULL},
             new String[] {"You's out of da drop pod", NULL, NULL},
             new String[] {"You's in a tree patch", NULL, NULL}
@@ -130,7 +129,6 @@ public class PH {
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
-        new ChoiceData("asdfjasdf", 1, 2, -1, -1, -1, -1),
         new ChoiceData("Hey I'm on TV!", 5, 6, 1, 2, 3, 4),
         new ChoiceData("I'm still here!", 1, 2, 3, 4, 5, 6)
     };

@@ -51,6 +51,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
             insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5]);
+            Log.d("SEVTEST2: ", "inserting " + data.getText());
         }
     }
 
@@ -63,6 +64,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public void dropAllTables() {
         SQLiteDatabase db = this.getWritableDatabase();
         for (String string : PH.all_tables) {
+            Log.d("SEVTEST3: ", "dropping: " + string);
             db.execSQL("DROP TABLE IF EXISTS " + string);
         }
     }
@@ -135,10 +137,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public void insertChoiceDetails(String text, int nodeId, int connectedNode, int itemRequired,
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
-        String sql = "INSERT INTO " + PH.tbl_choices + " (" + PH.tbl_choices_node_id + ", "
-                + PH.tbl_choices_text  + ", " + PH.tbl_choices_connected_node + ", "
-                + PH.tbl_choices_item_type_required + ", " + PH.tbl_choices_item_type_improves
-                + ", " + PH.tbl_choices_test_type_id + ", " + PH.tbl_choices_test_difficulty + ") VALUES ('"
+        String sql = "INSERT INTO " + PH.tbl_choice + " (" + PH.tbl_choice_node_id + ", "
+                + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_node + ", "
+                + PH.tbl_choice_item_type_required + ", " + PH.tbl_choice_item_type_improves
+                + ", " + PH.tbl_choice_test_type_id + ", " + PH.tbl_choice_test_difficulty + ") VALUES ('"
                 + nodeId + "', '" + text + "', '" + connectedNode  + "', '" + itemRequired
                 + "', '" + itemImproves + "', '" +testType + "', '" + difficulty + "');";
         SQLiteDatabase db = getWritableDatabase();
