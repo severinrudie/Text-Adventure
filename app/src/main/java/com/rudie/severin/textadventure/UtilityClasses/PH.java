@@ -93,7 +93,7 @@ public class PH {
                     ");" +
                     "",
             "CREATE TABLE " + tbl_nodes + " (" +
-                    tbl_nodes_id + " integer PRIMARY KEY AUTOINCREMENT," +
+                    tbl_nodes_id + " integer PRIMARY KEY," +
                     tbl_nodes_text + " text," +
                     tbl_nodes_image + " text," +
                     tbl_nodes_animation + " text"+
@@ -120,17 +120,22 @@ public class PH {
     public static final String NULL = "NULL";
     
     public static final String [][] nodeDetails = new String[][] {
-            new String[] {"You's in a drop pod", NULL, NULL},
-            new String[] {"You's out of da drop pod", NULL, NULL},
-            new String[] {"You's in a tree patch", NULL, NULL}
+            new String[] {"1", "You've landed in a burning field.", NULL, NULL},
+            new String[] {"8", "k", "j", "w"},
+            new String[] {"2", "You's in a drop pod", NULL, NULL},
+            new String[] {"3", "You's out of da drop pod", NULL, NULL},
+            new String[] {"4", "You's in a tree patch", NULL, NULL}
     };
     // END node details
 
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
+        new ChoiceData("Search for equipment", 1, 2, -1, -1, -1, -1),
+        new ChoiceData("Check Hazard's pod", 1, 3, -1, -1, -1, -1),
+        new ChoiceData("Continue with the mission", 1, 4, -1, -1, -1, -1),
         new ChoiceData("Hey I'm on TV!", 5, 6, 1, 2, 3, 4),
-        new ChoiceData("I'm still here!", 1, 2, 3, 4, 5, 6)
+        new ChoiceData("I'm still here!", 7, 2, 3, 4, 5, 6)
     };
 
 

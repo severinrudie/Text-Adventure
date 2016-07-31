@@ -6,10 +6,12 @@ node_list = []
 choice_list = []
 
 def request_yesno_input(query):
+	# try:
 	yesno = input(query + " [Y/N]").upper()
+	# except
 	if ((yesno != "Y") & (yesno != "N")):
 		print("Please repond with either Y or N")
-		self.request_yesno_input(query)
+		request_yesno_input(query)
 		return
 	elif (yesno == "N"):
 		return False
@@ -59,7 +61,7 @@ def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
         next_input=input(query + ":  ")
 
     #Processes the response, re-asks the question if input is invalid
-    if (nullable and next_input.upper()=="N"):
+    if (nullable and next_input=="N"):
         return -1
     else:
         try:
@@ -228,7 +230,7 @@ def write_to_file():
 	print("")
 	total_string = ""
 	for node in node_list:
-		write_string = "new String[] {\"" + node.text + "\", " + node.image + ", " + node.animation + "},"
+		write_string = "new String[] {\"" + str(node.number) + "\", \"" + node.text + "\", \"" + node.image + "\", \"" + node.animation + "\"},"
 		total_string += write_string
 		total_string += "\n"
 		# file.write(write_string)

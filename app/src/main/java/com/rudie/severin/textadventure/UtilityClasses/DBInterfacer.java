@@ -47,7 +47,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
             db.execSQL(string);
         }
         for (String[] sArray : PH.nodeDetails) {
-            insertNodeDetails(sArray[0], sArray[1], sArray[2]);
+            insertNodeDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
         }
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
@@ -124,11 +124,12 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return sql;
     }
 
-    public void insertNodeDetails(String text, String image, String animation) {
+    public void insertNodeDetails(String nodeId, String text, String image, String animation) {
         text = cleanTextForDb(text);
-        String sql = "INSERT INTO " + PH.tbl_nodes + " (" + PH.tbl_nodes_text + ", "
-                + PH.tbl_nodes_image + ", " + PH.tbl_nodes_animation + ") VALUES ('" + text + "', '"
-                + image + "', '" + animation + "');";
+        String sql = "INSERT INTO " + PH.tbl_nodes + " (" + PH.tbl_nodes_id + ", "
+                + PH.tbl_nodes_text + ", " + PH.tbl_nodes_image + ", " + PH.tbl_nodes_animation
+                + ") VALUES ('" + nodeId + "', '" + text + "', '" + image + "', '" + animation
+                + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
