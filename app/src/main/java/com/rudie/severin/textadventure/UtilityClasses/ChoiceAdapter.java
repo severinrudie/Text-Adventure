@@ -19,6 +19,8 @@ import java.util.List;
 public class ChoiceAdapter extends
         RecyclerView.Adapter<ChoiceAdapter.ViewHolder> {
 
+    private int selectedButtonPos = -1;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView checkType;
         public RadioButton radioButton;
@@ -56,7 +58,7 @@ public class ChoiceAdapter extends
     // Involves populating data into the item through holder
     RadioButton lastCheckedRB = null;
     @Override
-    public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, final int position) {
         ChoiceData choice = mChoices.get(position);
         int checkInt = choice.getTestType();
         String checkString = "";
@@ -81,6 +83,7 @@ public class ChoiceAdapter extends
                     lastCheckedRB.setChecked(false);
                 }
                 lastCheckedRB = (RadioButton) view;
+                selectedButtonPos = position;
             }
         });
     }
@@ -90,6 +93,8 @@ public class ChoiceAdapter extends
         return mChoices.size();
     }
 
-
+    public int getSelectedButtonPos() {
+        return selectedButtonPos;
+    }
 }
 

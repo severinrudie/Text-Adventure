@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
@@ -44,12 +47,32 @@ public class PlayActivity extends AppCompatActivity {
         RecyclerView rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
 
         choiceList = helper.getAvailableChoices(currentNode, this);
-        ChoiceAdapter adapter = new ChoiceAdapter(this, choiceList);
+        final ChoiceAdapter adapter = new ChoiceAdapter(this, choiceList);
         rvChoices.setAdapter(adapter);
         rvChoices.setLayoutManager(new LinearLayoutManager(this));
 
+//  TODO:      make unavailable RBs unclickable
+
+        Button setNextNode = (Button) findViewById(R.id.buttonPlayContinue);
+        setNextNode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (adapter.getSelectedButtonPos() != -1) {
+                    int selectedButtonPos = adapter.getSelectedButtonPos();
+                    int nextNode = choiceList.get(selectedButtonPos).getConnectedNode();
+//                    setNewNode(nextNode);
+                }
+            }
+        });
 
 
     }  // end onCreate
+
+    private void setNewNode() {
+        // image
+        // animation
+
+
+    }
 
 }

@@ -17,43 +17,8 @@ def request_yesno_input(query):
 		return False
 	elif (yesno == "Y"):
 		return True
-		
-"""
-def request_int_input(query, base=0, ceiling=0, nullable=False):
-	next_input = int;
-	try:
-		# next_input = int(float(input (query + " :")))
-		print(query, end="")
-		if (nullable):
-			print (" (respond [N] if none required)", end="")
-		temp_input = input (" :")
-		if (nullable & (temp_input.upper() == "N")):
-			return -1
-		else:
-			next_input = int(float(temp_input))
-	except ValueError:
-		print("You must respond with an integer above " + str(base), end="")
-		if (ceiling > 0):
-			print (" and below " + str(ceiling))
-		else:
-			print("")
-		return request_int_input(query, base, ceiling)
-	if ((next_input > base)):
-		if (ceiling > 0):
-			if (next_input < ceiling):
-				return next_input
-		else: 
-			return next_input #return if greater than base and ceiling doesnt exist
-	print("You must respond with an integer above " + str(base), end="") 
-	if (ceiling > 0):
-		print (" and below " + str(ceiling))
-	else:
-		print("")
-	request_int_input(query, base, ceiling)
-"""
 
 def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
-
     #Asks the question
     if (nullable):
         next_input=input(query + " or [N] if none required: ")
@@ -61,7 +26,7 @@ def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
         next_input=input(query + ":  ")
 
     #Processes the response, re-asks the question if input is invalid
-    if (nullable and next_input=="N"):
+    if (nullable and next_input.upper() == "N"):
         return -1
     else:
         try:
@@ -75,7 +40,6 @@ def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
     else:
             print("You've entered an invalid value, try again")
             return request_int_input(query, base, ceiling, nullable)
-
 
 def requestInputType():
 	print("")
@@ -110,20 +74,14 @@ class Node_Class(object):
 	text = str
 	image = str
 	animation = str
-	# def get_node_number(self):
 	def get_values(self):
 		self.number = request_int_input("Which node is this?")
-		# self.get_values()
-	# def get_values(self):
 		self.text = input("What is the node text? :")
 		self.image = value_or_n("What is the node image?")
 		self.animation = value_or_n("What is the node animation?")
-	# 	self.verify_values()
-	# def verify_values(self):
 		print("These are the currently saved values")
 		print("Text: ", self.text)
 		if (self.image == "NULL"):
-			# self.image = "NULL"
 			print("NO IMAGE")
 		else:
 			print("Image: ", self.image)
@@ -160,11 +118,8 @@ class Choice_Class(object):
 	itemImproves = int
 	testType = int
 	testDifficulty = int
-	# def get_node_number(self):
 	def get_values(self):
 		self.nodeId = request_int_input("At which node will this be displayed?")
-		# self.get_values()
-	# def get_values(self):
 		self.connectedNode = request_int_input("To which node will this take you?");
 		self.text = input("What is the choice text? :")
 		self.itemRequired = request_int_input("What item type is required?", nullable=True);
@@ -233,18 +188,14 @@ def write_to_file():
 		write_string = "new String[] {\"" + str(node.number) + "\", \"" + node.text + "\", \"" + node.image + "\", \"" + node.animation + "\"},"
 		total_string += write_string
 		total_string += "\n"
-		# file.write(write_string)
-		# file.write("\n")
 		print(write_string)
 	print("")
 	for choice in choice_list:
 		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedNode) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
 		total_string += write_string
 		total_string += "\n"
-		# file.write(write_string)
-		# file.write("\n")
 		print(write_string)
-		# print("\n")
+	print("\n")
 	total_string += "\n"
 	file = open('java_inputs.txt', 'a')
 	file.write(total_string)

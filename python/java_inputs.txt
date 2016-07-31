@@ -5,3 +5,7 @@ new ChoiceData("Continue with the mission", 1, 4, -1, -1, -1, -1),
 
 new String[] {"8", "k", "j", "w"},
 
+new String[] {"1", "Start", "NULL", "NULL"},
+new ChoiceData("choice 1", 1, 2, -1, -1, -1, -1),
+new ChoiceData("choice2", 1, 3, -1, -1, -1, -1),
+
