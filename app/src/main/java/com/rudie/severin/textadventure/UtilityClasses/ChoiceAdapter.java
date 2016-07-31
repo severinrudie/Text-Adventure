@@ -54,6 +54,7 @@ public class ChoiceAdapter extends
     }
 
     // Involves populating data into the item through holder
+    RadioButton lastCheckedRB = null;
     @Override
     public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, int position) {
         ChoiceData choice = mChoices.get(position);
@@ -66,12 +67,22 @@ public class ChoiceAdapter extends
                 break;
             case PH.COMRADERY_ID: checkString = PH.COMRADERY;
                 break;
+            default: checkString = "";
         }
 
         TextView checkType = viewHolder.checkType;
         checkType.setText(checkString);
         RadioButton radioButton = viewHolder.radioButton;
         radioButton.setText(choice.getText());
+        radioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (lastCheckedRB != null) {
+                    lastCheckedRB.setChecked(false);
+                }
+                lastCheckedRB = (RadioButton) view;
+            }
+        });
     }
 
     @Override
