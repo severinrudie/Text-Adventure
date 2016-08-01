@@ -191,8 +191,8 @@ public class CharacterSelectFragment extends DialogFragment {
     public String[] getNames(EditText editText) {
         String[] names = editText.getText().toString().split(" ");
         String firstName = names[0];
-        String nickName = "";
-        String lastName = "";
+        String nickName = PH.NULL;
+        String lastName = PH.NULL;
         if (names.length > 1) {
             lastName = names[names.length - 1];
         }

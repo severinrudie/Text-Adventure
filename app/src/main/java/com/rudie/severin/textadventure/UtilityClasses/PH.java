@@ -19,6 +19,9 @@ public class PH {
     public static final int COMRADERY_ID = 3;
     public static final int STARTING_HP = 10;
     public static final String NULL = "NULL";
+    public static final String FIRSTNAME = "FIRSTNAME";
+    public static final String NICKNAME = "NICKNAME";
+    public static final String LASTNAME = "LASTNAME";
     // END character insertion constants
 
     // BEGIN db constants
@@ -142,7 +145,8 @@ public class PH {
     public static final String [][] nodeDetails = new String[][] {
 //            new String[] {"5", "Locate Prof", "3", "NULL"},
 //            new String[] {"4", "Incoming Patrol", "NULL", "NULL"},
-            new String[] {"1", "You've landed in a burning field.", NULL, NULL},
+//            new String[] {"1", "You've landed in a burning field.", NULL, NULL},
+            new String[] {"1", "\"NICKNAME, get in here! Dammit Sergeant LASTNAME, you're a loose cannon! You're the best damn marine I've got, and God knows we need you.  But dammit FIRSTNAME you have to do things by the book!\"", NULL, NULL},
             new String[] {"2", "You's searching for equipment", NULL, NULL},
             new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
             new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}

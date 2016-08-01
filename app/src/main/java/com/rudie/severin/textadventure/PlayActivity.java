@@ -36,7 +36,7 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        int currentCharacterId = getIntent().getIntExtra(PH.CURRENT_CHARACTER, -1);
+        final int currentCharacterId = getIntent().getIntExtra(PH.CURRENT_CHARACTER, -1);
         if (currentCharacterId == -1) {
             Log.e("SEVCRASH: ", "currentCharacterId is set to -1");
             finish();
@@ -51,7 +51,7 @@ public class PlayActivity extends AppCompatActivity {
         int currentNode = helper.getCurrentNode(currentCharacterId, this);
         textviewText = (TextView) findViewById(R.id.textviewPlayContent);
         rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
-        setNewNode(currentNode);
+        setNewNode(currentNode, currentCharacterId);
 
         Button setNextNode = (Button) findViewById(R.id.buttonPlayContinue);
         setNextNode.setOnClickListener(new View.OnClickListener() {
@@ -71,10 +71,10 @@ public class PlayActivity extends AppCompatActivity {
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
                         int nextNode = choiceList.get(selectedButtonPos).getToNode();
-                        setNewNode(nextNode);
+                        setNewNode(nextNode, currentCharacterId);
                     } else {
                         int nextNode = choiceList.get(selectedButtonPos).getToNode();
-                        setNewNode(nextNode);
+                        setNewNode(nextNode, currentCharacterId);
                         // TODO: trash this in favor of the above todo
                     }
                 }
@@ -85,7 +85,7 @@ public class PlayActivity extends AppCompatActivity {
 
     }  // end onCreate
 
-    private void setNewNode(int nodeId) {
+    private void setNewNode(int nodeId, int charId) {
         // image
         // animation
         if (choiceList == null) {
@@ -99,7 +99,24 @@ public class PlayActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         String nodeText = helper.getCurrentNodeText(nodeId, this);
+        nodeText = insertNamesIntoNodeText(nodeText, charId);
+        nodeText = cleanEscapeCharactersFromText(nodeText);
         textviewText.setText(nodeText);
+    }
+
+    private String insertNamesIntoNodeText(String nodeText, int charId) {
+        DBInterfacer helper = DBInterfacer.getInstance(this);
+        String[] firstLastNick = helper.getCharacterFirstNickLast(charId, this);
+        nodeText = nodeText.replace("FIRSTNAME", firstLastNick[0]);
+        nodeText = nodeText.replace("NICKNAME", firstLastNick[1]);
+        nodeText = nodeText.replace("LASTNAME", firstLastNick[2]);
+        return nodeText;
+    }
+
+    private String cleanEscapeCharactersFromText(String text) {
+        text = text.replace("''", "'");
+        text = text.replace("\\", "");
+        return text;
     }
 
 
