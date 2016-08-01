@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -23,10 +24,11 @@ public class ChoiceAdapter extends
     private List<ChoiceData> mChoices;
     private Context mContext;
     private List<ItemData> currentInventory;
+    private RecyclerView parent;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView checkType;
-        public RadioButton radioButton;
+        private TextView checkType;
+        private RadioButton radioButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -40,8 +42,10 @@ public class ChoiceAdapter extends
         mContext = context;
     }
 
-    private Context getContext() {
-        return mContext;
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        parent = recyclerView;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class ChoiceAdapter extends
     // Involves populating data into the item through holder
     RadioButton lastCheckedRB = null;
     @Override
-    public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ChoiceAdapter.ViewHolder viewHolder, final int position) {
         if (CurrentInventoryAndStats.getAdapterNewInventoryAndSetFalse()) {
             currentInventory = CurrentInventoryAndStats.getCurrentInventory();
         }
@@ -86,7 +90,7 @@ public class ChoiceAdapter extends
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (lastCheckedRB != null) {
+                    if ((lastCheckedRB != null) && (parent.getChildCount() != 1)) {
                         lastCheckedRB.setChecked(false);
                     }
                     lastCheckedRB = (RadioButton) view;

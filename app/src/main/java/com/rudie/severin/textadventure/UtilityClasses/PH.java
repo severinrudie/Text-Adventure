@@ -167,7 +167,7 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //        new ChoiceData("Shoot", 4, 5, 5, 5, 1, 1, 2, 2),
 //        new ChoiceData("Evade", 4, 5, 5, 5, -1, -1, 2, 3),
 //        new ChoiceData("Punch", 4, 5, 5, 5, -1, 2, 1, 2),
-//        new ChoiceData("Search for equipment", 1, 2, 2, 3, 1, -1, -1, -1),
+        new ChoiceData("Search for equipment", 2, 2, 2, 3, 1, -1, -1, -1),
 //        new ChoiceData("Check Hazard's pod", 1, 2, 3, 4, 2, -1, 3, -1),
 //        new ChoiceData("Continue with the mission", 1, 2, 3, 4, -1, -1, 1, 2),
 //        new ChoiceData("Hey I'm on TV!", 5, 6, 6, 7, 1, 2, 3, 4),
