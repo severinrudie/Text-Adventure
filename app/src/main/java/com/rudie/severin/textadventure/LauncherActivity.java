@@ -34,7 +34,6 @@ public class LauncherActivity extends AppCompatActivity
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.framelayoutLauncher, fragment);
                 transaction.commit();
-                // TODO: set fragment tag.  delete it onresume if fragmentCreated is true;
             }
         });
 
@@ -43,10 +42,10 @@ public class LauncherActivity extends AppCompatActivity
         helper.onCreate(helper.getWritableDatabase());
 
 //        TODO: temp code.  gives player 1 a weapon
-//        SQLiteDatabase db = helper.getWritableDatabase();
-//        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
-//                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
-//        db.execSQL(sql);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
+                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
+        db.execSQL(sql);
 //        TODO: end temp code
 
     }
@@ -54,12 +53,6 @@ public class LauncherActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-//        if (fragmentCreated) {
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//
-//            fragmentCreated = false;
-//        }
         if (fragmentCreated) {
             FragmentManager manager = this.getSupportFragmentManager();
             CharacterSelectFragment fragment = (CharacterSelectFragment) manager.getFragments().get(0);
@@ -70,9 +63,6 @@ public class LauncherActivity extends AppCompatActivity
 
     @Override
     public void closeFragment() {
-//        FragmentManager manager = this.getSupportFragmentManager();
-//        CharacterSelectFragment fragment = (CharacterSelectFragment) manager.getFragments().get(0);
-//        manager.beginTransaction().remove(fragment).commit();
         fragmentCreated = true;
     }
 }

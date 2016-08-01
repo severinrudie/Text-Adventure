@@ -118,7 +118,7 @@ public class CharacterSelectFragment extends Fragment {
                 if (editText.getText().toString().length() > 0) {
                     int currentCharacterId = passCharacterToDb(editText, topSkill, midSkill, botSkill);
                     // TODO: this currently goes to PlayActivity, but once animations are in it will direct
-                    // TODO; there for the opening animation instead
+                    // TODO: there for the opening animation instead
                     Intent intent = new Intent(getActivity(), PlayActivity.class);
                     intent.putExtra(PH.CURRENT_CHARACTER, currentCharacterId);
                     startActivity(intent);

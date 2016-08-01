@@ -1,6 +1,5 @@
 package com.rudie.severin.textadventure;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -67,11 +66,11 @@ public class PlayActivity extends AppCompatActivity {
                     int testedValue = charStats.get(testType);
                     testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
                     if ((testType == -1) || testedValue >= testDifficulty ) {
-                        // TODO: this currently checks if your stat is high enough, but does not factor in item improvements to stats
-                        int nextNode = choiceList.get(selectedButtonPos).getConnectedSuccessNode();
+                        // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
+                        int nextNode = choiceList.get(selectedButtonPos).getToNode();
                         setNewNode(nextNode);
                     } else {
-                        int nextNode = choiceList.get(selectedButtonPos).getConnectedFailNode();
+                        int nextNode = choiceList.get(selectedButtonPos).getToNode();
                         setNewNode(nextNode);
                     }
                 }

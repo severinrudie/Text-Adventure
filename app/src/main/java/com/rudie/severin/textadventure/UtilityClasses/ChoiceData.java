@@ -47,11 +47,11 @@ public class ChoiceData {
         return toNode;
     }
 
-    public int getConnectedSuccessNode() {
+    public int getConnectedSuccessPopup() {
         return connectedSuccessPopup;
     }
 
-    public int getConnectedFailNode() {
+    public int getConnectedFailPopup() {
         return connectedFailPopup;
     }
 

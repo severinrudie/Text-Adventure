@@ -53,6 +53,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
             int[] i = data.getInts();
             insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6]);
         }
+//        for popupdetails insert popupdetails
+        for (String[] sArray : PH.popupDetails) {
+            insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
+        }
     }
 
     @Override
@@ -144,6 +148,16 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + text + "', '"
                 + connectedSuccess  + "', '" + connectedFail  + "', '" + itemRequired + "', '"
                 + itemImproves + "', '" + testType + "', '" + difficulty + "');";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(sql);
+    }
+
+    public void insertPopupDetails(String popId, String text, String image, String animation) {
+        text = cleanTextForDb(text);
+        String sql = "INSERT INTO " + PH.tbl_popup + " (" + PH.tbl_popup_id + ", "
+                + PH.tbl_popup_text + ", " + PH.tbl_popup_image + ", " + PH.tbl_popup_animation
+                + ") VALUES ('" + popId + "', '" + text + "', '" + image + "', '" + animation
+                + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }

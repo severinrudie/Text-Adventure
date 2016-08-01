@@ -65,8 +65,14 @@ public class PH {
     public static final String tbl_character_is_backup_for = "character_is_backup_for";
     public static final String tbl_character_hp = "character_hp";
 
+    public static final String tbl_popup = "table_popup";
+    public static final String tbl_popup_id = "popup_id";
+    public static final String tbl_popup_text = "popup_text";
+    public static final String tbl_popup_image = "popup_image";
+    public static final String tbl_popup_animation = "popup_animation";
+
     public static final String[] all_tables = {tbl_choice, tbl_inventory, tbl_statistics,
-            tbl_nodes, tbl_character, tbl_item_type};
+            tbl_nodes, tbl_character, tbl_item_type, tbl_popup};
 
     public static final String[] create_tables = new String[] {
 
@@ -118,7 +124,14 @@ public class PH {
                     tbl_character_at_node + " integer, " +
                     tbl_character_is_backup_for + " integer, " +
                     tbl_character_hp + " integer" +
-                    ");"};
+                    ");",
+            "CREATE TABLE " + tbl_popup + " (" +
+                    tbl_popup_id + " integer PRIMARY KEY, " +
+                    tbl_popup_text + " text, " +
+                    tbl_popup_image + " text, " +
+                    tbl_popup_animation + " text"+
+                    ");" +
+                    " "};
     // END db constants
 
     // BEGIN node details
@@ -150,4 +163,15 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
         new ChoiceData("I'm still here!", 7, 8, 2, 3, 3, 4, 5, 6)
     };
     // END choices details
+
+    // BEGIN popup details
+    public static final String [][] popupDetails = new String[][] {
+//            new String[] {"5", "Locate Prof", "3", "NULL"},
+//            new String[] {"4", "Incoming Patrol", "NULL", "NULL"},
+            new String[] {"1", "You succeed!", NULL, NULL},
+            new String[] {"2", "You fail!", NULL, NULL},
+            new String[] {"3", "You live!", NULL, NULL},
+            new String[] {"4", "You die!", NULL, NULL}
+    };
+    // END popup details
 }
