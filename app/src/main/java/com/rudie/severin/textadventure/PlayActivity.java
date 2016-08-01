@@ -15,6 +15,7 @@ import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PlayActivity extends AppCompatActivity {
@@ -52,20 +53,27 @@ public class PlayActivity extends AppCompatActivity {
         rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
         setNewNode(currentNode);
 
-
-//  TODO:      make unavailable RBs unclickable
-
         Button setNextNode = (Button) findViewById(R.id.buttonPlayContinue);
         setNextNode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (adapter.getSelectedButtonPos() != -1) {
                     int selectedButtonPos = adapter.getSelectedButtonPos();
-//                    int nextNode = choiceList.get(selectedButtonPos).getConnectedNode();
-//                    setNewNode(nextNode);
+                    ChoiceData selectedChoice = choiceList.get(selectedButtonPos);
+                    int testType = selectedChoice.getTestType();
+                    int testDifficulty = selectedChoice.getDifficulty();
+                    HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
+                    if ((testType == -1) || (charStats.get(testType) >= testDifficulty )) {
+                        // TODO: this currently checks if your stat is high enough, but does not factor in item improvements to stats
+                        int nextNode = choiceList.get(selectedButtonPos).getConnectedSuccessNode();
+                        setNewNode(nextNode);
+                    } else {
+                        int nextNode = choiceList.get(selectedButtonPos).getConnectedFailNode();
+                        setNewNode(nextNode);
+                    }
                 }
             }
-        });
+        });  // END setNextNode.setOnClickListener
 
 
     }  // end onCreate

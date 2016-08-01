@@ -77,11 +77,12 @@ public class ChoiceAdapter extends
         }
 
         TextView checkType = viewHolder.checkType;
-        checkType.setText(checkString);
+//        checkType.setText(checkString);
         RadioButton radioButton = viewHolder.radioButton;
         radioButton.setText(choice.getText());
+        List<Integer> currentItemTypes = CurrentInventoryAndStats.getCurrentItemTypes();
         if (choice.getItemRequired() == -1 ||
-                CurrentInventoryAndStats.getCurrentItemTypes().contains(choice.getItemRequired())) {
+                currentItemTypes.contains(choice.getItemRequired())) {
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -92,8 +93,10 @@ public class ChoiceAdapter extends
                     selectedButtonPos = position;
                 }
             });
+            radioButton.setClickable(true);
             radioButton.setTypeface(null, Typeface.NORMAL);
             radioButton.setTextColor(mContext.getResources().getColor(R.color.normalText));
+            checkType.setText(checkString);
         } else if (!(CurrentInventoryAndStats.getCurrentItemTypes().contains(choice.getItemRequired()))) {
             radioButton.setClickable(false);
             radioButton.setTypeface(null, Typeface.ITALIC);
