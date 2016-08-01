@@ -13,6 +13,7 @@ import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 
 public class LauncherActivity extends AppCompatActivity {
 
+    private boolean fragmentCreated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,26 +26,37 @@ public class LauncherActivity extends AppCompatActivity {
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                fragmentCreated = true;
                 CharacterSelectFragment fragment = new CharacterSelectFragment();
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.framelayoutLauncher, fragment);
                 transaction.commit();
+                // TODO: set fragment tag.  delete it onresume if fragmentCreated is true;
             }
         });
-
-
 
 //        TODO: temp code. resets DB on every new instance
         helper.dropAllTables();
         helper.onCreate(helper.getWritableDatabase());
 
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
-                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
-        db.execSQL(sql);
+//        TODO: temp code.  gives player 1 a weapon
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
+//                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
+//        db.execSQL(sql);
 //        TODO: end temp code
 
     }
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (fragmentCreated) {
+//            FragmentManager manager = getSupportFragmentManager();
+//            FragmentTransaction transaction = manager.;
+//
+//            fragmentCreated = false;
+//        }
+//    }
 }

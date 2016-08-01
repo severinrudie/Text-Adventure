@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,8 +138,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_choice + " (" + PH.tbl_choice_node_id + ", "
-                + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_success_node + ", "
-                + PH.tbl_choice_connected_fail_node + ", " + PH.tbl_choice_item_type_required + ", "
+                + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_success_popup + ", "
+                + PH.tbl_choice_connected_fail_popup + ", " + PH.tbl_choice_item_type_required + ", "
                 + PH.tbl_choice_item_type_improves + ", " + PH.tbl_choice_test_type_id + ", "
                 + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + text + "', '"
                 + connectedSuccess  + "', '" + connectedFail  + "', '" + itemRequired + "', '"
@@ -190,14 +189,15 @@ public class DBInterfacer extends SQLiteOpenHelper {
         cursor.moveToFirst();
         List<ChoiceData> list = new ArrayList<>();
         while (!cursor.isAfterLast()) {
+            int toNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_to_node_id));
             String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_choice_text));
-            int connectedSuccessNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_success_node));
-            int connectedFailNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_fail_node));
+            int connectedSuccessNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_success_popup));
+            int connectedFailNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_fail_popup));
             int itemReq = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_required));
             int itemImp = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_improves));
             int testType = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_type_id));
             int difficulty = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_difficulty));
-            list.add(new ChoiceData(text, nodeId, connectedSuccessNode, connectedFailNode, itemReq,
+            list.add(new ChoiceData(text, nodeId, toNode, connectedSuccessNode, connectedFailNode, itemReq,
                     itemImp, testType, difficulty));
             cursor.moveToNext();
         }

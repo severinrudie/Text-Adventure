@@ -11,20 +11,22 @@ public class ChoiceData {
 
     private final String text;
     private final int nodeId;
-    private final int connectedSuccessNode;
-    private final int connectedFailNode;
+    private final int toNode;
+    private final int connectedSuccessPopup;
+    private final int connectedFailPopup;
     private final int itemRequired;
     private final int itemImproves;
     private final int testType;
     private final int difficulty;
     private final int[] ints;
 
-    public ChoiceData(String text, int nodeId, int connectedSuccess, int connectedFail,
+    public ChoiceData(String text, int nodeId, int toNode, int connectedSuccess, int connectedFail,
                       int itemRequired, int itemImproves, int testType, int difficulty) {
         this.text = text;
         this.nodeId = nodeId;
-        this.connectedSuccessNode = connectedSuccess;
-        this.connectedFailNode = connectedFail;
+        this.toNode = toNode;
+        this.connectedSuccessPopup = connectedSuccess;
+        this.connectedFailPopup = connectedFail;
         this.itemRequired = itemRequired;
         this.itemImproves = itemImproves;
         this.testType = testType;
@@ -41,12 +43,16 @@ public class ChoiceData {
         return nodeId;
     }
 
+    public int getToNode() {
+        return toNode;
+    }
+
     public int getConnectedSuccessNode() {
-        return connectedSuccessNode;
+        return connectedSuccessPopup;
     }
 
     public int getConnectedFailNode() {
-        return connectedFailNode;
+        return connectedFailPopup;
     }
 
     public int getItemRequired() {

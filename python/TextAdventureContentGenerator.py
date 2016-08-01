@@ -6,7 +6,9 @@ import sys
 
 node_list = []
 choice_list = []
+popup_list = []
 previously_used_nodes = []
+previously_used_popups = []
 
 def request_yesno_input(query):
 	# try:
@@ -14,8 +16,7 @@ def request_yesno_input(query):
 	# except
 	if ((yesno != "Y") & (yesno != "N")):
 		print("Please repond with either Y or N")
-		request_yesno_input(query)
-		return
+		return request_yesno_input(query)
 	elif (yesno == "N"):
 		return False
 	elif (yesno == "Y"):
@@ -46,12 +47,14 @@ def request_int_input(query, base=0, ceiling=float("inf"), nullable=False):
 
 def requestInputType():
 	print("")
-	next_type = request_int_input("Are you inputting a node[1], inputting a choice[2], or are you finished inputting data[3]?", ceiling=4)
+	next_type = request_int_input("Are you inputting a node[1], a choice[2], or a popup[3], or are you finished inputting data[4]?", ceiling=5)
 	if (next_type == 1):
 		get_node_values()
 	elif (next_type == 2):
 		get_choice_values()
 	elif (next_type == 3):
+		get_popup_values()
+	elif (next_type == 4):
 		finished_inputting()
 		
 def value_or_n(query):
@@ -125,16 +128,17 @@ def get_node_values():
 class Choice_Class(object):
 	text = str
 	nodeId = int
-	connectedSuccessNode = int
-	connectedFailNode = int
+	connectedNode = int
+	connectedFailPopup = int
 	itemRequired = int
 	itemImproves = int
 	testType = int
 	testDifficulty = int
 	def get_values(self):
 		self.nodeId = request_int_input("At which node will this be displayed?")
-		self.connectedSuccessNode = request_int_input("If successful, to which node will this take you?");
-		self.connectedFailNode = request_int_input("If a failure, to which node will this take you?", nullable=True);
+		self.connectedNode = request_int_input("To which node will this take you?");
+		self.connectedSuccessPopup = request_int_input("If successful, to which popup will this take you?", nullable=True);
+		self.connectedFailPopup = request_int_input("If a failure, to which popup will this take you?", nullable=True);
 		self.text = input("What is the choice text? :")
 		self.itemRequired = request_int_input("What item type is required?", nullable=True);
 		self.testType = request_int_input("What type of test does this use? Strength[1], Agility[2], or Comradery[3]", ceiling=4, nullable=True);
@@ -146,8 +150,8 @@ class Choice_Class(object):
 			self.itemImproves = -1
 		print("These are the currently saved values")
 		print("NodeID: ", str(self.nodeId))
-		print("ConnectedSuccessNode: ", str(self.connectedSuccessNode))
-		print("ConnectedFailNode: ", str(self.connectedFailNode))
+		print("ConnectedNode: ", str(self.connectedNode))
+		print("ConnectedFailPopup: ", str(self.connectedFailPopup))
 		print("Text: ", self.text)
 		if (self.itemRequired == -1):
 			print("NO ITEM REQUIRED")
@@ -183,6 +187,54 @@ def get_choice_values():
 	 	if (request_yesno_input("Would you like to enter more Choices?")  == False):
 	 		set_more = False
 	requestInputType()
+
+class Popup_Class(object):
+	number = int
+	text = str
+	image = str
+	animation = str
+	def get_values(self):
+		tempNum = request_int_input("Which popup is this?")
+		if (tempNum not in previously_used_popups):
+			self.number = tempNum
+		else:
+			print("You have already written this popup.  Please enter another number.")
+			return self.get_values()
+		self.text = input("What is the popup text? :")
+		self.image = value_or_n("What is the popup image?")
+		self.animation = value_or_n("What is the popup animation?")
+		print("These are the currently saved values")
+		print("Text: ", self.text)
+		if (self.image == "NULL"):
+			print("NO IMAGE")
+		else:
+			print("Image: ", self.image)
+		if (self.animation == "NULL"):
+			print("NO ANIMATION")
+		else:
+			print("Animation: ", self.animation)
+		if (is_this_correct("Popup")):
+			popup_list.append(self)
+			previously_used_popups.append(self.number)
+		else:
+			# self.get_values();
+			return requestInputType()
+	def __str__(self):
+		temp_string = "Popup " + str(self.number)
+		return(temp_string)
+	def __repr__(self):
+		return self.__str__()
+
+def get_popup_values():
+	set_more = True
+	while (set_more):
+	 	newPopup = Popup_Class()
+ 	 	# get_node_number calls following methods on its own
+	 	newPopup.get_values()
+	 	print("")
+	 	if (request_yesno_input("Would you like to enter more popups?")  == False):
+	 		set_more = False
+	requestInputType()
 	
 def clean_text_for_java():
 	for node in node_list:
@@ -199,20 +251,34 @@ def write_to_file():
 	print("")
 	print("Writing the following text to file:")
 	print("")
-	total_string = ""
+	print("Nodes")
+	total_string = "\n"
+	total_string += "Nodes\n"
 	for node in node_list:
 		write_string = "new String[] {\"" + str(node.number) + "\", \"" + node.text + "\", \"" + node.image + "\", \"" + node.animation + "\"},"
 		total_string += write_string
 		total_string += "\n"
 		print(write_string)
 	print("")
+	print("Choices")
+	total_string += "\n"
+	total_string += "Choices\n"
 	for choice in choice_list:
-		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedSuccessNode)  + ", " + str(choice.connectedFailNode) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
+		write_string = "new ChoiceData(\"" + choice.text + "\", " + str(choice.nodeId) + ", " + str(choice.connectedNode) + ", " + str(choice.connectedSuccessPopup)  + ", " + str(choice.connectedFailPopup) + ", " + str(choice.itemRequired) + ", " + str(choice.itemImproves) + ", " + str(choice.testType) + ", " + str(choice.testDifficulty) + "),"
+		total_string += write_string
+		total_string += "\n"
+		print(write_string)
+	print("")
+	print("Popups")
+	total_string += "\n"
+	total_string += "Popups\n"
+	for popup in popup_list:
+		write_string = "new String[] {\"" + str(popup.number) + "\", \"" + popup.text + "\", \"" + popup.image + "\", \"" + popup.animation + "\"},"
 		total_string += write_string
 		total_string += "\n"
 		print(write_string)
 	print("\n")
-	total_string += "\n"
+	total_string += "\n\n\n"
 	file = open('java_inputs.txt', 'a')
 	file.write(total_string)
 	file.close()
@@ -220,17 +286,7 @@ def write_to_file():
 	# main_loop()
 	
 def main_loop():
-	requestInputType()   #this will call getNodeValues / getChoiceValues
-	# print("")
-	# print("Printing current data")
-	# for node in node_list:
-	# 	print("Node " + str(node.number) + ": " + node.text[:30])
-	# for choice in choice_list:
-	# 	print("Choice: " + choice.text[:30])
-	# if (request_yesno_input("Would you like to write these to file?")):
-	# 	write_to_file()
-	# else: 
-	# 	main_loop()
+	requestInputType()   #this will call getNodeValues / getChoiceValues / getPopupValues
 
 def finished_inputting():
 	print("")
@@ -239,6 +295,8 @@ def finished_inputting():
 		print("Node " + str(node.number) + ": " + node.text[:30])
 	for choice in choice_list:
 		print("Choice: " + choice.text[:30])
+	for popup in popup_list:
+		print("Popup: " + popup.text[:30])
 	if (request_yesno_input("Would you like to write these to file?")):
 		write_to_file()
 	else: 

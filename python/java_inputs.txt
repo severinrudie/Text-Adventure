@@ -1,17 +1,44 @@
-new String[] {"You've landed in a burning field.", NULL, NULL},
-new ChoiceData("Search for equipment", 1, 2, -1, -1, -1, -1),
-new ChoiceData("Check Hazard's pod", 1, 3, -1, -1, -1, -1),
-new ChoiceData("Continue with the mission", 1, 4, -1, -1, -1, -1),
+new ChoiceData("hey", 1, 2, 1, 2, -1, -1, -1, -1),
 
-new String[] {"8", "k", "j", "w"},
+Popups
+new String[] {"1", "n", "NULL", "NULL"},
 
-new String[] {"1", "Start", "NULL", "NULL"},
-new ChoiceData("choice 1", 1, 2, -1, -1, -1, -1),
-new ChoiceData("choice2", 1, 3, -1, -1, -1, -1),
 
-new ChoiceData("hi", 1, 2, -1, -1, -1, -1, -1),
-new ChoiceData("h", 2, 5, 8, -1, -1, -1, -1),
 
-new String[] {"1", "you're here", "dead pod", "NULL"},
-new ChoiceData("Shoot the enemy with your megalaser", 1, 2, 1, 1, 1, 2, 2),
+Popups
+new String[] {"1", "n", "NULL", "NULL"},
+
+
+
+Popups
+new String[] {"1", "n", "NULL", "NULL"},
+
+
+
+Nodes
+new String[] {"1", "n", "NULL", "NULL"},
+Choices
+new ChoiceData("n", 1, 2, 3, 4, -1, -1, -1, -1),
+Popups
+new String[] {"1", "n", "NULL", "NULL"},
+
+
+
+
+
+
+
+
+
+
+Nodes
+new String[] {"1", "n", "NULL", "NULL"},
+
+Choices
+new ChoiceData("n", 1, 2, 3, 4, -1, -1, -1, -1),
+
+Popups
+new String[] {"5", "hi", "NULL", "NULL"},
+
+
 
