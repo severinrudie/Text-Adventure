@@ -1,7 +1,5 @@
 package com.rudie.severin.textadventure;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,13 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
+import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryHolder;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
-import com.rudie.severin.textadventure.UtilityClasses.ItemData;
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
 import java.util.List;
@@ -43,9 +40,12 @@ public class PlayActivity extends AppCompatActivity {
             Log.e("SEVCRASH: ", "currentCharacterId is set to -1");
             finish();
         }
+// New character, so new inventory is loaded from the DB.  This also sets a boolean that lets
+// ChoiceAdapter know to update its knowlege of the inventory the next time it binds a view
+        CurrentInventoryHolder.refreshInventoryFromDb(currentCharacterId, this);
 
-//        Some basic information regarding the current node is collected here, but most associated
-//        logic is found in the setNewNode method
+//  Some basic information regarding the current node is collected here, but most associated
+//  logic is found in the setNewNode method
         helper = DBInterfacer.getInstance(this);
         int currentNode = helper.getCurrentNode(currentCharacterId, this);
         textviewText = (TextView) findViewById(R.id.textviewPlayContent);
@@ -86,5 +86,8 @@ public class PlayActivity extends AppCompatActivity {
         String nodeText = helper.getCurrentNodeText(nodeId, this);
         textviewText.setText(nodeText);
     }
+
+
+    // BEGIN getters and setters
 
 }

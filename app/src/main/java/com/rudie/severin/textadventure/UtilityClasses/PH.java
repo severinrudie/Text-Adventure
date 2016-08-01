@@ -82,39 +82,39 @@ public class PH {
                     ");" +
                     "",
             "CREATE TABLE " + tbl_inventory +" (" +
-                    tbl_inventory_id + " integer PRIMARY KEY AUTOINCREMENT," +
-                    tbl_inventory_name + " text," +
-                    tbl_inventory_power + " text," +
-                    tbl_inventory_type_id + " integer" +
-                    tbl_inventory_character_id + " integer" +
+                    tbl_inventory_id + " integer PRIMARY KEY AUTOINCREMENT, " +
+                    tbl_inventory_name + " text, " +
+                    tbl_inventory_power + " text, " +
+                    tbl_inventory_type_id + " integer, " +
+                    tbl_inventory_character_id + " integer " +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_statistics + " (" +
-                    tbl_statistics_type_id + " integer," +
-                    tbl_statistics_stat_name + " text," +
-                    tbl_statistics_stat_value + " integer," +
+                    tbl_statistics_type_id + " integer, " +
+                    tbl_statistics_stat_name + " text, " +
+                    tbl_statistics_stat_value + " integer, " +
                     tbl_statistics_character_id + " integer" +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_nodes + " (" +
-                    tbl_nodes_id + " integer PRIMARY KEY," +
-                    tbl_nodes_text + " text," +
-                    tbl_nodes_image + " text," +
+                    tbl_nodes_id + " integer PRIMARY KEY, " +
+                    tbl_nodes_text + " text, " +
+                    tbl_nodes_image + " text, " +
                     tbl_nodes_animation + " text"+
                     ");" +
                     " ",
             "CREATE TABLE " + tbl_item_type + " (" +
-                    tbl_item_type_id + " integer PRIMARY KEY AUTOINCREMENT," +
+                    tbl_item_type_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_item_type_name + " text" +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_character + " (" +
-                    tbl_character_id + " integer PRIMARY KEY AUTOINCREMENT," +
-                    tbl_character_firstname + " text," +
-                    tbl_character_lastname + " text," +
-                    tbl_character_nickname + " text," +
-                    tbl_character_at_node + " integer," +
-                    tbl_character_is_backup_for + " integer," +
+                    tbl_character_id + " integer PRIMARY KEY AUTOINCREMENT, " +
+                    tbl_character_firstname + " text, " +
+                    tbl_character_lastname + " text, " +
+                    tbl_character_nickname + " text, " +
+                    tbl_character_at_node + " integer, " +
+                    tbl_character_is_backup_for + " integer, " +
                     tbl_character_hp + " integer" +
                     ");"};
     // END db constants
@@ -134,8 +134,8 @@ public class PH {
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
-        new ChoiceData("Search for equipment", 1, 2, 3, -1, -1, -1, -1),
-        new ChoiceData("Check Hazard's pod", 1, 3, 4, -1, -1, -1, -1),
+        new ChoiceData("Search for equipment", 1, 2, 3, 1, -1, -1, -1),
+        new ChoiceData("Check Hazard's pod", 1, 3, 4, 2, -1, 3, -1),
         new ChoiceData("Continue with the mission", 1, 4, 5, -1, -1, -1, -1),
         new ChoiceData("Hey I'm on TV!", 5, 6, 7, 1, 2, 3, 4),
         new ChoiceData("I'm still here!", 7, 2, 3, 3, 4, 5, 6)

@@ -232,5 +232,4 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return list;
     }
 
-
 }

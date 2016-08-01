@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="normalText">#303030</color>
+    <color name="unSelectableText">#939393</color>
 </resources>
+
+<!--Note: style setting of radiobuttons is done within the onBind section of ChoiceAdapter-->

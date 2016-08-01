@@ -1,12 +1,13 @@
 package com.rudie.severin.textadventure.UtilityClasses;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.R;
@@ -20,6 +21,9 @@ public class ChoiceAdapter extends
         RecyclerView.Adapter<ChoiceAdapter.ViewHolder> {
 
     private int selectedButtonPos = -1;
+    private List<ChoiceData> mChoices;
+    private Context mContext;
+    private List<ItemData> currentInventory;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView checkType;
@@ -31,9 +35,6 @@ public class ChoiceAdapter extends
             radioButton = (RadioButton) itemView.findViewById(R.id.radiobuttonRecyclerLayout);
         }
     }
-
-    private List<ChoiceData> mChoices;
-    private Context mContext;
 
     public ChoiceAdapter(Context context, List<ChoiceData> choices) {
         mChoices = choices;
@@ -59,15 +60,19 @@ public class ChoiceAdapter extends
     RadioButton lastCheckedRB = null;
     @Override
     public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, final int position) {
+        if (CurrentInventoryHolder.getAdapterNewInventoryAndSetFalse()) {
+            currentInventory = CurrentInventoryHolder.getCurrentInventory();
+        }
+
         ChoiceData choice = mChoices.get(position);
         int checkInt = choice.getTestType();
-        String checkString = "";
+        String checkString = "   ";
         switch (checkInt) {
-            case PH.STRENGTH_ID: checkString = PH.STRENGTH;
+            case PH.STRENGTH_ID: checkString += PH.STRENGTH;
                 break;
-            case PH.AGILITY_ID: checkString = PH.AGILITY;
+            case PH.AGILITY_ID: checkString += PH.AGILITY;
                 break;
-            case PH.COMRADERY_ID: checkString = PH.COMRADERY;
+            case PH.COMRADERY_ID: checkString += PH.COMRADERY;
                 break;
             default: checkString = "";
         }
@@ -76,16 +81,26 @@ public class ChoiceAdapter extends
         checkType.setText(checkString);
         RadioButton radioButton = viewHolder.radioButton;
         radioButton.setText(choice.getText());
-        radioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (lastCheckedRB != null) {
-                    lastCheckedRB.setChecked(false);
+        if (choice.getItemRequired() == -1 ||
+                CurrentInventoryHolder.getCurrentItemTypes().contains(choice.getItemRequired())) {
+            radioButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (lastCheckedRB != null) {
+                        lastCheckedRB.setChecked(false);
+                    }
+                    lastCheckedRB = (RadioButton) view;
+                    selectedButtonPos = position;
                 }
-                lastCheckedRB = (RadioButton) view;
-                selectedButtonPos = position;
-            }
-        });
+            });
+            radioButton.setTypeface(null, Typeface.NORMAL);
+            radioButton.setTextColor(mContext.getResources().getColor(R.color.normalText));
+        } else if (!(CurrentInventoryHolder.getCurrentItemTypes().contains(choice.getItemRequired()))) {
+            radioButton.setClickable(false);
+            radioButton.setTypeface(null, Typeface.ITALIC);
+            radioButton.setTextColor(mContext.getResources().getColor(R.color.unSelectableText));
+            checkType.setText("   Missing Required Item");
+        }
     }
 
     @Override
