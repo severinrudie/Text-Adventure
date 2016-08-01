@@ -28,12 +28,19 @@ public class LauncherActivity extends AppCompatActivity
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentCreated = true;
-                CharacterSelectFragment fragment = new CharacterSelectFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.framelayoutLauncher, fragment);
-                transaction.commit();
+//                fragmentCreated = true;
+//                CharacterSelectFragment fragment = new CharacterSelectFragment();
+//                FragmentManager manager = getSupportFragmentManager();
+//                FragmentTransaction transaction = manager.beginTransaction();
+//                transaction.replace(R.id.framelayoutLauncher, fragment);
+//                transaction.commit();
+
+//                void showDialog() {
+                    // Create the fragment and show it as a dialog.
+                    FragmentManager manager = getSupportFragmentManager();
+                    CharacterSelectFragment newFragment = CharacterSelectFragment.newInstance();
+                    newFragment.show(manager, "dialog");
+//                }
             }
         });
 

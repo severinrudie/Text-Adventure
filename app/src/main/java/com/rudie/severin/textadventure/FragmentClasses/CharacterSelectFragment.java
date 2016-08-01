@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +22,13 @@ import com.rudie.severin.textadventure.UtilityClasses.PH;
 
 import java.util.HashMap;
 
-public class CharacterSelectFragment extends Fragment {
+public class CharacterSelectFragment extends DialogFragment {
     OnCharacterCreatedListener mCallback;
     Context mContext;
+
+    public static CharacterSelectFragment newInstance() {
+        return new CharacterSelectFragment();
+    }
 
     public interface OnCharacterCreatedListener {
         public void closeFragment();
