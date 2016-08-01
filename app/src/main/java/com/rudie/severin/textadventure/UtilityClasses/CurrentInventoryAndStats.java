@@ -58,5 +58,17 @@ public final class CurrentInventoryAndStats {
     public static HashMap<Integer, Integer> getCurrentStats() {
         return currentStats;
     }
+
+    public static int getBestValueForTest(int testType) {
+        int highestValue = 0;
+        for (int i = 0; i < currentInventory.size(); i++) {
+            if (currentInventory.get(i).getItemTypeId() == testType
+                    || currentInventory.get(i).getItemPower() > highestValue) {
+                highestValue = currentInventory.get(i).getItemPower();
+            }
+        }
+        return highestValue;
+    }
+
     // END getters and setters
 }

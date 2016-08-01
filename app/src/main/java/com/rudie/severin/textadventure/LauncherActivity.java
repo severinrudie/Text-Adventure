@@ -41,7 +41,7 @@ public class LauncherActivity extends AppCompatActivity {
 
         SQLiteDatabase db = helper.getWritableDatabase();
         String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
-                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '3000', '1', '1');";
+                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
         db.execSQL(sql);
 //        TODO: end temp code
 

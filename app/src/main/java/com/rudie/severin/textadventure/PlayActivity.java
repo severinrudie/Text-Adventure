@@ -63,7 +63,9 @@ public class PlayActivity extends AppCompatActivity {
                     int testType = selectedChoice.getTestType();
                     int testDifficulty = selectedChoice.getDifficulty();
                     HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
-                    if ((testType == -1) || (charStats.get(testType) >= testDifficulty )) {
+                    int testedValue = charStats.get(testType);
+                    testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
+                    if ((testType == -1) || testedValue >= testDifficulty ) {
                         // TODO: this currently checks if your stat is high enough, but does not factor in item improvements to stats
                         int nextNode = choiceList.get(selectedButtonPos).getConnectedSuccessNode();
                         setNewNode(nextNode);

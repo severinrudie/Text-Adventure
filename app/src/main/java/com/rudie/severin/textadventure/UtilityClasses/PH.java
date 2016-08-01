@@ -126,8 +126,8 @@ public class PH {
     public static final String [][] nodeDetails = new String[][] {
             new String[] {"1", "You've landed in a burning field.", NULL, NULL},
             new String[] {"2", "You's searching for equipment", NULL, NULL},
-            new String[] {"3", "You's out of da drop pod", NULL, NULL},
-            new String[] {"4", "You's in a tree patch", NULL, NULL}
+            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
+            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
     };
     // END node details
 
