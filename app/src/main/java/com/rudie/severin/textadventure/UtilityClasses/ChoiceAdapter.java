@@ -113,5 +113,9 @@ public class ChoiceAdapter extends
     public int getSelectedButtonPos() {
         return selectedButtonPos;
     }
+
+    public void resetSelectedButton() {
+        selectedButtonPos = -1;
+    }
 }
 

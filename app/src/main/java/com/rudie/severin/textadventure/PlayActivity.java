@@ -78,6 +78,7 @@ public class PlayActivity extends AppCompatActivity {
                         // TODO: trash this in favor of the above todo
                     }
                 }
+                adapter.resetSelectedButton();
             }
         });  // END setNextNode.setOnClickListener
 
