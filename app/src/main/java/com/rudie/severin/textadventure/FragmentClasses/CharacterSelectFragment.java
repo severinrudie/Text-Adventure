@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,12 @@ import com.rudie.severin.textadventure.UtilityClasses.PH;
 import java.util.HashMap;
 
 public class CharacterSelectFragment extends Fragment {
+    OnCharacterCreatedListener mCallback;
+    Context mContext;
+
+    public interface OnCharacterCreatedListener {
+        public void closeFragment();
+    }
 
     String[] firstNames = new String[] {"Butch", "Max", "Flint", "Gunner", "Axel",
             "Hunter", "Drake", "Victor", "Rex", "Ryker", "Lance","Dirk","Brick","Rick","Chuck",
@@ -49,9 +56,15 @@ public class CharacterSelectFragment extends Fragment {
 
     TextView topSkill, midSkill, botSkill;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_character_select, container, false);
 
         topSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentTop);
@@ -109,6 +122,13 @@ public class CharacterSelectFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), PlayActivity.class);
                     intent.putExtra(PH.CURRENT_CHARACTER, currentCharacterId);
                     startActivity(intent);
+                    try {
+                        mCallback = (OnCharacterCreatedListener) mContext;
+                        mCallback.closeFragment();
+                    } catch (ClassCastException e) {
+                        throw new ClassCastException(mContext.toString()
+                                + " must implement OnCharacterCreatedListener");
+                    }
                 } else {
                     Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
                 }

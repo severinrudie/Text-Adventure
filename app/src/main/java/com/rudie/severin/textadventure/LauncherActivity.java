@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,7 +12,8 @@ import android.widget.Button;
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 
-public class LauncherActivity extends AppCompatActivity {
+public class LauncherActivity extends AppCompatActivity
+        implements CharacterSelectFragment.OnCharacterCreatedListener {
 
     private boolean fragmentCreated;
 
@@ -49,14 +51,28 @@ public class LauncherActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 //        if (fragmentCreated) {
 //            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.;
+//            FragmentTransaction transaction = manager.beginTransaction();
 //
 //            fragmentCreated = false;
 //        }
-//    }
+        if (fragmentCreated) {
+            FragmentManager manager = this.getSupportFragmentManager();
+            CharacterSelectFragment fragment = (CharacterSelectFragment) manager.getFragments().get(0);
+            manager.beginTransaction().remove(fragment).commit();
+            fragmentCreated = false;
+        }
+    }
+
+    @Override
+    public void closeFragment() {
+//        FragmentManager manager = this.getSupportFragmentManager();
+//        CharacterSelectFragment fragment = (CharacterSelectFragment) manager.getFragments().get(0);
+//        manager.beginTransaction().remove(fragment).commit();
+        fragmentCreated = true;
+    }
 }
