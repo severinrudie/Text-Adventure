@@ -69,7 +69,7 @@ public class LauncherActivity extends AppCompatActivity
     }
 
     @Override
-    public void closeFragment() {
+    public void closeFragmentOnResume() {
         fragmentCreated = true;
     }
 }

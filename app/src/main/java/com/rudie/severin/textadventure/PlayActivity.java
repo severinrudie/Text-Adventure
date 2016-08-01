@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
+import com.rudie.severin.textadventure.FragmentClasses.PopupFragment;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
 import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryAndStats;
@@ -18,15 +21,16 @@ import com.rudie.severin.textadventure.UtilityClasses.PH;
 import java.util.HashMap;
 import java.util.List;
 
-public class PlayActivity extends AppCompatActivity {
+public class PlayActivity extends AppCompatActivity implements PopupFragment.PopupCompleteListener {
 
     private List<ChoiceData> choiceList;
     private RecyclerView rvChoices;
     private ChoiceAdapter adapter;
     private DBInterfacer helper;
     private TextView textviewText;
+    private int nextNode;
 
-// Inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
+    // Inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
 // is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
 // by a sql query from DBInterfacer every time the inventory is changed.  All other activities get
 // inventory information from InventoryActivity
@@ -68,13 +72,20 @@ public class PlayActivity extends AppCompatActivity {
                         testedValue = charStats.get(testType);
                         testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
                     }
+                    nextNode = choiceList.get(selectedButtonPos).getToNode();
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
-                        int nextNode = choiceList.get(selectedButtonPos).getToNode();
-                        setNewNode(nextNode, currentCharacterId);
+//                        nextNode = choiceList.get(selectedButtonPos).getToNode();
+//                        setNewNode(nextNode, currentCharacterId);
+                        FragmentManager manager = getSupportFragmentManager();
+                        PopupFragment newFragment = PopupFragment.newInstance();
+                        newFragment.show(manager, "dialog");
                     } else {
-                        int nextNode = choiceList.get(selectedButtonPos).getToNode();
-                        setNewNode(nextNode, currentCharacterId);
+//                        nextNode = choiceList.get(selectedButtonPos).getToNode();
+//                        setNewNode(nextNode, currentCharacterId);
+                        FragmentManager manager = getSupportFragmentManager();
+                        PopupFragment newFragment = PopupFragment.newInstance();
+                        newFragment.show(manager, "dialog");
                         // TODO: trash this in favor of the above todo
                     }
                 }
@@ -119,6 +130,12 @@ public class PlayActivity extends AppCompatActivity {
         return text;
     }
 
+    @Override
+    public void closeFragmentNow() {
+        FragmentManager manager = this.getSupportFragmentManager();
+        PopupFragment fragment = (PopupFragment) manager.getFragments().get(0);
+        manager.beginTransaction().remove(fragment).commit();
+    }
 
     // BEGIN getters and setters
 

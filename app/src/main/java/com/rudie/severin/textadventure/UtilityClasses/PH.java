@@ -146,7 +146,7 @@ public class PH {
 //            new String[] {"5", "Locate Prof", "3", "NULL"},
 //            new String[] {"4", "Incoming Patrol", "NULL", "NULL"},
 //            new String[] {"1", "You've landed in a burning field.", NULL, NULL},
-            new String[] {"1", "\"NICKNAME, get in here! Dammit Sergeant LASTNAME, you're a loose cannon! You're the best damn marine I've got, and God knows we need you.  But dammit FIRSTNAME you have to do things by the book!\"", NULL, NULL},
+            new String[] {"1", "\"NICKNAME, get in here! Dammit Sergeant LASTNAME, you're a loose cannon! You're the best damn marine I've got, and God knows we need you.  But dammit FIRSTNAME, you have to do things by the book!\"", NULL, NULL},
             new String[] {"2", "You's searching for equipment", NULL, NULL},
             new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
             new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class CharacterSelectFragment extends DialogFragment {
     }
 
     public interface OnCharacterCreatedListener {
-        public void closeFragment();
+        public void closeFragmentOnResume();
     }
 
     String[] firstNames = new String[] {"Butch", "Max", "Flint", "Gunner", "Axel",
@@ -129,10 +128,10 @@ public class CharacterSelectFragment extends DialogFragment {
                     startActivity(intent);
                     try {
                         mCallback = (OnCharacterCreatedListener) mContext;
-                        mCallback.closeFragment();
+                        mCallback.closeFragmentOnResume();
                     } catch (ClassCastException e) {
                         throw new ClassCastException(mContext.toString()
-                                + " must implement OnCharacterCreatedListener");
+                                + " must implement PopupCompleteListener");
                     }
                 } else {
                     Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
