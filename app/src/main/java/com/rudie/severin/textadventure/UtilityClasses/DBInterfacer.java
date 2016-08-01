@@ -51,7 +51,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
-            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6]);
+            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]);
         }
 //        for popupdetails insert popupdetails
         for (String[] sArray : PH.popupDetails) {
@@ -138,15 +138,16 @@ public class DBInterfacer extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void insertChoiceDetails(String text, int nodeId, int connectedSuccess, int connectedFail, int itemRequired,
+    public void insertChoiceDetails(String text, int nodeId, int toNode, int successPopup, int failPopup, int itemRequired,
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_choice + " (" + PH.tbl_choice_node_id + ", "
+                + PH.tbl_choice_to_node_id + ", "
                 + PH.tbl_choice_text + ", " + PH.tbl_choice_connected_success_popup + ", "
                 + PH.tbl_choice_connected_fail_popup + ", " + PH.tbl_choice_item_type_required + ", "
                 + PH.tbl_choice_item_type_improves + ", " + PH.tbl_choice_test_type_id + ", "
-                + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + text + "', '"
-                + connectedSuccess  + "', '" + connectedFail  + "', '" + itemRequired + "', '"
+                + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + toNode + "', '" + text + "', '"
+                + successPopup  + "', '" + failPopup  + "', '" + itemRequired + "', '"
                 + itemImproves + "', '" + testType + "', '" + difficulty + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
@@ -205,13 +206,13 @@ public class DBInterfacer extends SQLiteOpenHelper {
         while (!cursor.isAfterLast()) {
             int toNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_to_node_id));
             String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_choice_text));
-            int connectedSuccessNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_success_popup));
-            int connectedFailNode = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_fail_popup));
+            int connectedSuccessPopup = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_success_popup));
+            int connectedFailPopup = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_connected_fail_popup));
             int itemReq = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_required));
             int itemImp = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_item_type_improves));
             int testType = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_type_id));
             int difficulty = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_choice_test_difficulty));
-            list.add(new ChoiceData(text, nodeId, toNode, connectedSuccessNode, connectedFailNode, itemReq,
+            list.add(new ChoiceData(text, nodeId, toNode, connectedSuccessPopup, connectedFailPopup, itemReq,
                     itemImp, testType, difficulty));
             cursor.moveToNext();
         }

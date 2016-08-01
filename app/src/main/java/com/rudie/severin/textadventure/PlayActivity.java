@@ -62,9 +62,12 @@ public class PlayActivity extends AppCompatActivity {
                     ChoiceData selectedChoice = choiceList.get(selectedButtonPos);
                     int testType = selectedChoice.getTestType();
                     int testDifficulty = selectedChoice.getDifficulty();
-                    HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
-                    int testedValue = charStats.get(testType);
-                    testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
+                    int testedValue = 0;
+                    if (testType != -1) {
+                        HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
+                        testedValue = charStats.get(testType);
+                        testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
+                    }
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
                         int nextNode = choiceList.get(selectedButtonPos).getToNode();
@@ -72,6 +75,7 @@ public class PlayActivity extends AppCompatActivity {
                     } else {
                         int nextNode = choiceList.get(selectedButtonPos).getToNode();
                         setNewNode(nextNode);
+                        // TODO: trash this in favor of the above todo
                     }
                 }
             }

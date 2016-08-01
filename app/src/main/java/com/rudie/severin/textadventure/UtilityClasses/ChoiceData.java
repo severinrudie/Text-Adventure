@@ -31,7 +31,7 @@ public class ChoiceData {
         this.itemImproves = itemImproves;
         this.testType = testType;
         this.difficulty = difficulty;
-        this.ints = new int[] {nodeId, connectedSuccess, connectedFail, itemRequired, itemImproves, testType,
+        this.ints = new int[] {nodeId, toNode, connectedSuccess, connectedFail, itemRequired, itemImproves, testType,
                 difficulty};
     }
 

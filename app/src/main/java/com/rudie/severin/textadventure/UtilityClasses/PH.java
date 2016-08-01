@@ -18,6 +18,7 @@ public class PH {
     public static final int AGILITY_ID = 2;
     public static final int COMRADERY_ID = 3;
     public static final int STARTING_HP = 10;
+    public static final String NULL = "NULL";
     // END character insertion constants
 
     // BEGIN db constants
@@ -136,7 +137,7 @@ public class PH {
 
     // BEGIN node details
     // These are ingested into the DB upon DB creation
-    public static final String NULL = "NULL";
+
     
     public static final String [][] nodeDetails = new String[][] {
 //            new String[] {"5", "Locate Prof", "3", "NULL"},
@@ -150,8 +151,6 @@ public class PH {
 
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
-//    public ChoiceData(String text, int nodeId, int connectedSuccess, int connectedFail,
-//                      int itemRequired, int itemImproves, int testType, int difficulty)
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //        new ChoiceData("Shoot", 4, 5, 5, 5, 1, 1, 2, 2),
 //        new ChoiceData("Evade", 4, 5, 5, 5, -1, -1, 2, 3),
@@ -171,7 +170,8 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new String[] {"1", "You succeed!", NULL, NULL},
             new String[] {"2", "You fail!", NULL, NULL},
             new String[] {"3", "You live!", NULL, NULL},
-            new String[] {"4", "You die!", NULL, NULL}
+            new String[] {"4", "You die!", NULL, NULL},
+            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
     };
     // END popup details
 }
