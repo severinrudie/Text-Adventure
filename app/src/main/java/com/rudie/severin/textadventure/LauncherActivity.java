@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,7 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        DBInterfacer db = DBInterfacer.getInstance(this);
+        DBInterfacer helper = DBInterfacer.getInstance(this);
 
         Button newGame = (Button) findViewById(R.id.buttonLauncherNewGame);
         newGame.setOnClickListener(new View.OnClickListener() {
@@ -35,12 +36,15 @@ public class LauncherActivity extends AppCompatActivity {
 
 
 //        TODO: temp code. resets DB on every new instance
-        db.dropAllTables();
-        db.onCreate(db.getWritableDatabase());
+        helper.dropAllTables();
+        helper.onCreate(helper.getWritableDatabase());
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
+                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '3000', '1', '1');";
+        db.execSQL(sql);
 //        TODO: end temp code
 
     }
-
-
 
 }

@@ -33,10 +33,11 @@ public class PH {
     public static final String tbl_choice_test_difficulty = "test_difficulty";
 
     public static final String tbl_inventory = "table_inventory";
-    public static final String tbl_inventory_id = "item_id";
-    public static final String tbl_inventory_name = "item_name";
-    public static final String tbl_inventory_power = "item_power";
-    public static final String tbl_inventory_type_id = "item_type_id";
+    public static final String tbl_inventory_id = "inventory_id";
+    public static final String tbl_inventory_name = "inventory_name";
+    public static final String tbl_inventory_power = "inventory_power";
+    public static final String tbl_inventory_type_id = "inventory_type_id";
+    public static final String tbl_inventory_character_id = "inventory_character_id";
 
     public static final String tbl_statistics = "table_statistic";
     public static final String tbl_statistics_type_id = "stat_type_id";
@@ -85,6 +86,7 @@ public class PH {
                     tbl_inventory_name + " text," +
                     tbl_inventory_power + " text," +
                     tbl_inventory_type_id + " integer" +
+                    tbl_inventory_character_id + " integer" +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_statistics + " (" +

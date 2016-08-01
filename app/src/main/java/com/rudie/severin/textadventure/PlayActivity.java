@@ -15,17 +15,23 @@ import android.widget.TextView;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
+import com.rudie.severin.textadventure.UtilityClasses.ItemData;
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
 import java.util.List;
 
 public class PlayActivity extends AppCompatActivity {
 
-    List<ChoiceData> choiceList;
-    RecyclerView rvChoices;
-    ChoiceAdapter adapter;
-    DBInterfacer helper;
-    TextView textviewText;
+    private List<ChoiceData> choiceList;
+    private RecyclerView rvChoices;
+    private ChoiceAdapter adapter;
+    private DBInterfacer helper;
+    private TextView textviewText;
+
+// inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
+// is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
+// by a sql query from DBInterfacer every time the inventory is changed.  All other activities get
+// inventory information from InventoryActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

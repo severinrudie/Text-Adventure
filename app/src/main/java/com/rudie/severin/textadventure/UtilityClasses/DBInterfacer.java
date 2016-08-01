@@ -204,5 +204,33 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return list;
     }
 
+//    public static final String tbl_inventory = "table_inventory";
+//    public static final String tbl_inventory_id = "inventory_id";
+//    public static final String tbl_inventory_name = "inventory_name";
+//    public static final String tbl_inventory_power = "inventory_power";
+//    public static final String tbl_inventory_type_id = "inventory_type_id";
+//    public static final String tbl_inventory_character_id = "inventory_character_id";
+
+    public List<ItemData> getCharacterInventory (int charId, Context context) {
+        String sql = "SELECT * FROM " + PH.tbl_inventory + " WHERE " + PH.tbl_inventory_character_id + " = '"
+                + charId + "';";
+        DBInterfacer helper = DBInterfacer.getInstance(context);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        List<ItemData> list = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            int itemId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_id));
+            String itemName = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_inventory_name));
+            int itemPower = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_power));
+            int itemTypeId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_type_id));
+            int itemOwner = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_character_id));
+            list.add(new ItemData(itemId, itemName, itemPower, itemTypeId, itemOwner));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
 
 }
