@@ -129,6 +129,7 @@ class Choice_Class(object):
 	text = str
 	nodeId = int
 	connectedNode = int
+	connectedSuccessPopup = int
 	connectedFailPopup = int
 	itemRequired = int
 	itemImproves = int
@@ -193,6 +194,8 @@ class Popup_Class(object):
 	text = str
 	image = str
 	animation = str
+	damageTaken = int
+	itemReceived = int
 	def get_values(self):
 		tempNum = request_int_input("Which popup is this?")
 		if (tempNum not in previously_used_popups):
@@ -203,6 +206,11 @@ class Popup_Class(object):
 		self.text = input("What is the popup text? :")
 		self.image = value_or_n("What is the popup image?")
 		self.animation = value_or_n("What is the popup animation?")
+		self.damageTaken = request_int_input("How much damage is taken at this popup?", nullable=True)
+		if (request_yesno_input("Is an item received at this popup")):
+			self.itemReceived = 1
+		else:
+			self.itemReceived = -1;
 		print("These are the currently saved values")
 		print("Text: ", self.text)
 		if (self.image == "NULL"):
@@ -273,7 +281,7 @@ def write_to_file():
 	total_string += "\n"
 	total_string += "Popups\n"
 	for popup in popup_list:
-		write_string = "new String[] {\"" + str(popup.number) + "\", \"" + popup.text + "\", \"" + popup.image + "\", \"" + popup.animation + "\"},"
+		write_string = "new String[] {\"" + str(popup.number) + "\", \"" + popup.text + "\", \"" + popup.image + "\", \"" + popup.animation + "\", \"" + str(popup.damageTaken) + "\", \"" + str(popup.itemReceived) + "\"},"
 		total_string += write_string
 		total_string += "\n"
 		print(write_string)

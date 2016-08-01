@@ -29,6 +29,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
     private DBInterfacer helper;
     private TextView textviewText;
     private int nextNode;
+    private int currentCharacterId;
 
     // Inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
 // is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
@@ -40,7 +41,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        final int currentCharacterId = getIntent().getIntExtra(PH.CURRENT_CHARACTER, -1);
+        currentCharacterId = getIntent().getIntExtra(PH.CURRENT_CHARACTER, -1);
         if (currentCharacterId == -1) {
             Log.e("SEVCRASH: ", "currentCharacterId is set to -1");
             finish();
@@ -73,21 +74,33 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
                         testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
                     }
                     nextNode = choiceList.get(selectedButtonPos).getToNode();
+                    int popupId;
+                    FragmentManager manager = getSupportFragmentManager();
+                    PopupFragment newFragment = PopupFragment.newInstance();
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
+                        popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
 //                        nextNode = choiceList.get(selectedButtonPos).getToNode();
 //                        setNewNode(nextNode, currentCharacterId);
-                        FragmentManager manager = getSupportFragmentManager();
-                        PopupFragment newFragment = PopupFragment.newInstance();
-                        newFragment.show(manager, "dialog");
+//                        FragmentManager manager = getSupportFragmentManager();
+//                        PopupFragment newFragment = PopupFragment.newInstance();
+
+//                        Bundle bundle = new Bundle();
+//                        bundle.putInt(PH.POPUP_ID, popupId);
+//                        newFragment.show(manager, "dialog");
                     } else {
+                        popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
 //                        nextNode = choiceList.get(selectedButtonPos).getToNode();
 //                        setNewNode(nextNode, currentCharacterId);
-                        FragmentManager manager = getSupportFragmentManager();
-                        PopupFragment newFragment = PopupFragment.newInstance();
-                        newFragment.show(manager, "dialog");
+//                        FragmentManager manager = getSupportFragmentManager();
+//                        PopupFragment newFragment = PopupFragment.newInstance();
+//                        newFragment.show(manager, "dialog");
                         // TODO: trash this in favor of the above todo
                     }
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(PH.POPUP_ID, popupId);
+                    newFragment.setArguments(bundle);
+                    newFragment.show(manager, "dialog");
                 }
                 adapter.resetSelectedButton();
             }
@@ -135,6 +148,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         FragmentManager manager = this.getSupportFragmentManager();
         PopupFragment fragment = (PopupFragment) manager.getFragments().get(0);
         manager.beginTransaction().remove(fragment).commit();
+        setNewNode(nextNode, currentCharacterId);
     }
 
     // BEGIN getters and setters

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
 //        for popupdetails insert popupdetails
         for (String[] sArray : PH.popupDetails) {
-            insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
+            insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3], sArray[4], sArray[5]);
         }
     }
 
@@ -153,12 +154,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public void insertPopupDetails(String popId, String text, String image, String animation) {
+    public void insertPopupDetails(String popId, String text, String image, String animation,
+                                   String damageTaken, String itemReceived) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_popup + " (" + PH.tbl_popup_id + ", "
-                + PH.tbl_popup_text + ", " + PH.tbl_popup_image + ", " + PH.tbl_popup_animation
-                + ") VALUES ('" + popId + "', '" + text + "', '" + image + "', '" + animation
-                + "');";
+                + PH.tbl_popup_text + ", " + PH.tbl_popup_image + ", " + PH.tbl_popup_animation + ", "
+                + PH.tbl_popup_damage + ", " + PH.tbl_popup_item + ") VALUES ('" + popId + "', '"
+                + text + "', '" + image + "', '" + animation + "', '" + damageTaken + "', '"
+                + itemReceived + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
@@ -173,8 +176,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public int getCurrentNode(int currentCharacterId, Context context) {
         String sql = "SELECT " + PH.tbl_character_at_node + " FROM " + PH.tbl_character + " WHERE "
                 + PH.tbl_character_id + " = '" + currentCharacterId + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         int currentNode = cursor.getInt(0);
@@ -186,8 +188,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public String getCurrentNodeText(int currentNode, Context context) {
         String sql = "SELECT " + PH.tbl_nodes_text + " FROM " + PH.tbl_nodes + " WHERE "
                 + PH.tbl_nodes_id + " = '" + currentNode + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         String nodeText = cursor.getString(0);
@@ -198,8 +199,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public List<ChoiceData> getAvailableChoices(int nodeId, Context context) {
         String sql = "SELECT * FROM " + PH.tbl_choice + " WHERE " + PH.tbl_choice_node_id + " = '"
                 + nodeId + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         List<ChoiceData> list = new ArrayList<>();
@@ -223,8 +223,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     public List<ItemData> getCharacterInventory (int charId, Context context) {
         String sql = "SELECT * FROM " + PH.tbl_inventory + " WHERE " + PH.tbl_inventory_character_id + " = '"
                 + charId + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         List<ItemData> list = new ArrayList<>();
@@ -243,8 +242,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
     public HashMap<Integer, Integer> getStatsForCharacter (int charId, Context context) {
         HashMap<Integer, Integer> statMap = new HashMap<>();
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         statMap.put(PH.STRENGTH_ID, getSingleCharacterStat(charId, db, PH.STRENGTH_ID));
         statMap.put(PH.AGILITY_ID, getSingleCharacterStat(charId, db, PH.AGILITY_ID));
         statMap.put(PH.COMRADERY_ID, getSingleCharacterStat(charId, db, PH.COMRADERY_ID));
@@ -267,8 +265,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         String sql = "SELECT " + PH.tbl_character_firstname + ", " + PH.tbl_character_nickname + ", "
                 + PH.tbl_character_lastname + " FROM " + PH.tbl_character + " WHERE "
                 + PH.tbl_character_id + " = '" + charId + "';";
-        DBInterfacer helper = DBInterfacer.getInstance(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         firstNickLast[0] = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_character_firstname));
@@ -286,6 +283,23 @@ public class DBInterfacer extends SQLiteOpenHelper {
             firstNickLast[2] = firstNickLast[0];
         }
         return firstNickLast;
+    }
+
+    public Bundle getPopupData(int popupId) {
+        String sql = "SELECT " + PH.tbl_popup_text + ", " + PH.tbl_popup_damage + ", "
+                + PH.tbl_popup_item + " FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
+                + " = '" + popupId + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_popup_text));
+        int damage = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_popup_damage));
+        int item = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_popup_item));
+        Bundle bundle = new Bundle();
+        bundle.putString(PH.tbl_popup_text, text);
+        bundle.putInt(PH.tbl_popup_damage, damage);
+        bundle.putInt(PH.tbl_popup_item, item);
+        return bundle;
     }
 
 }

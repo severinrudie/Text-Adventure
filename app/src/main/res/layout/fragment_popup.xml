@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:id="@+id/fragmentCharacterSelect"
     android:layout_gravity="center"
+    android:padding="@dimen/fragmentPadding"
     tools:context="FragmentClasses.CharacterSelectFragment">
 
     <ImageView
@@ -17,7 +18,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
+        android:id="@+id/textview_damageTaken_popupFragment"
+        android:textColor="@color/textBadNews"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textview_itemFound_popupFragment"
+        android:textColor="@color/textGoodNews"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
         android:id="@+id/textview_text_popupFragment"
+        android:layout_marginTop="@dimen/fragmentPadding"
         android:gravity="center"
         android:layout_gravity="center" />
 

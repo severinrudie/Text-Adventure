@@ -19,9 +19,10 @@ public class PH {
     public static final int COMRADERY_ID = 3;
     public static final int STARTING_HP = 10;
     public static final String NULL = "NULL";
-    public static final String FIRSTNAME = "FIRSTNAME";
-    public static final String NICKNAME = "NICKNAME";
-    public static final String LASTNAME = "LASTNAME";
+    public static final String FIRSTNAME = "FIRSTNAME";  // \
+    public static final String NICKNAME = "NICKNAME";    //  - used to replace names
+    public static final String LASTNAME = "LASTNAME";    // /
+    public static final String POPUP_ID = "POPUP_ID";   // used to send popupId to a fragment
     // END character insertion constants
 
     // BEGIN db constants
@@ -74,6 +75,8 @@ public class PH {
     public static final String tbl_popup_text = "popup_text";
     public static final String tbl_popup_image = "popup_image";
     public static final String tbl_popup_animation = "popup_animation";
+    public static final String tbl_popup_damage = "popup_damage";
+    public static final String tbl_popup_item = "popup_item";
 
     public static final String[] all_tables = {tbl_choice, tbl_inventory, tbl_statistics,
             tbl_nodes, tbl_character, tbl_item_type, tbl_popup};
@@ -133,7 +136,9 @@ public class PH {
                     tbl_popup_id + " integer PRIMARY KEY, " +
                     tbl_popup_text + " text, " +
                     tbl_popup_image + " text, " +
-                    tbl_popup_animation + " text"+
+                    tbl_popup_animation + " text, "+
+                    tbl_popup_damage + " integer, " +
+                    tbl_popup_item + " integer"+
                     ");" +
                     " "};
     // END db constants
@@ -146,10 +151,13 @@ public class PH {
 //            new String[] {"5", "Locate Prof", "3", "NULL"},
 //            new String[] {"4", "Incoming Patrol", "NULL", "NULL"},
 //            new String[] {"1", "You've landed in a burning field.", NULL, NULL},
-            new String[] {"1", "\"NICKNAME, get in here! Dammit Sergeant LASTNAME, you're a loose cannon! You're the best damn marine I've got, and God knows we need you.  But dammit FIRSTNAME, you have to do things by the book!\"", NULL, NULL},
-            new String[] {"2", "You's searching for equipment", NULL, NULL},
-            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
-            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
+//            new String[] {"1", "\"NICKNAME, get in here! Dammit Sergeant LASTNAME, you're a loose cannon! You're the best damn marine I've got, and God knows we need you.  But dammit FIRSTNAME, you have to do things by the book!\"", NULL, NULL},
+//            new String[] {"2", "You's searching for equipment", NULL, NULL},
+//            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
+//            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
+            new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
+            new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "NULL", "NULL"},
+            new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
     };
     // END node details
 
@@ -159,11 +167,13 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //        new ChoiceData("Shoot", 4, 5, 5, 5, 1, 1, 2, 2),
 //        new ChoiceData("Evade", 4, 5, 5, 5, -1, -1, 2, 3),
 //        new ChoiceData("Punch", 4, 5, 5, 5, -1, 2, 1, 2),
-        new ChoiceData("Search for equipment", 1, 2, 2, 3, 1, -1, -1, -1),
-        new ChoiceData("Check Hazard's pod", 1, 2, 3, 4, 2, -1, 3, -1),
-        new ChoiceData("Continue with the mission", 1, 2, 3, 4, -1, -1, 1, 2),
-        new ChoiceData("Hey I'm on TV!", 5, 6, 6, 7, 1, 2, 3, 4),
-        new ChoiceData("I'm still here!", 7, 8, 2, 3, 3, 4, 5, 6)
+//        new ChoiceData("Search for equipment", 1, 2, 2, 3, 1, -1, -1, -1),
+//        new ChoiceData("Check Hazard's pod", 1, 2, 3, 4, 2, -1, 3, -1),
+//        new ChoiceData("Continue with the mission", 1, 2, 3, 4, -1, -1, 1, 2),
+//        new ChoiceData("Hey I'm on TV!", 5, 6, 6, 7, 1, 2, 3, 4),
+//        new ChoiceData("I'm still here!", 7, 8, 2, 3, 3, 4, 5, 6)
+            new ChoiceData("Run away", 1, 2, 1, 2, -1, -1, 2, 2),
+            new ChoiceData("Punch the flames", 1, 3, 3, 4, -1, -1, 1, 2)
     };
     // END choices details
 
@@ -171,11 +181,15 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
     public static final String [][] popupDetails = new String[][] {
 //            new String[] {"5", "Locate Prof", "3", "NULL"},
 //            new String[] {"4", "Incoming Patrol", "NULL", "NULL"},
-            new String[] {"1", "You succeed!", NULL, NULL},
-            new String[] {"2", "You fail!", NULL, NULL},
-            new String[] {"3", "You live!", NULL, NULL},
-            new String[] {"4", "You die!", NULL, NULL},
-            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
+//            new String[] {"1", "You succeed!", NULL, NULL},
+//            new String[] {"2", "You fail!", NULL, NULL},
+//            new String[] {"3", "You live!", NULL, NULL},
+//            new String[] {"4", "You die!", NULL, NULL},
+//            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
+            new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "-1"},
+            new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
+            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "-1"},
+            new String[] {"4", "The flames outbox you", "NULL", "NULL", "3", "-1"}
     };
     // END popup details
 }
