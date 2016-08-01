@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
 import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
-import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryHolder;
+import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
 import com.rudie.severin.textadventure.UtilityClasses.PH;
 
@@ -25,7 +25,7 @@ public class PlayActivity extends AppCompatActivity {
     private DBInterfacer helper;
     private TextView textviewText;
 
-// inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
+// Inventory needs to be used by the adapter, but updated once every time PlayActivity.setNewNode
 // is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
 // by a sql query from DBInterfacer every time the inventory is changed.  All other activities get
 // inventory information from InventoryActivity
@@ -42,7 +42,7 @@ public class PlayActivity extends AppCompatActivity {
         }
 // New character, so new inventory is loaded from the DB.  This also sets a boolean that lets
 // ChoiceAdapter know to update its knowlege of the inventory the next time it binds a view
-        CurrentInventoryHolder.refreshInventoryFromDb(currentCharacterId, this);
+        CurrentInventoryAndStats.refreshFromDb(currentCharacterId, this);
 
 //  Some basic information regarding the current node is collected here, but most associated
 //  logic is found in the setNewNode method

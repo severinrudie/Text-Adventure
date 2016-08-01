@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -204,13 +205,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return list;
     }
 
-//    public static final String tbl_inventory = "table_inventory";
-//    public static final String tbl_inventory_id = "inventory_id";
-//    public static final String tbl_inventory_name = "inventory_name";
-//    public static final String tbl_inventory_power = "inventory_power";
-//    public static final String tbl_inventory_type_id = "inventory_type_id";
-//    public static final String tbl_inventory_character_id = "inventory_character_id";
-
     public List<ItemData> getCharacterInventory (int charId, Context context) {
         String sql = "SELECT * FROM " + PH.tbl_inventory + " WHERE " + PH.tbl_inventory_character_id + " = '"
                 + charId + "';";
@@ -230,6 +224,27 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         cursor.close();
         return list;
+    }
+
+    public HashMap<Integer, Integer> getStatsForCharacter (int charId, Context context) {
+        HashMap<Integer, Integer> statMap = new HashMap<>();
+        DBInterfacer helper = DBInterfacer.getInstance(context);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        statMap.put(PH.STRENGTH_ID, getSingleCharacterStat(charId, db, PH.STRENGTH_ID));
+        statMap.put(PH.AGILITY_ID, getSingleCharacterStat(charId, db, PH.AGILITY_ID));
+        statMap.put(PH.COMRADERY_ID, getSingleCharacterStat(charId, db, PH.COMRADERY_ID));
+
+        return statMap;
+    }
+
+    private int getSingleCharacterStat(int charId, SQLiteDatabase db, int statId) {
+        String sql = "SELECT " + PH.tbl_statistics_stat_value + " FROM " + PH.tbl_statistics + " WHERE " + PH.tbl_statistics_character_id + " = '"
+                + charId + "' AND " + PH.tbl_statistics_type_id + " = '" + statId + "';";
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        int value = cursor.getInt(0);
+        cursor.close();
+        return value;
     }
 
 }

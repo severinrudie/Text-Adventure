@@ -1,7 +1,6 @@
 package com.rudie.severin.textadventure.UtilityClasses;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -60,8 +59,8 @@ public class ChoiceAdapter extends
     RadioButton lastCheckedRB = null;
     @Override
     public void onBindViewHolder(ChoiceAdapter.ViewHolder viewHolder, final int position) {
-        if (CurrentInventoryHolder.getAdapterNewInventoryAndSetFalse()) {
-            currentInventory = CurrentInventoryHolder.getCurrentInventory();
+        if (CurrentInventoryAndStats.getAdapterNewInventoryAndSetFalse()) {
+            currentInventory = CurrentInventoryAndStats.getCurrentInventory();
         }
 
         ChoiceData choice = mChoices.get(position);
@@ -82,7 +81,7 @@ public class ChoiceAdapter extends
         RadioButton radioButton = viewHolder.radioButton;
         radioButton.setText(choice.getText());
         if (choice.getItemRequired() == -1 ||
-                CurrentInventoryHolder.getCurrentItemTypes().contains(choice.getItemRequired())) {
+                CurrentInventoryAndStats.getCurrentItemTypes().contains(choice.getItemRequired())) {
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -95,7 +94,7 @@ public class ChoiceAdapter extends
             });
             radioButton.setTypeface(null, Typeface.NORMAL);
             radioButton.setTextColor(mContext.getResources().getColor(R.color.normalText));
-        } else if (!(CurrentInventoryHolder.getCurrentItemTypes().contains(choice.getItemRequired()))) {
+        } else if (!(CurrentInventoryAndStats.getCurrentItemTypes().contains(choice.getItemRequired()))) {
             radioButton.setClickable(false);
             radioButton.setTypeface(null, Typeface.ITALIC);
             radioButton.setTextColor(mContext.getResources().getColor(R.color.unSelectableText));
