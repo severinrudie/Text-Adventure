@@ -32,7 +32,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 //implements PopupFragment.PopupCompleteListener
-public class GameplayFragment extends Fragment {
+public class GameplayFragment extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";

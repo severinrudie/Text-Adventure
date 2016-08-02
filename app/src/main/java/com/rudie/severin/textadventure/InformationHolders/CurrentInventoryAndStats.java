@@ -35,7 +35,7 @@ public final class CurrentInventoryAndStats {
         for (int i = 0; i < currentInventory.size(); i++) {
             currentItemTypes.add(currentInventory.get(i).getItemTypeId());
         }
-        currentStats = helper.getStatsForCharacter(charId, context);
+        currentStats = helper.getStatsForCharacter(charId);
         System.out.println("");
     }
 

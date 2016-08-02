@@ -16,7 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.ImageActivity" />
-        <activity android:name=".Activities.StatsActivity" />
         <activity android:name=".Activities.InventoryActivity" />
         <activity android:name=".Activities.LoadActivity" />
         <activity android:name=".Activities.PlayActivity"></activity>

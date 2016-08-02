@@ -23,6 +23,9 @@ public class PH {
     public static final String NICKNAME = "NICKNAME";    //  - used to replace names
     public static final String LASTNAME = "LASTNAME";    // /
     public static final String POPUP_ID = "POPUP_ID";   // used to send popupId to a fragment
+    public static final String GAMEPLAY_FRAGMENT = "GAMEPLAY_FRAGMENT";
+    public static final String STATISTICS_FRAGMENT = "STATISTICS_FRAGMENT";
+    public static final String INVENTORY_FRAGMENT = "INVENTORY_FRAGMENT";
     // END character insertion constants
 
     // BEGIN db constants

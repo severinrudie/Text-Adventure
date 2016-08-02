@@ -244,17 +244,19 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return list;
     }
 
-    public HashMap<Integer, Integer> getStatsForCharacter (int charId, Context context) {
+    public HashMap<Integer, Integer> getStatsForCharacter (int charId) {
         HashMap<Integer, Integer> statMap = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        statMap.put(PH.STRENGTH_ID, getSingleCharacterStat(charId, db, PH.STRENGTH_ID));
-        statMap.put(PH.AGILITY_ID, getSingleCharacterStat(charId, db, PH.AGILITY_ID));
-        statMap.put(PH.COMRADERY_ID, getSingleCharacterStat(charId, db, PH.COMRADERY_ID));
+        statMap.put(PH.STRENGTH_ID, getSingleCharacterStat(charId, PH.STRENGTH_ID));
+        statMap.put(PH.AGILITY_ID, getSingleCharacterStat(charId, PH.AGILITY_ID));
+        statMap.put(PH.COMRADERY_ID, getSingleCharacterStat(charId, PH.COMRADERY_ID));
 
         return statMap;
     }
 
-    private int getSingleCharacterStat(int charId, SQLiteDatabase db, int statId) {
+//    private int getSingleCharacterStat(int charId, SQLiteDatabase db, int statId) {
+    private int getSingleCharacterStat(int charId, int statId) {
+        SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT " + PH.tbl_statistics_stat_value + " FROM " + PH.tbl_statistics + " WHERE " + PH.tbl_statistics_character_id + " = '"
                 + charId + "' AND " + PH.tbl_statistics_type_id + " = '" + statId + "';";
         Cursor cursor = db.rawQuery(sql, null);

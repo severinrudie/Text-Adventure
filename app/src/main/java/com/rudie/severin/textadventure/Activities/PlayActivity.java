@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.rudie.severin.textadventure.FragmentClasses.GameplayFragment;
 import com.rudie.severin.textadventure.FragmentClasses.PopupFragment;
 import com.rudie.severin.textadventure.Adapters.ChoiceAdapter;
+import com.rudie.severin.textadventure.FragmentClasses.StatisticsFragment;
 import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
 import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
@@ -123,7 +124,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
-        SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+        SparseArray<Fragment> registeredFragments = new SparseArray<>();
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -139,12 +140,17 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         @Override
         public Fragment getItem(int position) {
             switch (position) {
+                // TODO: give the stats fragment the charid
 //                case 0: // Fragment # 0 - This will show FirstFragment
 //                    return GameplayFragment.newInstance(currentCharacterId);
-//                case 1: // Fragment # 0 - This will show FirstFragment different title
-//                    return FirstFragment.newInstance(1, "Page # 2");
-//                case 2: // Fragment # 1 - This will show SecondFragment
-//                    return SecondFragment.newInstance(2, "Page # 3");
+                case 1: // Fragment # 0 - This will show FirstFragment different title
+                    return GameplayFragment.newInstance(currentCharacterId);
+                case 2: // Fragment # 1 - This will show SecondFragment
+                    StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(PH.tbl_character_id, currentCharacterId);
+                    statisticsFragment.setArguments(bundle);
+                    return statisticsFragment;
                 default:
                     return GameplayFragment.newInstance(currentCharacterId);
             }
