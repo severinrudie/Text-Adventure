@@ -34,9 +34,9 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
     private static int currentCharacterId;
     MyPagerAdapter adapterViewPager;
     ViewPager vpPager;
-    int inventoryFragmentIndex = 0;
-    int gamePlayFragmentIndex = 1;
-    int statsFragmentIndex = 2;
+    static final int inventoryFragmentIndex = 0;
+    static final int gamePlayFragmentIndex = 1;
+    static final int statsFragmentIndex = 2;
 
     // Inventory needs to be used by the adapter, but updated once every time PlayActivity.changeToNewNode
 // is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
@@ -153,7 +153,15 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page " + position;
+            String title = "";
+            if (position == gamePlayFragmentIndex) {
+                title = "Story";
+            } else if (position == inventoryFragmentIndex) {
+                title = "Inventory";
+            } else if (position == statsFragmentIndex) {
+                title = "Statistics";
+            }
+            return title;
         }
 
         @Override

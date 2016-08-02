@@ -134,6 +134,7 @@ public class GameplayFragment extends Fragment {
                     }
                     Bundle bundle = new Bundle();
                     bundle.putInt(PH.POPUP_ID, popupId);
+                    bundle.putInt(PH.tbl_character_id, currentCharacterId);
                     popupFragment.setArguments(bundle);
                     popupFragment.show(manager, PH.POPUP_ID);
                 }
@@ -220,14 +221,6 @@ public class GameplayFragment extends Fragment {
         text = text.replace("\\", "");
         return text;
     }
-
-//    @Override
-//    public void closePopupNow() {
-//        FragmentManager manager = getActivity().getSupportFragmentManager();
-//        PopupFragment fragment = (PopupFragment) manager.getFragments().get(0);
-//        manager.beginTransaction().remove(fragment).commit();
-//        changeToNewNode(nextNode, currentCharacterId);
-//    }
 
     // BEGIN getters and setters
 

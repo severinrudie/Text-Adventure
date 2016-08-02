@@ -61,6 +61,7 @@ public class PopupFragment extends DialogFragment {
         });
         Bundle bundle = getArguments();
         int popupId = bundle.getInt(PH.POPUP_ID);
+        int charId = bundle.getInt(PH.tbl_character_id);
         DBInterfacer helper = DBInterfacer.getInstance(mContext);
         Bundle popupData = helper.getPopupData(popupId);
         String text = popupData.getString(PH.tbl_popup_text);
@@ -74,7 +75,8 @@ public class PopupFragment extends DialogFragment {
         if (damage != -1) {
             tvDamage.setText("You took " + damage + " damage!");
             tvDamage.setVisibility(View.VISIBLE);
-            // TODO: apply damage
+            helper.setCharacterDamageDealt(damage, charId);
+            // TODO: check if dead
         }
         else {
             tvDamage.setVisibility(View.GONE);

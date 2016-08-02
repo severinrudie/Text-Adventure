@@ -314,4 +314,23 @@ public class DBInterfacer extends SQLiteOpenHelper {
         System.out.println("");
     }
 
+    public void setCharacterDamageDealt(int damageDealt, int charId) {
+        int hp = getCharacterHp(charId);
+        hp -= damageDealt;
+        String sql = "UPDATE " + PH.tbl_character + " SET " + PH.tbl_character_hp + " = "
+                + hp + " WHERE " + PH.tbl_character_id + " = '" + charId + "';";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+    }
+
+    public int getCharacterHp(int charId) {
+        String sql = "SELECT " + PH.tbl_character_hp + " FROM " + PH.tbl_character + " WHERE "
+                + PH.tbl_character_id + " = '" + charId + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        int hp = cursor.getInt(0);
+        return hp;
+    }
+
 }
