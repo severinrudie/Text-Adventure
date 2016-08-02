@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.R;
-import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
-import com.rudie.severin.textadventure.UtilityClasses.PH;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.PH;
 
 public class PopupFragment extends DialogFragment {
     PopupCompleteListener mCallback;

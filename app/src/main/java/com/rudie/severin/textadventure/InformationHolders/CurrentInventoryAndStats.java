@@ -1,6 +1,8 @@
-package com.rudie.severin.textadventure.UtilityClasses;
+package com.rudie.severin.textadventure.InformationHolders;
 
 import android.content.Context;
+
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

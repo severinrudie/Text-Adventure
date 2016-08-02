@@ -1,4 +1,4 @@
-package com.rudie.severin.textadventure;
+package com.rudie.severin.textadventure.Activities;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.FragmentClasses.PopupFragment;
-import com.rudie.severin.textadventure.UtilityClasses.ChoiceAdapter;
-import com.rudie.severin.textadventure.UtilityClasses.ChoiceData;
-import com.rudie.severin.textadventure.UtilityClasses.CurrentInventoryAndStats;
-import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
-import com.rudie.severin.textadventure.UtilityClasses.PH;
+import com.rudie.severin.textadventure.Adapters.ChoiceAdapter;
+import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
+import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.PH;
+import com.rudie.severin.textadventure.R;
 
 import java.util.HashMap;
 import java.util.List;

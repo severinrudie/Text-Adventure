@@ -1,7 +1,9 @@
-package com.rudie.severin.textadventure;
+package com.rudie.severin.textadventure.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.rudie.severin.textadventure.R;
 
 public class StatsActivity extends AppCompatActivity {
 

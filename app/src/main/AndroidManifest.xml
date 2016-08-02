@@ -8,18 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LauncherActivity">
+        <activity android:name=".Activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageActivity" />
-        <activity android:name=".StatsActivity" />
-        <activity android:name=".InventoryActivity" />
-        <activity android:name=".LoadActivity" />
-        <activity android:name=".PlayActivity"></activity>
+        <activity android:name=".Activities.ImageActivity" />
+        <activity android:name=".Activities.StatsActivity" />
+        <activity android:name=".Activities.InventoryActivity" />
+        <activity android:name=".Activities.LoadActivity" />
+        <activity android:name=".Activities.PlayActivity"></activity>
     </application>
 
 </manifest>

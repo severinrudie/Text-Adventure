@@ -1,13 +1,9 @@
-package com.rudie.severin.textadventure;
+package com.rudie.severin.textadventure.Activities;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
-import com.rudie.severin.textadventure.UtilityClasses.ItemData;
-
-import java.util.List;
+import com.rudie.severin.textadventure.R;
 
 public class InventoryActivity extends AppCompatActivity {
 

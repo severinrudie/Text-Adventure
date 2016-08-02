@@ -1,4 +1,4 @@
-package com.rudie.severin.textadventure.UtilityClasses;
+package com.rudie.severin.textadventure.InformationHolders;
 
 /**
  * Created by erikrudie on 7/28/16.

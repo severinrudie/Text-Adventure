@@ -1,4 +1,4 @@
-package com.rudie.severin.textadventure.UtilityClasses;
+package com.rudie.severin.textadventure.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -6,11 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.R;
+import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
+import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
+import com.rudie.severin.textadventure.InformationHolders.ItemData;
+import com.rudie.severin.textadventure.InformationHolders.PH;
 
 import java.util.List;
 

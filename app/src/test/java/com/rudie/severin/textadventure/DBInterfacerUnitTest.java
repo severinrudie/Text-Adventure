@@ -1,15 +1,11 @@
 package com.rudie.severin.textadventure;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.test.AndroidTestCase;
 import android.test.mock.MockContext;
-import android.widget.TextView;
 
-import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
-import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
-import com.rudie.severin.textadventure.UtilityClasses.PH;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.PH;
 
 import org.junit.Test;
 

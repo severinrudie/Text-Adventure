@@ -14,10 +14,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rudie.severin.textadventure.PlayActivity;
-import com.rudie.severin.textadventure.UtilityClasses.DBInterfacer;
+import com.rudie.severin.textadventure.Activities.PlayActivity;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
-import com.rudie.severin.textadventure.UtilityClasses.PH;
+import com.rudie.severin.textadventure.InformationHolders.PH;
 
 import java.util.HashMap;
 
