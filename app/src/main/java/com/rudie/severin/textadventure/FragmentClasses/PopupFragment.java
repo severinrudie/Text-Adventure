@@ -24,7 +24,7 @@ public class PopupFragment extends DialogFragment {
     }
 
     public interface PopupCompleteListener {
-        public void closeFragmentNow();
+        public void closePopupNow();
     }
 
     TextView tvText, tvDamage, tvItem;
@@ -51,7 +51,7 @@ public class PopupFragment extends DialogFragment {
             public void onClick(View view) {
                     try {
                         mCallback = (PopupCompleteListener) mContext;
-                        mCallback.closeFragmentNow();
+                        mCallback.closePopupNow();
                     } catch (ClassCastException e) {
                         e.printStackTrace();
                         throw new ClassCastException(mContext.toString()
