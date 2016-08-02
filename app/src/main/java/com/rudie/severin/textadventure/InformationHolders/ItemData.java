@@ -13,7 +13,10 @@ public class ItemData {
     private final String itemName;
     private final int itemPower;
     private final int itemTypeId;
+    private final String itemTypeName;
     private final int itemOwnerId;
+    private final String itemStatName;
+
 
     public ItemData(int id, String name, int power, int typeId, int ownerId) {
         this.itemId = id;
@@ -21,6 +24,9 @@ public class ItemData {
         this.itemPower = power;
         this.itemTypeId = typeId;
         this.itemOwnerId = ownerId;
+        // TODO: set stat and type name based on type id
+        this.itemTypeName = "TEMPORARY TYPE";
+        this.itemStatName = "TEMPORARY STAT";
     }
 
     public int getItemId() {
@@ -41,5 +47,13 @@ public class ItemData {
 
     public int getItemOwnerId() {
         return itemOwnerId;
+    }
+
+    public String getItemTypeName() {
+        return itemTypeName;
+    }
+
+    public String getItemStatName() {
+        return itemStatName;
     }
 }

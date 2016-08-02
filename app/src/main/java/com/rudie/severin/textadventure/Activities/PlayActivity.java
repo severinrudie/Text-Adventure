@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.FragmentClasses.GameplayFragment;
+import com.rudie.severin.textadventure.FragmentClasses.InventoryFragment;
 import com.rudie.severin.textadventure.FragmentClasses.PopupFragment;
 import com.rudie.severin.textadventure.Adapters.ChoiceAdapter;
 import com.rudie.severin.textadventure.FragmentClasses.StatisticsFragment;
@@ -140,17 +141,13 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                // TODO: give the stats fragment the charid
-//                case 0: // Fragment # 0 - This will show FirstFragment
-//                    return GameplayFragment.newInstance(currentCharacterId);
+                // TODO: give the inventory fragment the charid
+                case 0: // Fragment # 0 - This will show FirstFragment
+                    return InventoryFragment.newInstance(currentCharacterId);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
                     return GameplayFragment.newInstance(currentCharacterId);
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(PH.tbl_character_id, currentCharacterId);
-                    statisticsFragment.setArguments(bundle);
-                    return statisticsFragment;
+                    return StatisticsFragment.newInstance(currentCharacterId);
                 default:
                     return GameplayFragment.newInstance(currentCharacterId);
             }

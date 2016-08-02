@@ -24,7 +24,7 @@ public final class CurrentInventoryAndStats {
     // Sets currentInventory, currentItemTypes, and currentStats for the selected character
     public static void refreshFromDb(int charId, Context context) {
         DBInterfacer helper = DBInterfacer.getInstance(context);
-        currentInventory = helper.getCharacterInventory(charId, context);
+        currentInventory = helper.getCharacterInventory(charId);
         CurrentInventoryAndStats.adapterGetNewInventory = true;
 
         if (currentItemTypes != null) {

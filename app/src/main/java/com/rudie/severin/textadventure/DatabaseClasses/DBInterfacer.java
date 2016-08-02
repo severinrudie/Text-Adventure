@@ -224,7 +224,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return list;
     }
 
-    public List<ItemData> getCharacterInventory (int charId, Context context) {
+    public List<ItemData> getCharacterInventory (int charId) {
         String sql = "SELECT * FROM " + PH.tbl_inventory + " WHERE " + PH.tbl_inventory_character_id + " = '"
                 + charId + "';";
         SQLiteDatabase db = this.getReadableDatabase();

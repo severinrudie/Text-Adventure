@@ -20,8 +20,12 @@ import java.util.HashMap;
 public class StatisticsFragment extends android.support.v4.app.Fragment {
     Context mContext;
 
-    public static StatisticsFragment newInstance() {
-        return new StatisticsFragment();
+    public static StatisticsFragment newInstance(int currentCharacterId) {
+        StatisticsFragment statisticsFragment = new StatisticsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(PH.tbl_character_id, currentCharacterId);
+        statisticsFragment.setArguments(bundle);
+        return statisticsFragment;
     }
 
     TextView tvHp, tvStrength, tvAgility, tvComradery;
@@ -55,14 +59,11 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         HashMap<Integer, Integer> stats = helper.getStatsForCharacter(charId);
         int hp = helper.getCharacterHp(charId);
 
-//        int strength = stats.get(PH.STRENGTH);
-//        int agility = stats.get(PH.AGILITY);
-//        int comradery = stats.get(PH.COMRADERY);
         int[] statArray = new int[] {stats.get(PH.STRENGTH_ID), stats.get(PH.AGILITY_ID),
                 stats.get(PH.COMRADERY_ID)};
 
-        for (int i : statArray) {
-            i = (i + 7) * 10;
+        for (int i = 0; i < statArray.length; i++) {
+            statArray[i] = (statArray[i] + 7);
         }
 
         tvHp.setText("Hit Points: " + hp);

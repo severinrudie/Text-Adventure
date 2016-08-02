@@ -1,0 +1,73 @@
+package com.rudie.severin.textadventure.FragmentClasses;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.rudie.severin.textadventure.Adapters.InventoryAdapter;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
+import com.rudie.severin.textadventure.InformationHolders.ItemData;
+import com.rudie.severin.textadventure.InformationHolders.PH;
+import com.rudie.severin.textadventure.R;
+
+import java.util.HashMap;
+import java.util.List;
+
+public class InventoryFragment extends android.support.v4.app.Fragment {
+    Context mContext;
+    int charId;
+
+    public static InventoryFragment newInstance(int characterId) {
+        InventoryFragment inventoryFragment = new InventoryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(PH.tbl_character_id, characterId);
+        inventoryFragment.setArguments(bundle);
+        return inventoryFragment;
+    }
+
+    RecyclerView recyclerView;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_inventory, container, false);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerviewInventory);
+
+        Bundle bundle = getArguments();
+        int charId = bundle.getInt(PH.tbl_character_id);
+
+        DBInterfacer helper = DBInterfacer.getInstance(getActivity());
+        List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
+
+        InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+
+
+
+}
+
