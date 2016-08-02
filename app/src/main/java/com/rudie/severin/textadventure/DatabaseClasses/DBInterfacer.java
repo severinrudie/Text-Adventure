@@ -306,4 +306,12 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return bundle;
     }
 
+    public void setCharacterAtNode(int newNode, int charId) {
+        String sql = "UPDATE " + PH.tbl_character + " SET " + PH.tbl_character_at_node + " = "
+                + newNode + " WHERE " + PH.tbl_character_id + " = '" + charId + "';";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
+        System.out.println("");
+    }
+
 }

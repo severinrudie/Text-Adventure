@@ -43,7 +43,7 @@ public class GameplayFragment extends Fragment {
     private ChoiceAdapter adapter;
     private DBInterfacer helper;
     private TextView textviewText;
-    private int nextNode;
+//    private int nextNode;
     private int currentCharacterId;
 
     // TODO: Rename and change types of parameters
@@ -87,9 +87,9 @@ public class GameplayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gameplay, container, false);
 
         helper = DBInterfacer.getInstance(getActivity());
-        if (nextNode == 0) {
-            nextNode = helper.getCurrentNode(currentCharacterId, getActivity());
-        }
+//        if (nextNode == 0) {
+//            nextNode = helper.getCurrentNode(currentCharacterId, getActivity());
+//        }
         textviewText = (TextView) view.findViewById(R.id.textviewPlayContent);
         rvChoices = (RecyclerView) view.findViewById(R.id.recyclerviewPlayChoices);
         changeToNewNode(currentCharacterId);
@@ -109,10 +109,11 @@ public class GameplayFragment extends Fragment {
                         testedValue = charStats.get(testType);
                         testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
                     }
-                    nextNode = choiceList.get(selectedButtonPos).getToNode();
+                    int nextNode = choiceList.get(selectedButtonPos).getToNode();
+                    helper.setCharacterAtNode(nextNode, currentCharacterId);
                     int popupId;
                     FragmentManager manager = getActivity().getSupportFragmentManager();
-                    PopupFragment newFragment = PopupFragment.newInstance();
+                    PopupFragment popupFragment = PopupFragment.newInstance();
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
 //                        nextNode = choiceList.get(selectedButtonPos).getToNode();
@@ -133,8 +134,8 @@ public class GameplayFragment extends Fragment {
                     }
                     Bundle bundle = new Bundle();
                     bundle.putInt(PH.POPUP_ID, popupId);
-                    newFragment.setArguments(bundle);
-                    newFragment.show(manager, "dialog");
+                    popupFragment.setArguments(bundle);
+                    popupFragment.show(manager, PH.POPUP_ID);
                 }
                 adapter.resetSelectedButton();
             }
@@ -188,6 +189,7 @@ public class GameplayFragment extends Fragment {
     public void changeToNewNode( int charId) {
         // image
         // animation
+        int nextNode = helper.getCurrentNode(currentCharacterId, getContext());
         if (choiceList == null) {
             choiceList = helper.getAvailableChoices(nextNode, getActivity());
             adapter = new ChoiceAdapter(getActivity(), choiceList);

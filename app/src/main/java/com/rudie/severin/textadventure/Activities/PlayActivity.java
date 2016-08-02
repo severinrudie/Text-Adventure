@@ -60,6 +60,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
+        vpPager.setCurrentItem(gamePlayFragmentIndex);
 
 //  Some basic information regarding the current node is collected here, but most associated
 //  logic is found in the changeToNewNode method
@@ -138,8 +139,8 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return GameplayFragment.newInstance(currentCharacterId);
+//                case 0: // Fragment # 0 - This will show FirstFragment
+//                    return GameplayFragment.newInstance(currentCharacterId);
 //                case 1: // Fragment # 0 - This will show FirstFragment different title
 //                    return FirstFragment.newInstance(1, "Page # 2");
 //                case 2: // Fragment # 1 - This will show SecondFragment
@@ -224,6 +225,9 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
 
         GameplayFragment gpFrag = (GameplayFragment) adapterViewPager.getRegisteredFragment(gamePlayFragmentIndex);
         gpFrag.changeToNewNode(currentCharacterId);
+
+        PopupFragment popupFragment = (PopupFragment) manager.findFragmentByTag(PH.POPUP_ID);
+        manager.beginTransaction().remove(popupFragment).commit();
     }
 
     // BEGIN getters and setters
