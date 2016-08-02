@@ -9,7 +9,7 @@ This class holds all information relevent to Choices, and is used to build the d
  */
 public class ItemData {
 
-    private final int itemId;
+//    private final int itemId;
     private final String itemName;
     private final int itemPower;
     private final int itemTypeId;
@@ -18,20 +18,21 @@ public class ItemData {
     private final String itemStatName;
 
 
-    public ItemData(int id, String name, int power, int typeId, int ownerId) {
-        this.itemId = id;
+    public ItemData(String name, int power, int typeId, int ownerId) {
+//        this.itemId = id;
         this.itemName = name;
         this.itemPower = power;
         this.itemTypeId = typeId;
         this.itemOwnerId = ownerId;
         // TODO: set stat and type name based on type id
+        // TODO: remember that type name has its own db
         this.itemTypeName = "TEMPORARY TYPE";
         this.itemStatName = "TEMPORARY STAT";
     }
 
-    public int getItemId() {
-        return itemId;
-    }
+//    public int getItemId() {
+//        return itemId;
+//    }
 
     public String getItemName() {
         return itemName;

@@ -102,7 +102,7 @@ public class PH {
             "CREATE TABLE " + tbl_inventory +" (" +
                     tbl_inventory_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_inventory_name + " text, " +
-                    tbl_inventory_power + " text, " +
+                    tbl_inventory_power + " integer, " +
                     tbl_inventory_type_id + " integer, " +
                     tbl_inventory_character_id + " integer " +
                     ");" +

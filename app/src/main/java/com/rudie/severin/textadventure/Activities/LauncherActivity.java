@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.R;
 
 public class LauncherActivity extends AppCompatActivity
@@ -52,6 +53,8 @@ public class LauncherActivity extends AppCompatActivity
         String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
                 "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
         db.execSQL(sql);
+        ItemData item = new ItemData("Bigass Sword", 10, 2, 1);
+        helper.addItemToInventory(item);
 //        TODO: end temp code
 
     }

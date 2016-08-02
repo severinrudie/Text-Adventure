@@ -23,7 +23,6 @@ import java.util.List;
 
 public class InventoryFragment extends android.support.v4.app.Fragment {
     Context mContext;
-    int charId;
 
     public static InventoryFragment newInstance(int characterId) {
         InventoryFragment inventoryFragment = new InventoryFragment();
@@ -48,10 +47,6 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerviewInventory);
 
-        Bundle bundle = getArguments();
-        int charId = bundle.getInt(PH.tbl_character_id);
-
-        DBInterfacer helper = DBInterfacer.getInstance(getActivity());
         List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
 
         InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);

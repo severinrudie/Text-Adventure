@@ -232,12 +232,12 @@ public class DBInterfacer extends SQLiteOpenHelper {
         cursor.moveToFirst();
         List<ItemData> list = new ArrayList<>();
         while (!cursor.isAfterLast()) {
-            int itemId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_id));
+//            int itemId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_id));
             String itemName = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_inventory_name));
             int itemPower = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_power));
             int itemTypeId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_type_id));
             int itemOwner = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_character_id));
-            list.add(new ItemData(itemId, itemName, itemPower, itemTypeId, itemOwner));
+            list.add(new ItemData(itemName, itemPower, itemTypeId, itemOwner));
             cursor.moveToNext();
         }
         cursor.close();
@@ -333,6 +333,20 @@ public class DBInterfacer extends SQLiteOpenHelper {
         cursor.moveToFirst();
         int hp = cursor.getInt(0);
         return hp;
+    }
+
+    public void addItemToInventory(ItemData item) {
+        String name = item.getItemName();
+        int power = item.getItemPower();
+        int type = item.getItemTypeId();
+        int charId = item.getItemOwnerId();
+
+        String sql = "INSERT INTO " + PH.tbl_inventory + " (" + PH.tbl_inventory_name + ", "
+                + PH.tbl_inventory_power + ", " + PH.tbl_inventory_type_id + ", "
+                + PH.tbl_inventory_character_id + ") VALUES ('" + name + "', '" + power + "', '"
+                + type + "', '" + charId + "');";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
     }
 
 }
