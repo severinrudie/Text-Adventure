@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_name_loadRecyclerview"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/textview_itemName_inventoryRecyclerview"
+        android:id="@+id/textview_charId_loadRecyclerview"
         android:text="charId"
         android:gravity="center_vertical" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/textview_itemType_inventoryRecyclerview"
+        android:id="@+id/textview_hp_loadRecyclerview"
         android:text="HP"
         android:gravity="center_vertical" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/textview_itemPower_inventoryRecyclerview"
+        android:id="@+id/textview_inventorySize_loadRecyclerview"
         android:text="Inventory Size"
         android:gravity="center_vertical" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/textview_itemStat_inventoryRecyclerview"
+        android:id="@+id/textview_bestSkill_loadRecyclerview"
         android:text="Best Skill"
         android:gravity="center_vertical" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -2,7 +2,10 @@ package com.rudie.severin.textadventure.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+import com.rudie.severin.textadventure.Adapters.LoadAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.Character;
 import com.rudie.severin.textadventure.R;
@@ -18,8 +21,10 @@ public class LoadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_load);
 
         List<Character> characters = getUniqueCharacters();
-        
-
+        LoadAdapter adapter = new LoadAdapter(this, characters);
+        RecyclerView rvLoad = (RecyclerView) findViewById(R.id.recyclerviewLoad);
+        rvLoad.setAdapter(adapter);
+        rvLoad.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
