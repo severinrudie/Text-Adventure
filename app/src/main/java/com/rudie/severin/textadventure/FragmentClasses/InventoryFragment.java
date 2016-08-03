@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.Activities.PlayActivity;
 import com.rudie.severin.textadventure.Adapters.InventoryAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class InventoryFragment extends android.support.v4.app.Fragment {
     Context mContext;
+    InventoryAdapter adapter;
+    List<ItemData> inventory;
 
     public static InventoryFragment newInstance(int characterId) {
         InventoryFragment inventoryFragment = new InventoryFragment();
@@ -47,9 +50,9 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerviewInventory);
 
-        List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
+        inventory = CurrentInventoryAndStats.getCurrentInventory();
 
-        InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);
+        adapter = new InventoryAdapter(getActivity(), inventory);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -61,8 +64,20 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    public void refreshInventoryFragment() {
+        CurrentInventoryAndStats.refreshFromDb(PlayActivity.getCurrentCharacterId(), getActivity());
+        inventory = CurrentInventoryAndStats.getCurrentInventory();
+        adapter.notifyDataSetChanged();
+    }
 
-
-
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            refreshInventoryFragment();
+        }
+        else {
+        }
+    }
 }
 

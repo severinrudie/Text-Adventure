@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure.Activities;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -60,76 +61,24 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         CurrentInventoryAndStats.refreshFromDb(currentCharacterId, this);
 
         vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager(), getBaseContext());
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(gamePlayFragmentIndex);
-
-//  Some basic information regarding the current node is collected here, but most associated
-//  logic is found in the changeToNewNode method
-//        helper = DBInterfacer.getInstance(this);
-//        int currentNode = helper.getCurrentNode(currentCharacterId, this);
-//        textviewText = (TextView) findViewById(R.id.textviewPlayContent);
-//        rvChoices = (RecyclerView) findViewById(R.id.recyclerviewPlayChoices);
-//        changeToNewNode(currentNode, currentCharacterId);
-//
-//        Button setNextNode = (Button) findViewById(R.id.buttonPlayContinue);
-//        setNextNode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (adapter.getSelectedButtonPos() != -1) {
-//                    int selectedButtonPos = adapter.getSelectedButtonPos();
-//                    ChoiceData selectedChoice = choiceList.get(selectedButtonPos);
-//                    int testType = selectedChoice.getTestType();
-//                    int testDifficulty = selectedChoice.getDifficulty();
-//                    int testedValue = 0;
-//                    if (testType != -1) {
-//                        HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
-//                        testedValue = charStats.get(testType);
-//                        testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
-//                    }
-//                    nextNode = choiceList.get(selectedButtonPos).getToNode();
-//                    int popupId;
-//                    FragmentManager manager = getSupportFragmentManager();
-//                    PopupFragment newFragment = PopupFragment.newInstance();
-//                    if ((testType == -1) || testedValue >= testDifficulty ) {
-//                        // TODO: store nextnode.  set popup.  On popup destroy, set nextnode
-//                        popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
-////                        nextNode = choiceList.get(selectedButtonPos).getToNode();
-////                        changeToNewNode(nextNode, currentCharacterId);
-////                        FragmentManager manager = getSupportFragmentManager();
-////                        PopupFragment newFragment = PopupFragment.newInstance();
-//
-////                        Bundle bundle = new Bundle();
-////                        bundle.putInt(PH.POPUP_ID, popupId);
-////                        newFragment.show(manager, "dialog");
-//                    } else {
-//                        popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
-////                        nextNode = choiceList.get(selectedButtonPos).getToNode();
-////                        changeToNewNode(nextNode, currentCharacterId);
-////                        FragmentManager manager = getSupportFragmentManager();
-////                        PopupFragment newFragment = PopupFragment.newInstance();
-////                        newFragment.show(manager, "dialog");
-//                        // TODO: trash this in favor of the above todo
-//                    }
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt(PH.POPUP_ID, popupId);
-//                    newFragment.setArguments(bundle);
-//                    newFragment.show(manager, "dialog");
-//                }
-//                adapter.resetSelectedButton();
-//            }
-//        });  // END setNextNode.setOnClickListener
-
 
     }  // end onCreate
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
         SparseArray<Fragment> registeredFragments = new SparseArray<>();
+        private Context mContext;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        public MyPagerAdapter(FragmentManager fragmentManager, Context context) {
             super(fragmentManager);
+            mContext = context;
         }
+        InventoryFragment inventoryFragment = InventoryFragment.newInstance(currentCharacterId);
+        GameplayFragment gameplayFragment = GameplayFragment.newInstance(currentCharacterId);
+        StatisticsFragment statisticsFragment = StatisticsFragment.newInstance(currentCharacterId);
 
         // Returns total number of pages
         @Override
@@ -143,11 +92,11 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
             switch (position) {
                 // TODO: give the inventory fragment the charid
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return InventoryFragment.newInstance(currentCharacterId);
+                    return inventoryFragment;
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return GameplayFragment.newInstance(currentCharacterId);
+                    return gameplayFragment;
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return StatisticsFragment.newInstance(currentCharacterId);
+                    return statisticsFragment;
                 default:
                     return GameplayFragment.newInstance(currentCharacterId);
             }
@@ -243,4 +192,8 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
 
     // BEGIN getters and setters
 
+
+    public static int getCurrentCharacterId() {
+        return currentCharacterId;
+    }
 }

@@ -96,7 +96,7 @@ public class PopupFragment extends DialogFragment {
                     template.getItemTypeId(), charId, template.getAcquireText());
             template = null;
             helper.addItemToInventory(newItem);
-            CurrentInventoryAndStats.refreshFromDb(charId, getActivity());
+//            InventoryFragment.refreshInventoryFragment
             tvItem.setText(newItem.getItemName());
             tvText.setText(newItem.getAcquireText());
         } else {
