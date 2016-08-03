@@ -1,12 +1,14 @@
 package com.rudie.severin.textadventure.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.Activities.PlayActivity;
 import com.rudie.severin.textadventure.InformationHolders.Character;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
@@ -21,15 +23,17 @@ public class LoadAdapter extends
         RecyclerView.Adapter<LoadAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, characterId, hp, inventorySize, bestSkill;
+        private TextView name, characterId, hp, inventorySize, bestSkill;
+        private View parent;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-            characterId = (TextView) itemView.findViewById(R.id.textview_charId_loadRecyclerview);
-            hp = (TextView) itemView.findViewById(R.id.textview_hp_loadRecyclerview);
-            inventorySize = (TextView) itemView.findViewById(R.id.textview_inventorySize_loadRecyclerview);
-            bestSkill = (TextView) itemView.findViewById(R.id.textview_bestSkill_loadRecyclerview);
-            name = (TextView) itemView.findViewById(R.id.textview_name_loadRecyclerview);
+        public ViewHolder(View loadView) {
+            super(loadView);
+            characterId = (TextView) loadView.findViewById(R.id.textview_charId_loadRecyclerview);
+            hp = (TextView) loadView.findViewById(R.id.textview_hp_loadRecyclerview);
+            inventorySize = (TextView) loadView.findViewById(R.id.textview_inventorySize_loadRecyclerview);
+            bestSkill = (TextView) loadView.findViewById(R.id.textview_bestSkill_loadRecyclerview);
+            name = (TextView) loadView.findViewById(R.id.textview_name_loadRecyclerview);
+            parent = loadView;
         }
     }
 
@@ -59,7 +63,7 @@ public class LoadAdapter extends
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(LoadAdapter.ViewHolder viewHolder, int position) {
-        Character character = characters.get(position);
+        final Character character = characters.get(position);
 
 //        characterId = (TextView) itemView.findViewById(R.id.textview_charId_loadRecyclerview);
 //        hp = (TextView) itemView.findViewById(R.id.textview_hp_loadRecyclerview);
@@ -77,6 +81,16 @@ public class LoadAdapter extends
         hp.setText("HP: " + character.getHp() + " ");
         inventorySize.setText("Items: " + character.getInventory().size() + " ");
         bestSkill.setText(character.getBestSkillBlurb());
+
+        viewHolder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PlayActivity.class);
+                intent.putExtra(PH.CURRENT_CHARACTER, character.getCharId());
+                getContext().startActivity(intent);
+            }
+        });
+
     }
 
     // Returns the total count of items in the list
