@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.R;
 
@@ -21,6 +22,9 @@ public class LauncherActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        ImageConstructor imageConstructor = ImageConstructor.getInstance();
+        imageConstructor.giveContext(this);
 
         DBInterfacer helper = DBInterfacer.getInstance(this);
 

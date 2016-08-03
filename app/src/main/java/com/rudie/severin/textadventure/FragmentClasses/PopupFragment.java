@@ -1,6 +1,7 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.PH;
@@ -91,6 +93,16 @@ public class PopupFragment extends DialogFragment {
             tvItem.setVisibility(View.GONE);
         }
 
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
+        String image = popupData.getString(PH.tbl_popup_image);
+        if (image.equals(PH.NULL)) {
+            imageView.setVisibility(View.GONE);
+        } else {
+            imageView.setVisibility(View.VISIBLE);
+            // TODO: image constructor stuff
+            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(image));
+            imageView.setImageDrawable(imageDrawable);
+        }
 
         return view;
     }

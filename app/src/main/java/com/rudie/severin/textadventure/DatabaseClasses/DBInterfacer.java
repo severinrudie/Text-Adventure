@@ -58,7 +58,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
             int[] i = data.getInts();
             insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]);
         }
-//        for popupdetails insert popupdetails
         for (String[] sArray : PH.popupDetails) {
             insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3], sArray[4], sArray[5]);
         }
@@ -189,7 +188,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     // get node text from table_nodes using node_id
-    public String getCurrentNodeText(int currentNode, Context context) {
+    public String getCurrentNodeText(int currentNode) {
         String sql = "SELECT " + PH.tbl_nodes_text + " FROM " + PH.tbl_nodes + " WHERE "
                 + PH.tbl_nodes_id + " = '" + currentNode + "';";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -198,6 +197,17 @@ public class DBInterfacer extends SQLiteOpenHelper {
         String nodeText = cursor.getString(0);
         cursor.close();
         return nodeText;
+    }
+
+    public String getCurrentNodeImage(int currentNode) {
+        String sql = "SELECT " + PH.tbl_nodes_image + " FROM " + PH.tbl_nodes + " WHERE "
+                + PH.tbl_nodes_id + " = '" + currentNode + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        String nodeImage = cursor.getString(0);
+        cursor.close();
+        return nodeImage;
     }
 
     public List<ChoiceData> getAvailableChoices(int nodeId, Context context) {
@@ -292,8 +302,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public Bundle getPopupData(int popupId) {
-        String sql = "SELECT " + PH.tbl_popup_text + ", " + PH.tbl_popup_damage + ", "
-                + PH.tbl_popup_item + " FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
+//        String sql = "SELECT " + PH.tbl_popup_text + ", " + PH.tbl_popup_damage + ", "
+//                + PH.tbl_popup_item + " FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
+//                + " = '" + popupId + "';";
+        String sql = "SELECT * FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
                 + " = '" + popupId + "';";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -301,10 +313,12 @@ public class DBInterfacer extends SQLiteOpenHelper {
         String text = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_popup_text));
         int damage = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_popup_damage));
         int item = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_popup_item));
+        String image = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_popup_image));
         Bundle bundle = new Bundle();
         bundle.putString(PH.tbl_popup_text, text);
         bundle.putInt(PH.tbl_popup_damage, damage);
         bundle.putInt(PH.tbl_popup_item, item);
+        bundle.putString(PH.tbl_popup_image, image);
         return bundle;
     }
 

@@ -28,6 +28,10 @@ public class PH {
     public static final String INVENTORY_FRAGMENT = "INVENTORY_FRAGMENT";
     // END character insertion constants
 
+    // BEGIN image constants
+    public static final String COOKIE = "cookie";
+    // END image constants
+
     // BEGIN db constants
     public static final String tbl_choice = "table_choice";
     public static final String tbl_choice_id = "choice_id";
@@ -159,7 +163,7 @@ public class PH {
 //            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
 //            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
             new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
-            new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "NULL", "NULL"},
+            new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "cookie", "NULL"},
             new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
     };
     // END node details

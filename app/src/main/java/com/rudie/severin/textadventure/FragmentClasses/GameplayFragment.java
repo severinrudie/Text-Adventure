@@ -1,6 +1,7 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,32 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rudie.severin.textadventure.Adapters.ChoiceAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
 import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
+import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
 
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GameplayFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GameplayFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-//implements PopupFragment.PopupCompleteListener
 public class GameplayFragment extends android.support.v4.app.Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
 
     private List<ChoiceData> choiceList;
     private RecyclerView rvChoices;
@@ -45,26 +35,12 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
     private TextView textviewText;
 //    private int nextNode;
     private int currentCharacterId;
-
-    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-
-//    private OnFragmentInteractionListener mListener;
+    private ImageView imageView;
 
     public GameplayFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-    // * @param param1 Parameter 1.
-    // * @param param2 Parameter 2.
-     * @return A new instance of fragment GameplayFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static GameplayFragment newInstance(int currentCharacterId) {
         GameplayFragment fragment = new GameplayFragment();
         Bundle args = new Bundle();
@@ -87,11 +63,10 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_gameplay, container, false);
 
         helper = DBInterfacer.getInstance(getActivity());
-//        if (nextNode == 0) {
-//            nextNode = helper.getCurrentNode(currentCharacterId, getActivity());
-//        }
         textviewText = (TextView) view.findViewById(R.id.textviewPlayContent);
         rvChoices = (RecyclerView) view.findViewById(R.id.recyclerviewPlayChoices);
+        imageView = (ImageView) view.findViewById(R.id.imageviewPlayHeader);
+
         changeToNewNode(currentCharacterId);
 
         Button setNextNode = (Button) view.findViewById(R.id.buttonPlayContinue);
@@ -116,21 +91,8 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
                     PopupFragment popupFragment = PopupFragment.newInstance();
                     if ((testType == -1) || testedValue >= testDifficulty ) {
                         popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
-//                        nextNode = choiceList.get(selectedButtonPos).getToNode();
-//                        changeToNewNode(nextNode, currentCharacterId);
-//                        FragmentManager manager = getSupportFragmentManager();
-//                        PopupFragment newFragment = PopupFragment.newInstance();
-
-//                        Bundle bundle = new Bundle();
-//                        bundle.putInt(PH.POPUP_ID, popupId);
-//                        newFragment.show(manager, "dialog");
                     } else {
                         popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
-//                        nextNode = choiceList.get(selectedButtonPos).getToNode();
-//                        changeToNewNode(nextNode, currentCharacterId);
-//                        FragmentManager manager = getSupportFragmentManager();
-//                        PopupFragment newFragment = PopupFragment.newInstance();
-//                        newFragment.show(manager, "dialog");
                     }
                     Bundle bundle = new Bundle();
                     bundle.putInt(PH.POPUP_ID, popupId);
@@ -147,49 +109,17 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-//        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-//int nodeId,
     public void changeToNewNode( int charId) {
-        // image
-        // animation
         int nextNode = helper.getCurrentNode(currentCharacterId, getContext());
         if (choiceList == null) {
             choiceList = helper.getAvailableChoices(nextNode, getActivity());
@@ -201,10 +131,20 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
             choiceList.addAll(helper.getAvailableChoices(nextNode, getActivity()));
             adapter.notifyDataSetChanged();
         }
-        String nodeText = helper.getCurrentNodeText(nextNode, getActivity());
+        String nodeText = helper.getCurrentNodeText(nextNode);
         nodeText = insertNamesIntoNodeText(nodeText, charId);
         nodeText = cleanEscapeCharactersFromText(nodeText);
         textviewText.setText(nodeText);
+
+        String nodeImage = helper.getCurrentNodeImage(nextNode);
+        if (nodeImage.equals(PH.NULL)) {
+            imageView.setVisibility(View.GONE);
+        } else {
+            imageView.setVisibility(View.VISIBLE);
+            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(nodeImage));
+            imageView.setImageDrawable(imageDrawable);
+        }
+
     }
 
     private String insertNamesIntoNodeText(String nodeText, int charId) {
