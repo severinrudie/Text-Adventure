@@ -177,7 +177,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     // get current node from table_character using character_id
-    public int getCurrentNode(int currentCharacterId, Context context) {
+    public int getCurrentNode(int currentCharacterId) {
         String sql = "SELECT " + PH.tbl_character_at_node + " FROM " + PH.tbl_character + " WHERE "
                 + PH.tbl_character_id + " = '" + currentCharacterId + "';";
         SQLiteDatabase db = this.getReadableDatabase();

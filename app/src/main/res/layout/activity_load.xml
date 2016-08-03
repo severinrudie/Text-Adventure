@@ -10,11 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Activities.LoadActivity">
 
-    <android.support.v7.recyclerview:layoutManager
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerviewLoad"
-        >
-    </android.support.v7.recyclerview:layoutManager>
+        />
 
 </RelativeLayout>

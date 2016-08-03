@@ -1,5 +1,6 @@
 package com.rudie.severin.textadventure.Activities;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -32,18 +33,21 @@ public class LauncherActivity extends AppCompatActivity
         newGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                fragmentCreated = true;
-//                CharacterSelectFragment fragment = new CharacterSelectFragment();
-//                FragmentManager manager = getSupportFragmentManager();
-//                FragmentTransaction transaction = manager.beginTransaction();
-//                transaction.replace(R.id.framelayoutLauncher, fragment);
-//                transaction.commit();
-
-//                void showDialog() {
                     // Create the fragment and show it as a dialog.
                     FragmentManager manager = getSupportFragmentManager();
                     CharacterSelectFragment newFragment = CharacterSelectFragment.newInstance();
                     newFragment.show(manager, "dialog");
+//                }
+            }
+        });
+
+        Button loadGame = (Button) findViewById(R.id.buttonLauncherLoadSave);
+        loadGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create the fragment and show it as a dialog.
+                Intent intent = new Intent(getBaseContext(), LoadActivity.class);
+                startActivity(intent);
 //                }
             }
         });
