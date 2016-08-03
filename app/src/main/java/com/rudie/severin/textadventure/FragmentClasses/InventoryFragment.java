@@ -24,8 +24,6 @@ import java.util.List;
 
 public class InventoryFragment extends android.support.v4.app.Fragment {
     Context mContext;
-    InventoryAdapter adapter;
-    List<ItemData> inventory;
 
     public static InventoryFragment newInstance(int characterId) {
         InventoryFragment inventoryFragment = new InventoryFragment();
@@ -50,9 +48,9 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerviewInventory);
 
-        inventory = CurrentInventoryAndStats.getCurrentInventory();
+        List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
 
-        adapter = new InventoryAdapter(getActivity(), inventory);
+        InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -66,7 +64,9 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
 
     public void refreshInventoryFragment() {
         CurrentInventoryAndStats.refreshFromDb(PlayActivity.getCurrentCharacterId(), getActivity());
-        inventory = CurrentInventoryAndStats.getCurrentInventory();
+        List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
+        InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);
+        recyclerView.swapAdapter(adapter, false);
         adapter.notifyDataSetChanged();
     }
 
