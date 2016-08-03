@@ -120,6 +120,9 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
     }
 
     public void changeToNewNode( int charId) {
+        if (helper.getCharacterHp(currentCharacterId) <= 0) {
+            helper.setCharacterAtNode(PH.DEATH_NODE, currentCharacterId);
+        }
         int nextNode = helper.getCurrentNode(currentCharacterId, getContext());
         if (choiceList == null) {
             choiceList = helper.getAvailableChoices(nextNode, getActivity());

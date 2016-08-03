@@ -16,14 +16,16 @@ public class ItemData {
     private final String itemTypeName;
     private final int itemOwnerId;
     private final String itemStatName;
+    private final String acquireText;
 
 
-    public ItemData(String name, int power, int typeId, int ownerId) {
+    public ItemData(String name, int power, int typeId, int ownerId, String acquireText) {
 //        this.itemId = id;
         this.itemName = name;
         this.itemPower = power;
         this.itemTypeId = typeId;
         this.itemOwnerId = ownerId;
+        this.acquireText = acquireText;
         // TODO: set stat and type name based on type id
         // TODO: remember that type name has its own db
         this.itemTypeName = "TEMPORARY TYPE";
@@ -56,5 +58,9 @@ public class ItemData {
 
     public String getItemStatName() {
         return itemStatName;
+    }
+
+    public String getAcquireText() {
+        return acquireText;
     }
 }

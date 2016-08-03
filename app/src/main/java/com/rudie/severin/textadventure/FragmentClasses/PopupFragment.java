@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
+import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.PH;
@@ -46,6 +48,7 @@ public class PopupFragment extends DialogFragment {
 
         // TODO: image
 //        image = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
         button = (Button) view.findViewById(R.id.button_continue_popupFragment);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -78,22 +81,28 @@ public class PopupFragment extends DialogFragment {
             tvDamage.setText("You took " + damage + " damage!");
             tvDamage.setVisibility(View.VISIBLE);
             helper.setCharacterDamageDealt(damage, charId);
-            // TODO: check if dead
         }
         else {
             tvDamage.setVisibility(View.GONE);
         }
 
         tvItem = (TextView) view.findViewById(R.id.textview_itemFound_popupFragment);
-        if (item != -1) {
+        if (item == 1) {
             tvItem.setVisibility(View.VISIBLE);
             // TODO: you found an item!
             // TODO: give an item
+            ItemData template = CurrentInventoryAndStats.getRandomItem();
+            ItemData newItem = new ItemData(template.getItemName(), template.getItemPower(),
+                    template.getItemTypeId(), charId, template.getAcquireText());
+            template = null;
+            helper.addItemToInventory(newItem);
+            CurrentInventoryAndStats.refreshFromDb(charId, getActivity());
+            tvItem.setText(newItem.getItemName());
+            tvText.setText(newItem.getAcquireText());
         } else {
             tvItem.setVisibility(View.GONE);
         }
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
         String image = popupData.getString(PH.tbl_popup_image);
         if (image.equals(PH.NULL)) {
             imageView.setVisibility(View.GONE);

@@ -10,26 +10,36 @@ public class PH {
     public static String CURRENT_CHARACTER = "CURRENT_CHARACTER";
     // END non-final variables
 
-    // BEGIN character insertion constants
+    // BEGIN constants
     public static final String STRENGTH = "Strength";
     public static final String AGILITY = "Agility";
     public static final String COMRADERY = "Comradery";
+
     public static final int STRENGTH_ID = 1;
     public static final int AGILITY_ID = 2;
     public static final int COMRADERY_ID = 3;
+
     public static final int STARTING_HP = 10;
+
     public static final String NULL = "NULL";
+
     public static final String FIRSTNAME = "FIRSTNAME";  // \
     public static final String NICKNAME = "NICKNAME";    //  - used to replace names
     public static final String LASTNAME = "LASTNAME";    // /
+
     public static final String POPUP_ID = "POPUP_ID";   // used to send popupId to a fragment
+
     public static final String GAMEPLAY_FRAGMENT = "GAMEPLAY_FRAGMENT";
     public static final String STATISTICS_FRAGMENT = "STATISTICS_FRAGMENT";
     public static final String INVENTORY_FRAGMENT = "INVENTORY_FRAGMENT";
-    // END character insertion constants
+
+    public static final int DEATH_NODE = 10000;
+
+    public static final String COOKIE = "cookie";  // used to interpret node/popup images
+    // END constants
 
     // BEGIN image constants
-    public static final String COOKIE = "cookie";
+
     // END image constants
 
     // BEGIN db constants
@@ -51,6 +61,7 @@ public class PH {
     public static final String tbl_inventory_power = "inventory_power";
     public static final String tbl_inventory_type_id = "inventory_type_id";
     public static final String tbl_inventory_character_id = "inventory_character_id";
+    public static final String tbl_inventory_acquisition_text = "inventory_acquisition_text";
 
     public static final String tbl_statistics = "table_statistic";
     public static final String tbl_statistics_type_id = "stat_type_id";
@@ -108,7 +119,8 @@ public class PH {
                     tbl_inventory_name + " text, " +
                     tbl_inventory_power + " integer, " +
                     tbl_inventory_type_id + " integer, " +
-                    tbl_inventory_character_id + " integer " +
+                    tbl_inventory_character_id + " integer, " +
+                    tbl_inventory_acquisition_text + " text " +
                     ");" +
                     "",
             "CREATE TABLE " + tbl_statistics + " (" +
@@ -162,6 +174,7 @@ public class PH {
 //            new String[] {"2", "You's searching for equipment", NULL, NULL},
 //            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
 //            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
+            new String[] {(String.valueOf(DEATH_NODE)), "You're dead.  Better luck next time.", "NULL", "NULL"},
             new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
             new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "cookie", "NULL"},
             new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
@@ -195,8 +208,15 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
             new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "-1"},
             new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
-            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "-1"},
-            new String[] {"4", "The flames outbox you", "NULL", "NULL", "3", "-1"}
+            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "1"},
+            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "-1"}
     };
     // END popup details
+
+    // BEGIN item details
+    public static final ItemData[] itemTemplates = new ItemData[] {
+            new ItemData("Bigass Sword", 1, 2, 0, "You got a bigass sword!"),
+            new ItemData("MegaGun", 3, 2, 0, "You found an astoundingly powerful looking laser rifle!"),
+    };
+    // END item details
 }

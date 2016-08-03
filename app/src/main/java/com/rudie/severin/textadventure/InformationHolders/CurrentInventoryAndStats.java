@@ -72,5 +72,21 @@ public final class CurrentInventoryAndStats {
         return highestValue;
     }
 
+    // returns a template item not owned by the current character.  The popup fragment then displays
+    // the items acquisition text and adds it to the current inventory
+    public static ItemData getRandomItem() {
+        List<String> ownedItemNames = new ArrayList<>();
+        for (ItemData item : currentInventory) {
+            ownedItemNames.add(item.getItemName());
+        }
+        while(true) {
+            int index = (int) (Math.random() * PH.itemTemplates.length);
+            if (!ownedItemNames.contains(PH.itemTemplates[index].getItemName())) {
+                return PH.itemTemplates[index];
+            }
+        }
+
+    }
+
     // END getters and setters
 }

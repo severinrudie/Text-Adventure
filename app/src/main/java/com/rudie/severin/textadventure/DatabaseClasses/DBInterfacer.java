@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
+import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 
@@ -247,7 +248,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
             int itemPower = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_power));
             int itemTypeId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_type_id));
             int itemOwner = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_character_id));
-            list.add(new ItemData(itemName, itemPower, itemTypeId, itemOwner));
+            String acquisitionText = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_inventory_acquisition_text));
+            list.add(new ItemData(itemName, itemPower, itemTypeId, itemOwner, acquisitionText));
             cursor.moveToNext();
         }
         cursor.close();
@@ -354,11 +356,13 @@ public class DBInterfacer extends SQLiteOpenHelper {
         int power = item.getItemPower();
         int type = item.getItemTypeId();
         int charId = item.getItemOwnerId();
+        String acquireText = item.getAcquireText();
 
         String sql = "INSERT INTO " + PH.tbl_inventory + " (" + PH.tbl_inventory_name + ", "
                 + PH.tbl_inventory_power + ", " + PH.tbl_inventory_type_id + ", "
-                + PH.tbl_inventory_character_id + ") VALUES ('" + name + "', '" + power + "', '"
-                + type + "', '" + charId + "');";
+                + PH.tbl_inventory_character_id + ", " + PH.tbl_inventory_acquisition_text
+                + ") VALUES ('" + name + "', '" + power + "', '" + type + "', '" + charId + "', '"
+                + acquireText + "');";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(sql);
     }

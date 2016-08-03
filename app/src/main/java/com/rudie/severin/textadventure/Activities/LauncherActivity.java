@@ -53,12 +53,12 @@ public class LauncherActivity extends AppCompatActivity
         helper.onCreate(helper.getWritableDatabase());
 
 //        TODO: temp code.  gives player 1 a weapon
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
-                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
-        db.execSQL(sql);
-        ItemData item = new ItemData("Bigass Sword", 10, 2, 1);
-        helper.addItemToInventory(item);
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        String sql = "INSERT INTO table_inventory (inventory_id, inventory_name, inventory_power, " +
+//                "inventory_type_id, inventory_character_id) " + "VALUES ('1', 'bigGun', '1', '1', '1');";
+//        db.execSQL(sql);
+//        ItemData item = new ItemData("Bigass Sword", 10, 2, 1, "You got a bigass sword!");
+//        helper.addItemToInventory(item);
 //        TODO: end temp code
 
     }
