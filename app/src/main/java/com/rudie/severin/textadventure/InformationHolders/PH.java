@@ -34,6 +34,14 @@ public class PH {
     public static final String INVENTORY_FRAGMENT = "INVENTORY_FRAGMENT";
 
     public static final int DEATH_NODE = 10000;
+    public static final int HAT_POPUP = 10002;
+    public static final int HAT_FLAG = 2;
+    public static final int MONTAGE_STRENGTH_POPUP = 10003;
+    public static final int MONTAGE_STRENGTH_FLAG = 3;
+    public static final int MONTAGE_AGILITY_POPUP = 10004;
+    public static final int MONTAGE_AGILITY_FLAG = 4;
+    public static final int MONTAGE_COMRADERY_POPUP = 10005;
+    public static final int MONTAGE_COMRADERY_FLAG = 5;
 
     public static final String COOKIE = "cookie";  // used to interpret node/popup images
     // END constants

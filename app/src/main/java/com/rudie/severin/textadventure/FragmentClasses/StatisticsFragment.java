@@ -1,9 +1,11 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,10 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         return statisticsFragment;
     }
 
-    TextView tvHp, tvStrength, tvAgility, tvComradery;
-    ImageView ivHp, ivStrength, ivAgility, ivComradery;
+    private TextView tvHp, tvStrength, tvAgility, tvComradery;
+    private ImageView ivHp, ivStrength, ivAgility, ivComradery;
+    int charId;
+//    private Intent starterIntent;
 
     @Override
     public void onAttach(Context context) {
@@ -41,6 +45,7 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
+//        starterIntent = getIntent
 
         tvHp = (TextView) view.findViewById(R.id.textviewStatsHP);
         tvStrength = (TextView) view.findViewById(R.id.textviewStatsStrength);
@@ -53,8 +58,14 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         ivComradery = (ImageView) view.findViewById(R.id.imageviewStatsComradery);
 
         Bundle bundle = getArguments();
-        int charId = bundle.getInt(PH.tbl_character_id);
+        charId = bundle.getInt(PH.tbl_character_id);
 
+        setText(charId);
+
+        return view;
+    }
+
+    private void setText(int charId) {
         DBInterfacer helper = DBInterfacer.getInstance(getActivity());
         HashMap<Integer, Integer> stats = helper.getStatsForCharacter(charId);
         int hp = helper.getCharacterHp(charId);
@@ -70,9 +81,6 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         tvStrength.setText("Strength: " + statArray[0]);
         tvAgility.setText("Agility: " + statArray[1]);
         tvComradery.setText("Comradery: " + statArray[2]);
-
-
-        return view;
     }
 
     @Override
@@ -80,7 +88,16 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            DBInterfacer helper = DBInterfacer.getInstance(getActivity());
+            helper.upgradeCharacterStat(1, PH.STRENGTH_ID);
+            setText(charId);
 
+        }
+    }
 
 
 }

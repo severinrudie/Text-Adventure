@@ -269,8 +269,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
 //    private int getSingleCharacterStat(int charId, SQLiteDatabase db, int statId) {
     private int getSingleCharacterStat(int charId, int statId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT " + PH.tbl_statistics_stat_value + " FROM " + PH.tbl_statistics + " WHERE " + PH.tbl_statistics_character_id + " = '"
-                + charId + "' AND " + PH.tbl_statistics_type_id + " = '" + statId + "';";
+        String sql = "SELECT " + PH.tbl_statistics_stat_value + " FROM " + PH.tbl_statistics
+                + " WHERE " + PH.tbl_statistics_character_id + " = '" + charId + "' AND "
+                + PH.tbl_statistics_type_id + " = '" + statId + "';";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         int value = cursor.getInt(0);
@@ -304,9 +305,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public Bundle getPopupData(int popupId) {
-//        String sql = "SELECT " + PH.tbl_popup_text + ", " + PH.tbl_popup_damage + ", "
-//                + PH.tbl_popup_item + " FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
-//                + " = '" + popupId + "';";
         String sql = "SELECT * FROM " + PH.tbl_popup + " WHERE " + PH.tbl_popup_id
                 + " = '" + popupId + "';";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -348,7 +346,18 @@ public class DBInterfacer extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         int hp = cursor.getInt(0);
+        cursor.close();
         return hp;
+    }
+
+    public void upgradeCharacterStat(int charId, int statId) {
+        int value = getSingleCharacterStat(charId, statId);
+        value ++;
+        String sql = "UPDATE " + PH.tbl_statistics + " SET " + PH.tbl_statistics_stat_value + " = "
+                + value + " WHERE " + PH.tbl_statistics_character_id + " = '" + charId + "' AND "
+                + PH.tbl_statistics_type_id + " = '" + statId + "';";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(sql);
     }
 
     public void addItemToInventory(ItemData item) {
@@ -365,6 +374,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + acquireText + "');";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(sql);
+    }
+
+    public void giveCharacterStartingInventory(int charId) {
+        ItemData knife = new ItemData("Laser Knife", 0, 0, charId, "");
+        ItemData nunchucks = new ItemData("Quantum Nunchucks", 0, 0, charId, "");
+
+        addItemToInventory(knife);
+        addItemToInventory(nunchucks);
     }
 
 }

@@ -46,8 +46,6 @@ public class PopupFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popup, container, false);
 
-        // TODO: image
-//        image = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageview_image_popupFragment);
         button = (Button) view.findViewById(R.id.button_continue_popupFragment);
 
@@ -65,13 +63,29 @@ public class PopupFragment extends DialogFragment {
             }
         });
         Bundle bundle = getArguments();
-        int popupId = bundle.getInt(PH.POPUP_ID);
+        int popupId = -1;
         int charId = bundle.getInt(PH.tbl_character_id);
         DBInterfacer helper = DBInterfacer.getInstance(mContext);
         Bundle popupData = helper.getPopupData(popupId);
-        String text = popupData.getString(PH.tbl_popup_text);
         int damage = popupData.getInt(PH.tbl_popup_damage);
         int item = popupData.getInt(PH.tbl_popup_item);
+
+        if (item == PH.HAT_FLAG) {
+            popupId = PH.HAT_POPUP;
+            // TODO: add a hat here
+        } else if (item == PH.MONTAGE_STRENGTH_FLAG) {
+            popupId = PH.MONTAGE_STRENGTH_POPUP;
+            helper.upgradeCharacterStat(charId, PH.STRENGTH_ID);
+        } else if (item == PH.MONTAGE_AGILITY_FLAG) {
+            popupId = PH.MONTAGE_AGILITY_POPUP;
+            helper.upgradeCharacterStat(charId, PH.AGILITY_ID);
+        } else if (item == PH.MONTAGE_COMRADERY_FLAG) {
+            popupId = PH.MONTAGE_COMRADERY_POPUP;
+            helper.upgradeCharacterStat(charId, PH.COMRADERY_ID);
+        }
+
+        popupData = helper.getPopupData(popupId);
+        String text = popupData.getString(PH.tbl_popup_text);
 
         tvText = (TextView) view.findViewById(R.id.textview_text_popupFragment);
         tvText.setText(text);
@@ -89,8 +103,6 @@ public class PopupFragment extends DialogFragment {
         tvItem = (TextView) view.findViewById(R.id.textview_itemFound_popupFragment);
         if (item == 1) {
             tvItem.setVisibility(View.VISIBLE);
-            // TODO: you found an item!
-            // TODO: give an item
             ItemData template = CurrentInventoryAndStats.getRandomItem();
             ItemData newItem = new ItemData(template.getItemName(), template.getItemPower(),
                     template.getItemTypeId(), charId, template.getAcquireText());
@@ -108,7 +120,6 @@ public class PopupFragment extends DialogFragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-            // TODO: image constructor stuff
             Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(image));
             imageView.setImageDrawable(imageDrawable);
         }

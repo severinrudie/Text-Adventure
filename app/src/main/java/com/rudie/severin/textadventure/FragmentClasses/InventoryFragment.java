@@ -24,6 +24,7 @@ import java.util.List;
 
 public class InventoryFragment extends android.support.v4.app.Fragment {
     Context mContext;
+    RecyclerView recyclerView;
 
     public static InventoryFragment newInstance(int characterId) {
         InventoryFragment inventoryFragment = new InventoryFragment();
@@ -32,8 +33,6 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
         inventoryFragment.setArguments(bundle);
         return inventoryFragment;
     }
-
-    RecyclerView recyclerView;
 
     @Override
     public void onAttach(Context context) {
@@ -75,8 +74,6 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             refreshInventoryFragment();
-        }
-        else {
         }
     }
 }

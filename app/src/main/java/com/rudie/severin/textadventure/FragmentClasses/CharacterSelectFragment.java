@@ -121,6 +121,8 @@ public class CharacterSelectFragment extends DialogFragment {
             public void onClick(View view) {
                 if (editText.getText().toString().length() > 0) {
                     int currentCharacterId = passCharacterToDb(editText, topSkill, midSkill, botSkill);
+                    DBInterfacer helper = DBInterfacer.getInstance(getActivity());
+                    helper.giveCharacterStartingInventory(currentCharacterId);
                     // TODO: this currently goes to PlayActivity, but once animations are in it will direct
                     // TODO: there for the opening animation instead
                     Intent intent = new Intent(getActivity(), PlayActivity.class);
