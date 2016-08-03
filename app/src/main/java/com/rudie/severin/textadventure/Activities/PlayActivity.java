@@ -186,7 +186,7 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         GameplayFragment gpFrag = (GameplayFragment) adapterViewPager.getRegisteredFragment(gamePlayFragmentIndex);
         gpFrag.changeToNewNode(currentCharacterId);
 
-        PopupFragment popupFragment = (PopupFragment) manager.findFragmentByTag(PH.POPUP_ID);
+        PopupFragment popupFragment = (PopupFragment) manager.findFragmentByTag(PH.tbl_popup_id);
         manager.beginTransaction().remove(popupFragment).commit();
     }
 

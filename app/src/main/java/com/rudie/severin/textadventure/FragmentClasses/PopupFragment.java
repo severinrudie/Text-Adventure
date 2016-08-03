@@ -63,8 +63,8 @@ public class PopupFragment extends DialogFragment {
             }
         });
         Bundle bundle = getArguments();
-        int popupId = -1;
         int charId = bundle.getInt(PH.tbl_character_id);
+        int popupId = bundle.getInt(PH.tbl_popup_id);
         DBInterfacer helper = DBInterfacer.getInstance(mContext);
         Bundle popupData = helper.getPopupData(popupId);
         int damage = popupData.getInt(PH.tbl_popup_damage);
@@ -74,13 +74,13 @@ public class PopupFragment extends DialogFragment {
             popupId = PH.HAT_POPUP;
             // TODO: add a hat here
         } else if (item == PH.MONTAGE_STRENGTH_FLAG) {
-            popupId = PH.MONTAGE_STRENGTH_POPUP;
+//            popupId = PH.MONTAGE_STRENGTH_POPUP;
             helper.upgradeCharacterStat(charId, PH.STRENGTH_ID);
         } else if (item == PH.MONTAGE_AGILITY_FLAG) {
-            popupId = PH.MONTAGE_AGILITY_POPUP;
+//            popupId = PH.MONTAGE_AGILITY_POPUP;
             helper.upgradeCharacterStat(charId, PH.AGILITY_ID);
         } else if (item == PH.MONTAGE_COMRADERY_FLAG) {
-            popupId = PH.MONTAGE_COMRADERY_POPUP;
+//            popupId = PH.MONTAGE_COMRADERY_POPUP;
             helper.upgradeCharacterStat(charId, PH.COMRADERY_ID);
         }
 

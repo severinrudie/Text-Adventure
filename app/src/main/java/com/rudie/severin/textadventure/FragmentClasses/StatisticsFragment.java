@@ -93,7 +93,6 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             DBInterfacer helper = DBInterfacer.getInstance(getActivity());
-            helper.upgradeCharacterStat(1, PH.STRENGTH_ID);
             setText(charId);
 
         }

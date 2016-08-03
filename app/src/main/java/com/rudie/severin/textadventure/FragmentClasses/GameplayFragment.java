@@ -95,10 +95,10 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
                         popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putInt(PH.POPUP_ID, popupId);
+                    bundle.putInt(PH.tbl_popup_id, popupId);
                     bundle.putInt(PH.tbl_character_id, currentCharacterId);
                     popupFragment.setArguments(bundle);
-                    popupFragment.show(manager, PH.POPUP_ID);
+                    popupFragment.show(manager, PH.tbl_popup_id);
                 }
                 adapter.resetSelectedButton();
             }

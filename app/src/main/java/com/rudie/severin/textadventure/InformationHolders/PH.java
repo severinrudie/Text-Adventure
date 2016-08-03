@@ -27,7 +27,7 @@ public class PH {
     public static final String NICKNAME = "NICKNAME";    //  - used to replace names
     public static final String LASTNAME = "LASTNAME";    // /
 
-    public static final String POPUP_ID = "POPUP_ID";   // used to send popupId to a fragment
+//    public static final String POPUP_ID = "POPUP_ID";   // used to send popupId to a fragment
 
     public static final String GAMEPLAY_FRAGMENT = "GAMEPLAY_FRAGMENT";
     public static final String STATISTICS_FRAGMENT = "STATISTICS_FRAGMENT";
@@ -200,8 +200,8 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //        new ChoiceData("Continue with the mission", 1, 2, 3, 4, -1, -1, 1, 2),
 //        new ChoiceData("Hey I'm on TV!", 5, 6, 6, 7, 1, 2, 3, 4),
 //        new ChoiceData("I'm still here!", 7, 8, 2, 3, 3, 4, 5, 6)
-            new ChoiceData("Run away", 1, 2, 1, 2, -1, -1, 2, 2),
-            new ChoiceData("Punch the flames", 1, 3, 3, 4, -1, -1, 1, 2)
+        new ChoiceData("Run away", 1, 2, 1, 2, -1, -1, 2, 2),
+        new ChoiceData("Punch the flames", 1, 3, 3, 4, -1, -1, 1, 2)
     };
     // END choices details
 
@@ -217,7 +217,7 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "-1"},
             new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
             new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "1"},
-            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "-1"}
+            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "" + "-1"}
     };
     // END popup details
 
