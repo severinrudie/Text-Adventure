@@ -94,11 +94,17 @@ public class DBInterfacer extends SQLiteOpenHelper {
         firstName = cleanTextForDb(firstName);
         nickName = cleanTextForDb(nickName);
         lastName = cleanTextForDb(lastName);
+        String cleanedBackUp;
+        if (backUpFor == null) {
+            cleanedBackUp = PH.NULL;
+        } else {
+            cleanedBackUp = backUpFor.toString();
+        }
         String sql = "INSERT INTO " + PH.tbl_character + " (" + PH.tbl_character_firstname
                 + ", " + PH.tbl_character_nickname + ", " + PH.tbl_character_lastname + ", "
                 + PH.tbl_character_at_node + ", " + PH.tbl_character_is_backup_for + ", "
                 + PH.tbl_character_hp + ") VALUES ('" + firstName + "', '" + nickName + "', '"
-                + lastName + "', '" + atNode + "', '" + backUpFor + "', '" + PH.STARTING_HP + "');";
+                + lastName + "', '" + atNode + "', '" + cleanedBackUp + "', '" + PH.STARTING_HP + "');";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
 
@@ -382,6 +388,21 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
         addItemToInventory(knife);
         addItemToInventory(nunchucks);
+    }
+
+    public List<Integer> getUniqueCharacterIds() {
+        String sql = "SELECT " + PH.tbl_character_id + " FROM " + PH.tbl_character + " WHERE "
+                + PH.tbl_character_is_backup_for + " = '" + PH.NULL + "';";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        List<Integer> charIds = new ArrayList<>();
+        while (!cursor.isAfterLast()) {
+            int newId = cursor.getInt(0);
+            charIds.add(newId);
+            cursor.moveToNext();
+        }
+        return charIds;
     }
 
 }
