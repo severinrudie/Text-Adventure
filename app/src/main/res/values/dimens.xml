@@ -5,4 +5,11 @@
     <dimen name="icon_size">45dp</dimen>
     <dimen name="dialogElevation">24dp</dimen>
     <dimen name="fragmentPadding">24dp</dimen>
+    <dimen name="buttonWidth">170dp</dimen>
+
+
+
+
+    <!--Text Sizes-->
+    <dimen name="buttonText">16sp</dimen>
 </resources>
