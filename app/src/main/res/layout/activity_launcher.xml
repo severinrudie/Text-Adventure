@@ -6,63 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.LauncherActivity"
     android:layout_gravity="center"
-    android:background="@color/colorPrimary"
     android:id="@+id/framelayoutLauncher">
 
-    <FrameLayout
+    <include layout="@layout/reusable_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        />
 
-        <RelativeLayout
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            >
-
-            <android.support.v7.widget.AppCompatImageView
-                android:layout_marginLeft="-1000dp"
-                android:layout_marginRight="-300dp"
-                android:layout_marginTop="100dp"
-                android:layout_width="2000dp"
-                android:layout_height="1000dp"
-                android:background="@drawable/rotated_rectangle"
-                android:id="@+id/shape_accentLine_launcherActivity"
-                />
-
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:text="Macho Squad"
-            style="@style/TitleText"
-            android:layout_gravity="top|center_horizontal"
-            android:textColor="#ff9900"
-            android:layout_marginLeft="5dp"
-            android:shadowColor="#ff9900"
-            android:shadowDx="-3"
-            android:shadowDy="-3"
-            android:shadowRadius="6"
-            android:id="@+id/titlemain1"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            android:text="Macho Squad"
-            style="@style/TitleText"
-            android:layout_gravity="top|center_horizontal"
-            android:textColor="#551a8b"
-            android:shadowColor="@android:color/holo_red_dark"
-            android:shadowRadius="3"
-            android:id="@+id/titlemain2"
-            />
-
-    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -104,6 +54,35 @@
         android:layout_height="@dimen/buttonHeight" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Macho Squad"
+        style="@style/TitleText"
+        android:layout_gravity="top|center_horizontal"
+        android:textColor="#ff9900"
+        android:layout_marginLeft="5dp"
+        android:shadowColor="#ff9900"
+        android:shadowDx="-3"
+        android:shadowDy="-3"
+        android:shadowRadius="6"
+        android:id="@+id/titlemain1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="Macho Squad"
+        style="@style/TitleText"
+        android:layout_gravity="top|center_horizontal"
+        android:textColor="#551a8b"
+        android:shadowColor="@android:color/holo_red_dark"
+        android:shadowRadius="3"
+        android:id="@+id/titlemain2"
+        />
 </FrameLayout>
 
     <!--android:background="@drawable/rounded_button"-->
