@@ -8,6 +8,7 @@
     <color name="unSelectableText">#939393</color>
     <color name="textGoodNews">#00FF00</color>
     <color name="textBadNews">#FF0000</color>
+    <color name="orange">#ff9900</color>
 </resources>
 
 <!--Note: style setting of radiobuttons is done within the onBind section of ChoiceAdapter-->

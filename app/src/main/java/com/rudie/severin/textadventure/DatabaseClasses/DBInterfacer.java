@@ -54,6 +54,11 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         for (String[] sArray : PH.nodeDetails) {
             insertNodeDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();

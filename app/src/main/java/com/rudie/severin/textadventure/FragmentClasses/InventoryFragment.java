@@ -19,6 +19,11 @@ import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
 
+//import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+//import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+//import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+//import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +55,7 @@ public class InventoryFragment extends android.support.v4.app.Fragment {
         List<ItemData> inventory = CurrentInventoryAndStats.getCurrentInventory();
 
         InventoryAdapter adapter = new InventoryAdapter(getActivity(), inventory);
+//        recyclerView.setAdapter(new SlideInLeftAnimationAdapter(adapter));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
