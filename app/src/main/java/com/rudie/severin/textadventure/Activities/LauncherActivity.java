@@ -2,11 +2,13 @@ package com.rudie.severin.textadventure.Activities;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
@@ -23,6 +25,13 @@ public class LauncherActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
+        TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);
+        Typeface font = Typeface.createFromAsset(getAssets(), "BLADRMF_.TTF");
+        titleMain1.setTypeface(font);
+        titleMain2.setTypeface(font);
+
 
         ImageConstructor imageConstructor = ImageConstructor.getInstance();
         imageConstructor.giveContext(this);
