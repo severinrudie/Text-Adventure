@@ -9,6 +9,7 @@ choice_list = []
 popup_list = []
 previously_used_nodes = []
 previously_used_popups = []
+filenum = 0;
 
 def request_yesno_input(query):
     # try:
@@ -258,7 +259,11 @@ def clean_string(dirtyString):
 def write_to_file():
     clean_text_for_java()
     print("")
-    print("Writing the following text to file:")
+    global filenum
+    filenum += 1
+    filename = 'java_inputs_' + str(filenum) + '.txt'
+    file = open(filename, 'a')
+    print("Writing the following text to file: '" + str(filename) + "'")
     print("")
     print("Nodes")
     total_string = "\n"
@@ -288,11 +293,10 @@ def write_to_file():
         print(write_string)
     print("\n")
     total_string += "\n\n\n"
-    file = open('java_inputs.txt', 'a')
     file.write(total_string)
     file.close()
-    sys.exit()
-    # main_loop()
+    # sys.exit()
+    main_loop()
     
 def main_loop():
     requestInputType()   #this will call getNodeValues / getChoiceValues / getPopupValues
