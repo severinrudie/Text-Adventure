@@ -93,7 +93,8 @@ public class ChoiceAdapter extends
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if ((lastCheckedRB != null) && (parent.getChildCount() != 1)) {
+                    if ((lastCheckedRB != null) && (parent.getChildCount() != 1)
+                            && view != lastCheckedRB) {
                         lastCheckedRB.setChecked(false);
                     }
                     lastCheckedRB = (RadioButton) view;

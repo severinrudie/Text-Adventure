@@ -9,6 +9,10 @@
     android:background="@color/orange"
     tools:context="FragmentClasses.CharacterSelectFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,12 +56,20 @@
         android:layout_gravity="center" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
+        android:layout_width="@dimen/buttonWidth"
+        android:layout_height="@dimen/buttonHeight"
+        android:text="Continue"
         android:id="@+id/button_continue_popupFragment"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_button"
+        android:layout_margin="4dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/buttonText"
+        />
 
         </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

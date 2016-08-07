@@ -228,10 +228,11 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //            new String[] {"3", "You live!", NULL, NULL},
 //            new String[] {"4", "You die!", NULL, NULL},
 //            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
-            new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "-1"},
+            new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "1"},
 //            new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
 //            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "1"},
 //            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "" + "-1"}
+
     };
     // END popup details
 

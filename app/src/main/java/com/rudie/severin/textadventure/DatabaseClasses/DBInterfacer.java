@@ -380,6 +380,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
         int type = item.getItemTypeId();
         int charId = item.getItemOwnerId();
         String acquireText = item.getAcquireText();
+        name = cleanTextForDb(name);
+        acquireText = cleanTextForDb(acquireText);
 
         String sql = "INSERT INTO " + PH.tbl_inventory + " (" + PH.tbl_inventory_name + ", "
                 + PH.tbl_inventory_power + ", " + PH.tbl_inventory_type_id + ", "
