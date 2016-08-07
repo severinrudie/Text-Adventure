@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.rudie.severin.textadventure.Adapters.LoadAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
@@ -15,17 +17,30 @@ import java.util.List;
 
 public class LoadActivity extends AppCompatActivity {
 
+    List<Character> characters;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
 
-        List<Character> characters = getUniqueCharacters();
+        characters = getUniqueCharacters();
         LoadAdapter adapter = new LoadAdapter(this, characters);
         RecyclerView rvLoad = (RecyclerView) findViewById(R.id.recyclerviewLoad);
         rvLoad.setAdapter(adapter);
         rvLoad.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        TextView textView = (TextView) findViewById(R.id.textView_noCharactersFound_loadActivity);
+        if (characters.size() > 0) {
+            textView.setVisibility(View.GONE);
+        } else {
+            textView.setVisibility(View.VISIBLE);
+        }
     }
 
     private List<Character> getUniqueCharacters() {

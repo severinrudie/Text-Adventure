@@ -31,6 +31,8 @@ public class LauncherActivity extends AppCompatActivity
         Typeface font = Typeface.createFromAsset(getAssets(), "BLADRMF_.TTF");
         titleMain1.setTypeface(font);
         titleMain2.setTypeface(font);
+//        titleMain1.setTextScaleX((float) 0.7 );
+//        titleMain2.setTextScaleX((float) 0.7 );
 
 
         ImageConstructor imageConstructor = ImageConstructor.getInstance();

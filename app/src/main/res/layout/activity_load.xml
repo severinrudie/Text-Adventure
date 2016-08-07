@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android.support.v7.recyclerview="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.LoadActivity">
 
@@ -18,4 +19,28 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="No previous game data found!"
+        android:id="@+id/textView_noCharactersFound_loadActivity"
+        android:textColor="#FAFAFA"
+        android:textSize="32dp"
+        android:gravity="center"
+        android:layout_weight="2"
+        />
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    </LinearLayout>
+
+</FrameLayout>

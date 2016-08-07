@@ -53,7 +53,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
             db.execSQL(string);
         }
         for (String[] sArray : PH.nodeDetails) {
-            insertNodeDetails(sArray[0], sArray[1], sArray[2], sArray[3]);
+            insertNodeDetails(db, sArray[0], sArray[1], sArray[2], sArray[3]);
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -62,10 +62,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         for (ChoiceData data : PH.choiceDetails) {
             int[] i = data.getInts();
-            insertChoiceDetails(data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]);
+            insertChoiceDetails(db, data.getText(), i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7]);
         }
         for (String[] sArray : PH.popupDetails) {
-            insertPopupDetails(sArray[0], sArray[1], sArray[2], sArray[3], sArray[4], sArray[5]);
+            insertPopupDetails(db, sArray[0], sArray[1], sArray[2], sArray[3], sArray[4], sArray[5]);
         }
     }
 
@@ -144,17 +144,18 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return sql;
     }
 
-    public void insertNodeDetails(String nodeId, String text, String image, String animation) {
+    public void insertNodeDetails(SQLiteDatabase db, String nodeId, String text, String image, String animation) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_nodes + " (" + PH.tbl_nodes_id + ", "
                 + PH.tbl_nodes_text + ", " + PH.tbl_nodes_image + ", " + PH.tbl_nodes_animation
                 + ") VALUES ('" + nodeId + "', '" + text + "', '" + image + "', '" + animation
                 + "');";
-        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
 
-    public void insertChoiceDetails(String text, int nodeId, int toNode, int successPopup, int failPopup, int itemRequired,
+    public void insertChoiceDetails(SQLiteDatabase db, String text, int nodeId, int toNode,
+                                    int successPopup, int failPopup, int itemRequired,
                                     int itemImproves, int testType, int difficulty) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_choice + " (" + PH.tbl_choice_node_id + ", "
@@ -165,11 +166,11 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + PH.tbl_choice_test_difficulty + ") VALUES ('" + nodeId + "', '" + toNode + "', '" + text + "', '"
                 + successPopup  + "', '" + failPopup  + "', '" + itemRequired + "', '"
                 + itemImproves + "', '" + testType + "', '" + difficulty + "');";
-        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
 
-    public void insertPopupDetails(String popId, String text, String image, String animation,
+    public void insertPopupDetails(SQLiteDatabase db, String popId, String text, String image, String animation,
                                    String damageTaken, String itemReceived) {
         text = cleanTextForDb(text);
         String sql = "INSERT INTO " + PH.tbl_popup + " (" + PH.tbl_popup_id + ", "
@@ -177,7 +178,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
                 + PH.tbl_popup_damage + ", " + PH.tbl_popup_item + ") VALUES ('" + popId + "', '"
                 + text + "', '" + image + "', '" + animation + "', '" + damageTaken + "', '"
                 + itemReceived + "');";
-        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteDatabase db = getWritableDatabase();
         db.execSQL(sql);
     }
 
