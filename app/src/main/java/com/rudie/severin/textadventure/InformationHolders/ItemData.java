@@ -38,7 +38,7 @@ public class ItemData {
         } else if (statId == PH.COMRADERY_ID) {
             this.itemStatName = "Comradery";
         } else {
-            this.itemStatName = "";
+            this.itemStatName = PH.NULL;
         }
     }
 
