@@ -64,7 +64,7 @@ public class InventoryAdapter extends
         TextView tvPower = viewHolder.tvPower;
         int power = item.getItemPower();
         if (power != 0) {
-            tvPower.setText("Value: " + String.valueOf(power));
+            tvPower.setText("Power: " + String.valueOf(power));
         } else {
             tvPower.setText("");
         }

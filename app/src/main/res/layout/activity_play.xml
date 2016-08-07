@@ -16,7 +16,7 @@
         android:id="@+id/vpPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#99FAFAFA"
+        android:background="#DDFAFAFA"
         android:layout_margin="20dp">
 
         <android.support.v4.view.PagerTabStrip

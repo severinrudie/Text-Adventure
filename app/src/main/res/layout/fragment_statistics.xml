@@ -13,46 +13,69 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="New Text"
+        android:textColor="@color/normalText"
+        android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsHP" />
+
+    <!--<ProgressBar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--and-->
+        <!--/>-->
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/imageviewStatsHP" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="New Text"
+        android:textColor="@color/normalText"
+        android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsStrength" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/imageviewStatsStrength" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="New Text"
+        android:textColor="@color/normalText"
+        android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsAgility" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/imageviewStatsAgility" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="New Text"
+        android:textColor="@color/normalText"
+        android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsComradery" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/imageviewStatsComradery" />
 
 </LinearLayout>
