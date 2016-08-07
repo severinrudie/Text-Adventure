@@ -7,7 +7,6 @@
     android:id="@+id/fragmentCharacterSelect"
     android:elevation="@dimen/dialogElevation"
     android:background="@color/orange"
-
     tools:context="FragmentClasses.CharacterSelectFragment">
 
         <LinearLayout

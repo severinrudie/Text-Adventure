@@ -6,8 +6,18 @@
     android:orientation="vertical"
     android:id="@+id/fragmentPopup"
     android:layout_gravity="center"
-    android:padding="@dimen/fragmentPadding"
+    android:background="@color/orange"
     tools:context="FragmentClasses.CharacterSelectFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:padding="30dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -47,5 +57,7 @@
         android:text="New Button"
         android:id="@+id/button_continue_popupFragment"
         android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
 
 </LinearLayout>

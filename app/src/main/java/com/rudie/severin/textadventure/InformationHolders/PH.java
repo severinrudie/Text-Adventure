@@ -186,9 +186,17 @@ public class PH {
 //            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
             new String[] {(String.valueOf(DEATH_NODE)), "You're dead.  Better luck next time.", "NULL", "NULL"},
 //            new String[] {"1", "hello there\nwhy dont we be friends", "NULL", "NULL"},
-            new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
-            new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "cookie", "NULL"},
-            new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
+//            new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
+//            new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "cookie", "NULL"},
+//            new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
+//            new String[] {"1", "The pod rattles around you as it slices through the atmosphere.  Your cybernetics clacking against the steel drop chair.  Through the unnecessary viewing windows you can see the other pods, containing the rest of your team and all your equipment. \n\nYou are getting too old for this, but Democracy needed you again.  Governor-Professor Notevil was captured when the planet of Trapistan rose up against the Democratically elected government.  Only the raw manliness and untamed skill of [player character] and Macho Squad could see this situation brought to a close.\n\nYou are brought back from your reverie as turbulence begins to rock your vehicle.  Through the pointless window you see bursts of Anti-Aircraft fire streaking past.  The equipment pod is hit first, tearing apart as it screams towards the ground.  There is nothing to do but continue your pull-up routine as the enemy artillery keeps hitting every vehicle not containing a player character.  Just before the landing rockets fire you see Duke Hazard's pod catch fire and veer off course.  He was just two space days from retirement.\n\nThe landing restraints dig against your bulging muscles as the vehicle comes to a stop against the surface of Trapistan.  Pulling the straps free you do one final pull-up, finishing your set.  \"One-hundred-thousand\".  Stepping free from the steel coffin you cast your gaze around.  You've landed in an open field surrounded by wheat.  In the distance you can see smoke rising from where you can assume Hawkins' pod came down.  Around you is the debris from the other pods.  Would you like to:", "NULL", "NULL"},
+//            new String[] {"2", "With dawn breaking you set your course away from the fields you'd landed in.  You're here for one reason, to rescue &ProfessorFullTitle&, and you'll be damned if the complete obliteration of your team is going to stop you.  Shouldering the few items you have left you head towards the Capital City of Capitalcityton to the Space East. \n\nThe walk is a long one, made longer still as you roll and dive from cover to cover and spend at least 15 minutes working on your war paint.  As you're finishing the final line of reddened mud under your eyes you hear the distinct whine of a hyper-jet engine.  A Spaceplane zooms by overhead and you hear the thudding of &BadMinionPlural& hitting the ground ahead of you.  Peering through the leaves you see four of them, what do you do?", "NULL", "NULL"}
+
+            new String[] {"1", "The pod rattles around you as it slices through the atmosphere.  Your cybernetics clacking against the steel drop chair.  Through the unnecessary viewing windows you can see the other pods, containing the rest of your team and all your equipment. \n\nYou are getting too old for this, but Democracy needed you again.  Governor-Professor Notevil was captured when the planet of Trapistan rose up against the Democratically elected government.  Only the raw manliness and untamed skill of [player character] and Macho Squad could see this situation brought to a close.\n\nYou are brought back from your reverie as turbulence begins to rock your vehicle.  Through the pointless window you see bursts of Anti-Aircraft fire streaking past.  The equipment pod is hit first, tearing apart as it screams towards the ground.  There is nothing to do but continue your pull-up routine as the enemy artillery keeps hitting every vehicle not containing a player character.  Just before the landing rockets fire you see &BuddyFullName&'s pod catch fire and veer off course.  He was just two space days from retirement.\n\nThe landing restraints dig against your bulging muscles as the vehicle comes to a stop against the surface of Trapistan.  Pulling the straps free you do one final pull-up, finishing your set.  \"One-hundred-thousand\".  Stepping free from the steel coffin you cast your gaze around.  You've landed in an open field surrounded by wheat.  In the distance you can see smoke rising from where you can assume Hawkins' pod came down.  Around you is the debris from the other pods.  Would you like to:", "NULL", "NULL"},
+            new String[] {"2", "With dawn breaking you set your course away from the fields you'd landed in.  You're here for one reason, to rescue &ProfessorFullTitle&, and you'll be damned if the complete obliteration of your team is going to stop you.  Shouldering the few items you have left you head towards the Capital City of Capitalcityton to the Space East. \n\nThe walk is a long one, made longer still as you roll and dive from cover to cover and spend at least 15 minutes working on your war paint.  As you're finishing the final line of reddened mud under your eyes you hear the distinct whine of a hyper-jet engine.  A Spaceplane zooms by overhead and you hear the thudding of &BadMinionPlural& hitting the ground ahead of you.  Peering through the leaves you see four of them, what do you do?", "NULL", "NULL"}
+
+
+
     };
     // END node details
 
@@ -198,13 +206,16 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //        new ChoiceData("Shoot", 4, 5, 5, 5, 1, 1, 2, 2),
 //        new ChoiceData("Evade", 4, 5, 5, 5, -1, -1, 2, 3),
 //        new ChoiceData("Punch", 4, 5, 5, 5, -1, 2, 1, 2),
-        new ChoiceData("Search for equipment", 2, 2, 2, 3, 1, -1, -1, -1),
+//        new ChoiceData("Search for equipment", 2, 2, 2, 3, 1, -1, -1, -1),
 //        new ChoiceData("Check Hazard's pod", 1, 2, 3, 4, 2, -1, 3, -1),
 //        new ChoiceData("Continue with the mission", 1, 2, 3, 4, -1, -1, 1, 2),
 //        new ChoiceData("Hey I'm on TV!", 5, 6, 6, 7, 1, 2, 3, 4),
 //        new ChoiceData("I'm still here!", 7, 8, 2, 3, 3, 4, 5, 6)
-        new ChoiceData("Run away", 1, 2, 1, 2, -1, -1, 2, 2),
-        new ChoiceData("Punch the flames", 1, 3, 3, 4, -1, -1, 1, 2)
+//        new ChoiceData("Run away", 1, 2, 1, 2, -1, -1, 2, 2),
+//        new ChoiceData("Punch the flames", 1, 3, 3, 4, -1, -1, 1, 2)
+            new ChoiceData("Scavange", 1, 2, 1, 1, -1, -1, -1, -1),
+            new ChoiceData("Proceed with mission.", 1, 2, 1, -1, -1, -1, -1, -1),
+
     };
     // END choices details
 
@@ -218,16 +229,21 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 //            new String[] {"4", "You die!", NULL, NULL},
 //            new String[] {"5", "this is the fifth!", "NULL", "NULL"}
             new String[] {"1", "You ran away like a coward", "NULL", "NULL", "-1", "-1"},
-            new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
-            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "1"},
-            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "" + "-1"}
+//            new String[] {"2", "The flame was faster than your weak, tiny legs", "NULL", "NULL", "-1", "-1"},
+//            new String[] {"3", "You punch the flames into submission", "NULL", "NULL", "-1", "1"},
+//            new String[] {"4", "The flames outbox you", "NULL", "NULL", "10", "" + "-1"}
     };
     // END popup details
 
     // BEGIN item details
     public static final ItemData[] itemTemplates = new ItemData[] {
-            new ItemData("Bigass Sword", 1, 2, 1, 0, "You got a bigass sword!"),
-            new ItemData("MegaGun", 3, 2, 2, 2, "You found an astoundingly powerful looking laser rifle!"),
+            new ItemData("Flag Bandana", 1, 2, 1, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop.\\n\\nIn one of the hardest moments of your long and storied career, you come across one of &BuddyNickname&’s American Flag Bandanas.  With a moment of flexing silence you wrap it around your own head.  He’s suplexing angels now, and if these robots are half the trouble command expects them to be you’ll need all the Patriotism you can get."),
+            new ItemData("MegaLaser 3000", 2, 2, 2, 2, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop.\\n\\nWith some dedication, gumption, and the skills you acquired in the volunteer commando firefighters you manage to find something useful while sifting through the wreckage.  You find a Megalaser 3,000 with a full Cased Laser Injection Pod, or CLIP."),
+            new ItemData("Hazard's Hat", 2, 2, 2, 2, "While every pod but yours got hit, you did notice that Hazard’s had gone down not too far from the drop zone.  Yeah, it was on fire, and sure parts of the metal had been vaporized, but damnit.  Hazard is one of the most American men you know, and wouldn’t let something like a 40,000 foot drop end him.  Not while there were Space Nazis to defeat.  The walk gives you time to recite the Pledge of Allegiance a few times, but eventually you reach a small stand of trees with the remains of Hazard’s pod littered all around it.  There's almost nothing left.  Some metal plating sits on the ground, flames licking at the heated metal.  A broken jar of military grade flexing oil sits spilling its precious contents into the ground.  But worst of all, sitting on the ground is Duke Hazard’s Cowboy Hat, given to him by the Space President for breaking the galactic record for most consecutive hours singing the national anthem.  You take it, knowing he’d want you to bring it to his wife."),
+
     };
     // END item details
 }
+
+
+
