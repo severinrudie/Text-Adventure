@@ -33,9 +33,11 @@ dependencies {
     // percent relative layout
     compile 'com.android.support:percent:24.1.1'
 
-    // wasabeef
+    // wasabeef (custom recycler animations)
     compile 'jp.wasabeef:recyclerview-animators:2.2.3'
 
+    // cardview
+    compile 'com.android.support:cardview-v7:24.1.1'
 }
 
 //compile 'com.android.support:percent:22.2.0'

@@ -128,6 +128,19 @@ public class PopupFragment extends DialogFragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        try {
+            mCallback = (PopupCompleteListener) mContext;
+            mCallback.closePopupNow();
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+            throw new ClassCastException(mContext.toString()
+                    + " must implement PopupCompleteListener");
+        }
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
