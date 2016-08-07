@@ -15,6 +15,7 @@ import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
+import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
 
 public class LauncherActivity extends AppCompatActivity
@@ -26,6 +27,8 @@ public class LauncherActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        PH.cleanItemsForDb();
 
         TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
         TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);

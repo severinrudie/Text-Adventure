@@ -105,6 +105,7 @@ public class PopupFragment extends DialogFragment {
 //            InventoryFragment.refreshInventoryFragment
             tvItem.setText(newItem.getItemName());
             tvText.setText(newItem.getAcquireText());
+            System.out.println("");
         } else {
             tvItem.setVisibility(View.GONE);
         }

@@ -1,5 +1,7 @@
 package com.rudie.severin.textadventure.InformationHolders;
 
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
+
 /**
  * Created by erikrudie on 7/28/16.
  */
