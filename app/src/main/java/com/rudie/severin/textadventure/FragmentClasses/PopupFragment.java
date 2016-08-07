@@ -52,16 +52,10 @@ public class PopupFragment extends DialogFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    try {
-                        mCallback = (PopupCompleteListener) mContext;
-                        mCallback.closePopupNow();
-                    } catch (ClassCastException e) {
-                        e.printStackTrace();
-                        throw new ClassCastException(mContext.toString()
-                                + " must implement PopupCompleteListener");
-                    }
+                onDestroyView();
             }
         });
+
         Bundle bundle = getArguments();
         int charId = bundle.getInt(PH.tbl_character_id);
         int popupId = bundle.getInt(PH.tbl_popup_id);
