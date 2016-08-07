@@ -31,7 +31,7 @@
         android:id="@+id/buttonLauncherNewGame"
         android:background="@drawable/rounded_button"
         android:layout_margin="4dp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="@dimen/buttonText" />
 
@@ -42,7 +42,7 @@
         android:id="@+id/buttonLauncherLoadSave"
         android:background="@drawable/rounded_button"
         android:layout_margin="4dp"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="@dimen/buttonText" />
 

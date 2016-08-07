@@ -35,10 +35,14 @@
                 />
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/buttonWidthSmall"
+                    android:layout_height="@dimen/buttonHeightSmall"
                     android:text="Randomize"
                     android:id="@+id/buttonCharacterSelectFragmentRandomizeName"
+                    android:background="@drawable/rounded_button"
+                    android:layout_margin="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/buttonTextSmall"
                     />
 
                 <TextView
@@ -124,12 +128,15 @@
             </LinearLayout>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/buttonWidth"
+                android:layout_height="@dimen/buttonHeight"
                 android:text="Begin Game"
-                android:id="@+id/buttonCharacterSelectFragmentBeginGame" />
-
-
+                android:id="@+id/buttonCharacterSelectFragmentBeginGame"
+                android:background="@drawable/rounded_button"
+                android:layout_margin="4dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/buttonText"/>
 
         </LinearLayout>
 

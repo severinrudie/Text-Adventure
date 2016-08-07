@@ -5,6 +5,7 @@
     <!--<color name="colorAccent">#FF0080</color>-->
     <color name="colorAccent">#f02561</color>
     <color name="normalText">#303030</color>
+    <color name="black">#303030</color>
     <color name="unSelectableText">#939393</color>
     <color name="textGoodNews">#00FF00</color>
     <color name="textBadNews">#FF0000</color>
