@@ -259,9 +259,11 @@ public class DBInterfacer extends SQLiteOpenHelper {
             String itemName = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_inventory_name));
             int itemPower = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_power));
             int itemTypeId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_type_id));
+            int itemStatId = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_stat_id));
             int itemOwner = cursor.getInt(cursor.getColumnIndexOrThrow(PH.tbl_inventory_character_id));
             String acquisitionText = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_inventory_acquisition_text));
-            list.add(new ItemData(itemName, itemPower, itemTypeId, itemOwner, acquisitionText));
+            list.add(new ItemData(itemName, itemPower, itemTypeId, itemStatId, itemOwner,
+                    acquisitionText));
             cursor.moveToNext();
         }
         cursor.close();
@@ -389,8 +391,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public void giveCharacterStartingInventory(int charId) {
-        ItemData knife = new ItemData("Laser Knife", 0, 0, charId, "");
-        ItemData nunchucks = new ItemData("Quantum Nunchucks", 0, 0, charId, "");
+        ItemData knife = new ItemData("Laser Knife", 0, 0, 0, charId, "");
+        ItemData nunchucks = new ItemData("Quantum Nunchucks", 0, 0, 0, charId, "");
 
         addItemToInventory(knife);
         addItemToInventory(nunchucks);

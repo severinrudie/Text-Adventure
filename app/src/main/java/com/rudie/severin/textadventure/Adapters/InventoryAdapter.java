@@ -63,13 +63,19 @@ public class InventoryAdapter extends
         tvName.setText(item.getItemName());
         TextView tvPower = viewHolder.tvPower;
         int power = item.getItemPower();
-        tvPower.setText(String.valueOf(power));
+        if (power != 0) {
+            tvPower.setText("Value: " + String.valueOf(power));
+        } else {
+            tvPower.setText("");
+        }
+        TextView tvStat = viewHolder.tvStat;
         if (!item.getItemStatName().equals(PH.NULL)) {
-            TextView tvStat = viewHolder.tvStat;
-            tvStat.setText(item.getItemStatName());
+            tvStat.setText("Boosts: " + item.getItemStatName());
+        } else {
+            tvStat.setText("");
         }
         TextView tvType = viewHolder.tvType;
-        tvType.setText(item.getItemTypeName());
+        tvType.setText("Type: " + item.getItemTypeName());
 
     }
 

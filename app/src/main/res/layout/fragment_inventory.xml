@@ -14,7 +14,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Inventory"/>
+        android:textSize="@dimen/headerTextSize"
+        android:textColor="@color/normalText"
+        android:gravity="center"
+        android:text="Current Inventory"
+        android:layout_marginBottom="20dp"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

@@ -68,6 +68,7 @@ public class PH {
     public static final String tbl_inventory_name = "inventory_name";
     public static final String tbl_inventory_power = "inventory_power";
     public static final String tbl_inventory_type_id = "inventory_type_id";
+    public static final String tbl_inventory_stat_id = "inventory_stat_id";
     public static final String tbl_inventory_character_id = "inventory_character_id";
     public static final String tbl_inventory_acquisition_text = "inventory_acquisition_text";
 
@@ -127,6 +128,7 @@ public class PH {
                     tbl_inventory_name + " text, " +
                     tbl_inventory_power + " integer, " +
                     tbl_inventory_type_id + " integer, " +
+                    tbl_inventory_stat_id + " integer, " +
                     tbl_inventory_character_id + " integer, " +
                     tbl_inventory_acquisition_text + " text " +
                     ");" +
@@ -183,6 +185,7 @@ public class PH {
 //            new String[] {"3", "You's out of da drop pod. Win", NULL, NULL},
 //            new String[] {"4", "You's in a tree patch. Fail", NULL, NULL}
             new String[] {(String.valueOf(DEATH_NODE)), "You're dead.  Better luck next time.", "NULL", "NULL"},
+//            new String[] {"1", "hello there\nwhy dont we be friends", "NULL", "NULL"},
             new String[] {"1", "You're in a burning field.  You can run away or punch the flames.", "NULL", "NULL"},
             new String[] {"2", "You ran like a coward.  You are deeply ashamed.", "cookie", "NULL"},
             new String[] {"3", "You have punched the flames into submission.  You bask in your own glory.", "NULL", "NULL"}
@@ -223,8 +226,8 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 
     // BEGIN item details
     public static final ItemData[] itemTemplates = new ItemData[] {
-            new ItemData("Bigass Sword", 1, 2, 0, "You got a bigass sword!"),
-            new ItemData("MegaGun", 3, 2, 0, "You found an astoundingly powerful looking laser rifle!"),
+            new ItemData("Bigass Sword", 1, 2, 1, 0, "You got a bigass sword!"),
+            new ItemData("MegaGun", 3, 2, 2, 2, "You found an astoundingly powerful looking laser rifle!"),
     };
     // END item details
 }
