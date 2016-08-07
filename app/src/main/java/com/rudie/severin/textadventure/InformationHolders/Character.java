@@ -20,15 +20,16 @@ public class Character {
         this.charId = charId;
         DBInterfacer helper = DBInterfacer.getInstance(context);
         String[] firstNickLast = helper.getCharacterFirstNickLast(charId, context);
-        firstName = firstNickLast[0];
-        nickName = firstNickLast[1];
-        lastName = firstNickLast[2];
+        this.firstName = firstNickLast[0];
+        this.nickName = firstNickLast[1];
+        this.lastName = firstNickLast[2];
         HashMap<Integer, Integer> stats = helper.getStatsForCharacter(charId);
-        strength = stats.get(PH.STRENGTH_ID);
-        agility = stats.get(PH.AGILITY_ID);
-        comradery = stats.get(PH.COMRADERY_ID);
-        inventory = helper.getCharacterInventory(charId);
-        atNode = helper.getCurrentNode(charId);
+        this.strength = stats.get(PH.STRENGTH_ID);
+        this.agility = stats.get(PH.AGILITY_ID);
+        this.comradery = stats.get(PH.COMRADERY_ID);
+        this.inventory = helper.getCharacterInventory(charId);
+        this.atNode = helper.getCurrentNode(charId);
+        this.hp = helper.getCharacterHp(charId);
         fullName = firstName + " " + nickName + " " + lastName;
 
         if (Math.max(Math.max(strength, agility), comradery) == strength) {

@@ -9,7 +9,8 @@
     android:layout_marginBottom="0dp"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
-    android:id="@+id/cocktailCard"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 <LinearLayout
@@ -17,44 +18,59 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textview_name_loadRecyclerview"/>
+        android:textSize="@dimen/largeTextSize"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/textview_name_loadRecyclerview"
+        android:layout_margin="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/textview_charId_loadRecyclerview"
-        android:text="charId"
-        android:gravity="center_vertical" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/textview_charId_loadRecyclerview"-->
+        <!--android:text="charId"-->
+        <!--android:gravity="center_vertical" />-->
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
         android:id="@+id/textview_hp_loadRecyclerview"
         android:text="HP"
-        android:gravity="center_vertical" />
+        android:textColor="@color/black"
+        android:gravity="center" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
         android:id="@+id/textview_inventorySize_loadRecyclerview"
         android:text="Inventory Size"
-        android:gravity="center_vertical" />
+        android:textColor="@color/black"
+        android:gravity="center" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:id="@+id/textview_bestSkill_loadRecyclerview"
         android:text="Best Skill"
+        android:textColor="@color/black"
         android:gravity="center_vertical" />
-
-    </LinearLayout>
 
 </LinearLayout>
 

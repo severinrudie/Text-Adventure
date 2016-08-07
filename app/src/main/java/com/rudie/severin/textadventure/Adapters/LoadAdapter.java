@@ -28,7 +28,7 @@ public class LoadAdapter extends
 
         public ViewHolder(View loadView) {
             super(loadView);
-            characterId = (TextView) loadView.findViewById(R.id.textview_charId_loadRecyclerview);
+//            characterId = (TextView) loadView.findViewById(R.id.textview_charId_loadRecyclerview);
             hp = (TextView) loadView.findViewById(R.id.textview_hp_loadRecyclerview);
             inventorySize = (TextView) loadView.findViewById(R.id.textview_inventorySize_loadRecyclerview);
             bestSkill = (TextView) loadView.findViewById(R.id.textview_bestSkill_loadRecyclerview);
@@ -71,13 +71,13 @@ public class LoadAdapter extends
 //        bestSkill = (TextView) itemView.findViewById(R.id.textview_bestSkill_loadRecyclerview);
 
         TextView name = viewHolder.name;
-        TextView characterId = viewHolder.characterId;
+//        TextView characterId = viewHolder.characterId;
         TextView hp = viewHolder.hp;
         TextView inventorySize = viewHolder.inventorySize;
         TextView bestSkill = viewHolder.bestSkill;
 
         name.setText(character.getFullName());
-        characterId.setText("" + character.getCharId() + "     ");
+//        characterId.setText("" + character.getCharId() + "     ");
         hp.setText("HP: " + character.getHp() + " ");
         inventorySize.setText("Items: " + character.getInventory().size() + " ");
         bestSkill.setText(character.getBestSkillBlurb());
