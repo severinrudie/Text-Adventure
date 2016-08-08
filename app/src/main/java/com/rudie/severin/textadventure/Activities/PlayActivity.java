@@ -187,7 +187,12 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         gpFrag.changeToNewNode(currentCharacterId);
 
         PopupFragment popupFragment = (PopupFragment) manager.findFragmentByTag(PH.tbl_popup_id);
-        manager.beginTransaction().remove(popupFragment).commit();
+        try {
+            manager.beginTransaction().remove(popupFragment).commit();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            // if the screen is rotated while a popup is up, it will not need to be destroyed
+        }
     }
 
     // BEGIN getters and setters

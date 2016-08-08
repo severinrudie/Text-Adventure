@@ -81,6 +81,7 @@ public class PopupFragment extends DialogFragment {
 
         popupData = helper.getPopupData(popupId);
         String text = popupData.getString(PH.tbl_popup_text);
+        text = insertNamesIntoPopupText(text, charId);
 
         tvText = (TextView) view.findViewById(R.id.textview_text_popupFragment);
         tvText.setText(text);
@@ -150,6 +151,17 @@ public class PopupFragment extends DialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    private String insertNamesIntoPopupText(String popupText, int charId) {
+        DBInterfacer helper = DBInterfacer.getInstance(getActivity());
+        String[] firstLastNick = helper.getCharacterFirstNickLast(charId, getActivity());
+        popupText = popupText.replace("FIRSTNAME", firstLastNick[0]);
+        popupText = popupText.replace("NICKNAME", firstLastNick[1]);
+        popupText = popupText.replace("LASTNAME", firstLastNick[2]);
+        popupText = popupText.replace("&PlayerCharacter&", firstLastNick[0] +" " + firstLastNick[1]
+                + " " + firstLastNick[2]);
+        return popupText;
     }
 
 

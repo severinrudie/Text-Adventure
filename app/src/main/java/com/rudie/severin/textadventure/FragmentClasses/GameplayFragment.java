@@ -174,6 +174,8 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
         nodeText = nodeText.replace("FIRSTNAME", firstLastNick[0]);
         nodeText = nodeText.replace("NICKNAME", firstLastNick[1]);
         nodeText = nodeText.replace("LASTNAME", firstLastNick[2]);
+        nodeText = nodeText.replace("&PlayerCharacter&", firstLastNick[0] +" " + firstLastNick[1]
+                + " " + firstLastNick[2]);
         return nodeText;
     }
 
