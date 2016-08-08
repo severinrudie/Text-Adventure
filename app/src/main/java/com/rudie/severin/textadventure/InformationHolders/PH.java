@@ -316,21 +316,22 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
                 item.setAcquireText(item.getAcquireText().replace(key, nameReplacements.get(key)));
             }
         }
-
-
     }
 
     private static Map<String, String> populateNameReplacements() {
         Map<String, String> nameReplacements = new HashMap<>();
 
         nameReplacements.put("&ProfessorFullTitle&", "Governor-Professor Notevil");
-
-        // TODO: add things to replace here
+        nameReplacements.put("&ProfessorTitleShort&", "Professor");
+        nameReplacements.put("&BadMinion&", "RoboTron");
+        nameReplacements.put("&BadMinionPlural&", "RoboTronitons");
+        nameReplacements.put("&BadMinionSlang&", "Bots");
+        nameReplacements.put("&BuddyFullName&", "Duke Ramierez");
+        nameReplacements.put("&BuddyNickname&", "Duke");
 
         return nameReplacements;
     }
 
-    
     // END item details
 }
 
