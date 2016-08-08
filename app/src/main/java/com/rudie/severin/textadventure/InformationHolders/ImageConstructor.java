@@ -34,6 +34,7 @@ public class ImageConstructor {
         imageHashMap.put("BuddyLounging", "https://s5.postimg.org/lesg5evcz/Buddy_Lounging.jpg");
         imageHashMap.put("EmergencyFlag", "https://s5.postimg.org/r97e2a2ir/Emergency_Flag.jpg");
         imageHashMap.put("BuffEagle", "https://s5.postimg.org/v1vyf4ocj/Buff_Eagle_001.png");
+        imageHashMap.put("HackTheButton", "https://s5.postimg.org/lz2fazi9v/Hack_The_Button.jpg");
     }
 
     public void giveContext(Context context) {
