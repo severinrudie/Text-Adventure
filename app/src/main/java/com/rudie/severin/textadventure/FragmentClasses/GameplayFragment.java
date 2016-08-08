@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.rudie.severin.textadventure.Adapters.ChoiceAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
@@ -144,8 +145,20 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(nodeImage));
-            imageView.setImageDrawable(imageDrawable);
+//            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(nodeImage));
+//            imageView.setImageDrawable(imageDrawable);
+
+
+            String url = ImageConstructor.getInstance().getDrawable(nodeImage);
+            Ion.with(imageView)
+                    .placeholder(R.color.colorPrimary)
+                    .error(R.color.colorAccent)
+//                .animateLoad(spinAnimation)
+//                .animateIn(fadeInAnimation)
+                    .load(url)
+                    .withBitmapInfo();
+//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+
         }
 
     }

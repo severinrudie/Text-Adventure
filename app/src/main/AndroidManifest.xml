@@ -3,6 +3,7 @@
     package="com.rudie.severin.textadventure">
 
     <application
+        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/eagle_icon2"
         android:label="@string/app_name"

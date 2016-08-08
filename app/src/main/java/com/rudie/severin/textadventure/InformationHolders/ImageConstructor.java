@@ -15,15 +15,24 @@ import java.util.HashMap;
 public class ImageConstructor {
 
     private static ImageConstructor instance;
-    private HashMap<String, Integer> imageHashMap = new HashMap<>();
+//    private HashMap<String, Integer> imageHashMap = new HashMap<>();
+    private HashMap<String, String> imageHashMap = new HashMap<>();
     private Context mContext;
 
     private ImageConstructor() {
-        imageHashMap.put(PH.COOKIE, R.drawable.cookie_small);
-        imageHashMap.put("PodsLanding", R.drawable.pods_landing);
-        imageHashMap.put("PodsScavange", R.drawable.pods_scavenge);
-        imageHashMap.put("RoboBodies", R.drawable.robo_pile);
-        imageHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
+//        imageHashMap.put(PH.COOKIE, R.drawable.cookie_small);
+//        imageHashMap.put("PodsLanding", R.drawable.pods_landing);
+//        imageHashMap.put("PodsScavange", R.drawable.pods_scavenge);
+//        imageHashMap.put("RoboBodies", R.drawable.robo_pile);
+//        imageHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
+
+        imageHashMap.put("PodsLanding", "https://s5.postimg.org/495sn2b0j/Pods_Landing.jpg");
+        imageHashMap.put("PodsScavange", "https://s5.postimg.org/fmsby9lj7/Pods_Scavange.jpg");
+        imageHashMap.put("RoboBodies", "https://s5.postimg.org/3ngtqyfyb/Robo_Pile.jpg");
+        imageHashMap.put("ProfessorNotevil", "https://s5.postimg.org/e90p2ym9v/Professor_Notevil.jpg");
+        imageHashMap.put("Mechaspider", "https://s5.postimg.org/ub389clz7/Mechaspider.jpg");
+        imageHashMap.put("BuddyLounging", "https://s5.postimg.org/lesg5evcz/Buddy_Lounging.jpg");
+        imageHashMap.put("EmergencyFlag", "https://s5.postimg.org/r97e2a2ir/Emergency_Flag.jpg");
     }
 
     public void giveContext(Context context) {
@@ -37,7 +46,7 @@ public class ImageConstructor {
         return instance;
     }
 
-    public Integer getDrawable(String key) {
+    public String getDrawable(String key) {
         return imageHashMap.get(key);
     }
 

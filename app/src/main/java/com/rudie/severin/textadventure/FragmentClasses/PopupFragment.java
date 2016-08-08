@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
@@ -115,8 +116,18 @@ public class PopupFragment extends DialogFragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(image));
-            imageView.setImageDrawable(imageDrawable);
+//            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(image));
+//            imageView.setImageDrawable(imageDrawable);
+            // TODO: add ion here once it's working
+            String url = ImageConstructor.getInstance().getDrawable(image);
+            Ion.with(imageView)
+                    .placeholder(R.color.colorPrimary)
+                    .error(R.color.colorAccent)
+//                .animateLoad(spinAnimation)
+//                .animateIn(fadeInAnimation)
+                    .load(url)
+                    .withBitmapInfo();
+//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
         }
 
         return view;
