@@ -12,9 +12,11 @@
     tools:context=".FragmentClasses.StatisticsFragment">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
+        android:gravity="left"
         android:layout_height="wrap_content"
         android:src="@drawable/bar_red"
+        android:scaleType="fitXY"
         android:id="@+id/imageviewStatsHP" />
 
     <TextView
@@ -27,13 +29,14 @@
         android:id="@+id/textviewStatsHP" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:src="@drawable/bar_accent"
+        android:scaleType="fitXY"
         android:id="@+id/imageviewStatsStrength" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="New Text"
@@ -45,10 +48,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/bar_blue"
+        android:scaleType="fitXY"
         android:id="@+id/imageviewStatsAgility" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="New Text"
@@ -57,9 +61,10 @@
         android:id="@+id/textviewStatsAgility" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:src="@drawable/bar_yellow"
+        android:scaleType="fitXY"
         android:id="@+id/imageviewStatsComradery" />
 
     <TextView

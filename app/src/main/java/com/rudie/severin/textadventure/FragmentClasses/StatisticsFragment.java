@@ -81,6 +81,19 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         tvStrength.setText("Strength: " + statArray[0]);
         tvAgility.setText("Agility: " + statArray[1]);
         tvComradery.setText("Comradery: " + statArray[2]);
+
+        int baseLength = 500;
+
+        ivHp.getLayoutParams().width = ((baseLength / 10) * hp);
+        ivStrength.getLayoutParams().width = ((baseLength / 10) * (statArray[0]));
+        ivAgility.getLayoutParams().width = ((baseLength / 10) * (statArray[1]));
+        ivComradery.getLayoutParams().width = ((baseLength / 10) * (statArray[2]));
+
+        ivHp.requestLayout();
+        ivStrength.requestLayout();
+        ivAgility.requestLayout();
+        ivComradery.requestLayout();
+
     }
 
     @Override
