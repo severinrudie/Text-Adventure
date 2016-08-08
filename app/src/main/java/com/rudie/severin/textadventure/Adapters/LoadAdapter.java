@@ -1,7 +1,9 @@
 package com.rudie.severin.textadventure.Adapters;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +90,39 @@ public class LoadAdapter extends
                 Intent intent = new Intent(getContext(), PlayActivity.class);
                 intent.putExtra(PH.CURRENT_CHARACTER, character.getCharId());
                 getContext().startActivity(intent);
+            }
+        });
+
+        viewHolder.parent.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Would you like to delete this saved game?")
+                        .setIcon(R.drawable.ic_delete_black_24dp)
+                        .setTitle("Delete Character")
+                        .setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener);
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
+                return true;
             }
         });
 

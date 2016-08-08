@@ -417,4 +417,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return charIds;
     }
 
+
+
 }
