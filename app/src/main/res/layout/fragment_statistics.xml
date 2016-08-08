@@ -11,6 +11,12 @@
     android:id="@+id/fragmentStatistics"
     tools:context=".FragmentClasses.StatisticsFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bar_red"
+        android:id="@+id/imageviewStatsHP" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -20,18 +26,11 @@
         android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsHP" />
 
-    <!--<ProgressBar-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--and-->
-        <!--/>-->
-
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/imageviewStatsHP" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/bar_accent"
+        android:id="@+id/imageviewStatsStrength" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,9 +43,9 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/imageviewStatsStrength" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/bar_blue"
+        android:id="@+id/imageviewStatsAgility" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,9 +58,9 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/imageviewStatsAgility" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/bar_yellow"
+        android:id="@+id/imageviewStatsComradery" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,11 +70,5 @@
         android:textColor="@color/normalText"
         android:textSize="@dimen/normalTextSize"
         android:id="@+id/textviewStatsComradery" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/imageviewStatsComradery" />
 
 </LinearLayout>
