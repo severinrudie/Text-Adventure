@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.koushikdutta.ion.Ion;
@@ -37,6 +38,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
 //    private int nextNode;
     private int currentCharacterId;
     private ImageView imageView;
+    private ScrollView scrollView;
 
     public GameplayFragment() {
         // Required empty public constructor
@@ -67,6 +69,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
         textviewText = (TextView) view.findViewById(R.id.textviewPlayContent);
         rvChoices = (RecyclerView) view.findViewById(R.id.recyclerviewPlayChoices);
         imageView = (ImageView) view.findViewById(R.id.imageviewPlayHeader);
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
 
         changeToNewNode(currentCharacterId);
 
@@ -160,6 +163,8 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
 //                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
         }
+
+        scrollView.fullScroll(scrollView.FOCUS_UP);
 
     }
 

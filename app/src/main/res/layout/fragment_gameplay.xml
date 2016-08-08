@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android.support.v7.recyclerview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragmentGameplay"
     tools:context=".FragmentClasses.GameplayFragment">
@@ -26,10 +27,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <android.support.percent.PercentRelativeLayout
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:id="@+id/imageviewPlayHeader" />
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_aspectRatio="100%"
+                    android:id="@+id/imageviewPlayHeader"
+                    android:scaleType="fitCenter" />
+
+            </android.support.percent.PercentRelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
