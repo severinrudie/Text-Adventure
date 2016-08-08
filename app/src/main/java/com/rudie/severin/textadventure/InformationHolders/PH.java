@@ -25,6 +25,23 @@ public class PH {
     public static final int AGILITY_ID = 2;
     public static final int COMRADERY_ID = 3;
 
+    public static final String GUN = "Gun";
+    public static final String WEAPON = "Weapon";
+    public static final String PANACHE = "Panache";
+    public static final String FLAG = "Flag";
+    public static final String[] ITEM_NAMES = new String[] {GUN, WEAPON, PANACHE, FLAG};
+
+    public static final int ITEM_TYPE_GUN = 1;
+    public static final int ITEM_TYPE_WEAPON = 2;
+    public static final int ITEM_TYPE_PANACHE = 3;
+    public static final int ITEM_TYPE_FLAG = 4;
+    public static final int[] ITEM_TYPE_IDS = new int[] {ITEM_TYPE_GUN, ITEM_TYPE_WEAPON, ITEM_TYPE_PANACHE, ITEM_TYPE_FLAG};
+
+//    1 = Gun
+//    2 = Strength
+//    3 = Comraderie
+//    4 = Flag
+
     public static final int STARTING_HP = 10;
 
     public static final String NULL = "NULL";
@@ -274,9 +291,9 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 
     // BEGIN item details
     public static final ItemData[] itemTemplates = new ItemData[] {
-            new ItemData("Flag Bandana", 1, 2, STRENGTH_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \\n\\nIn one of the hardest moments of your long and storied career, you come across one of &BuddyNickname&’s American Flag Bandanas.  With a moment of flexing silence you wrap it around your own head.  He’s suplexing angels now, and if these robots are half the trouble command expects them to be you’ll need all the Patriotism you can get."),
-            new ItemData("MegaLaser 3000", 2, 2, AGILITY_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \\n\\nWith some dedication, gumption, and the skills you acquired in the volunteer commando firefighters you manage to find something useful while sifting through the wreckage.  You find a Megalaser 3,000 with a full Cased Laser Injection Pod, or CLIP."),
-            new ItemData("Hazard's Hat", 2, 2, COMRADERY_ID, 0, "While every pod but yours got hit, you did notice that Hazard’s had gone down not too far from the drop zone.  Yeah, it was on fire, and sure parts of the metal had been vaporized, but damnit.  Hazard is one of the most American men you know, and wouldn’t let something like a 40,000 foot drop end him.  Not while there were Space Nazis to defeat.  The walk gives you time to recite the Pledge of Allegiance a few times, but eventually you reach a small stand of trees with the remains of Hazard’s pod littered all around it.  There's almost nothing left.  Some metal plating sits on the ground, flames licking at the heated metal.  A broken jar of military grade flexing oil sits spilling its precious contents into the ground.  But worst of all, sitting on the ground is Duke Hazard’s Cowboy Hat, given to him by the Space President for breaking the galactic record for most consecutive hours singing the national anthem.  You take it, knowing he’d want you to bring it to his wife."),
+            new ItemData("Flag Bandana", 1, ITEM_TYPE_FLAG, STRENGTH_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \\n\\nIn one of the hardest moments of your long and storied career, you come across one of &BuddyNickname&’s American Flag Bandanas.  With a moment of flexing silence you wrap it around your own head.  He’s suplexing angels now, and if these robots are half the trouble command expects them to be you’ll need all the Patriotism you can get."),
+            new ItemData("MegaLaser 3000", ITEM_TYPE_GUN, 2, AGILITY_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \\n\\nWith some dedication, gumption, and the skills you acquired in the volunteer commando firefighters you manage to find something useful while sifting through the wreckage.  You find a Megalaser 3,000 with a full Cased Laser Injection Pod, or CLIP."),
+            new ItemData("Hazard's Hat", 2, ITEM_TYPE_PANACHE, COMRADERY_ID, 0, "While every pod but yours got hit, you did notice that Hazard’s had gone down not too far from the drop zone.  Yeah, it was on fire, and sure parts of the metal had been vaporized, but damnit.  Hazard is one of the most American men you know, and wouldn’t let something like a 40,000 foot drop end him.  Not while there were Space Nazis to defeat.  The walk gives you time to recite the Pledge of Allegiance a few times, but eventually you reach a small stand of trees with the remains of Hazard’s pod littered all around it.  There's almost nothing left.  Some metal plating sits on the ground, flames licking at the heated metal.  A broken jar of military grade flexing oil sits spilling its precious contents into the ground.  But worst of all, sitting on the ground is Duke Hazard’s Cowboy Hat, given to him by the Space President for breaking the galactic record for most consecutive hours singing the national anthem.  You take it, knowing he’d want you to bring it to his wife."),
 
     };
 

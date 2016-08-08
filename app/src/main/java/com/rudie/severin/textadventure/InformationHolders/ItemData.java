@@ -31,9 +31,14 @@ public class ItemData {
         this.itemOwnerId = ownerId;
 //        this.acquireText = DBInterfacer.cleanTextForDb(acquireText);
         this.acquireText = acquireText;
-        // TODO: set type name based on type id
-        // TODO: remember that type name has its own db
-        this.itemTypeName = "TEMPORARY TYPE";
+        String nameHolder = "Personal";
+        for (int i = 0; i < PH.ITEM_NAMES.length; i++) {
+            if (PH.ITEM_TYPE_IDS[i] == this.getItemTypeId()) {
+                nameHolder = PH.ITEM_NAMES[i];
+                break;
+            }
+        }
+        this.itemTypeName = nameHolder;
         this.itemStatId = statId;
         if (statId == PH.STRENGTH_ID) {
             this.itemStatName = "Strength";
