@@ -185,9 +185,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public static String cleanTextForDb(String string) {
-        string = string.replaceAll("\\w'\\w", "''");
-        string = string.replaceAll("[\\w|\\s](')[\\w|\\s]", "''");
-        string = string.replaceAll("\\w\"\\w", "\\\"");
+        string = string.replace("'", "''");
+//        string = string.replaceAll("[\\w|\\s](')[\\w|\\s]", "''");
+        string = string.replace("\"", "\\\"");
         return string;
     }
 
