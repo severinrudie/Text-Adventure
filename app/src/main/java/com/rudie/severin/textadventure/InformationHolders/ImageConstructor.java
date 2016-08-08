@@ -20,10 +20,10 @@ public class ImageConstructor {
 
     private ImageConstructor() {
         imageHashMap.put(PH.COOKIE, R.drawable.cookie_small);
-        imageHashMap.put("PodsLanding", R.drawable.cookie_small);
-        imageHashMap.put("PodsScavange", R.drawable.cookie_small);
-        imageHashMap.put("RoboBodies", R.drawable.cookie_small);
-        imageHashMap.put("ProfessorNotevil", R.drawable.cookie_small);
+        imageHashMap.put("PodsLanding", R.drawable.pods_landing);
+        imageHashMap.put("PodsScavange", R.drawable.pods_scavenge);
+        imageHashMap.put("RoboBodies", R.drawable.robo_pile);
+        imageHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
     }
 
     public void giveContext(Context context) {

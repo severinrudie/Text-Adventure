@@ -287,7 +287,6 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             item.setAcquireText(DBInterfacer.cleanTextForDb(item.getAcquireText()));
         }
     }
-
     public static void replaceNames() {
         Map<String, String> nameReplacements = populateNameReplacements();
         Set<String> keys = nameReplacements.keySet();
@@ -297,19 +296,16 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
                 nodeArray[1] = nodeArray[1].replace(key, nameReplacements.get(key));
             }
         }
-
         for (ChoiceData choiceData : choiceDetails) {
             for (String key: keys) {
                 choiceData.setText(choiceData.getText().replace(key, nameReplacements.get(key)));
             }
         }
-
         for (String[] popupArray : popupDetails) {
             for (String key: keys) {
                 popupArray[1] = popupArray[1].replace(key, nameReplacements.get(key));
             }
         }
-
         for (ItemData item : itemTemplates) {
             for (String key: keys) {
                 item.setItemName(item.getItemName().replace(key, nameReplacements.get(key)));
