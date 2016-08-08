@@ -58,6 +58,8 @@ public class LauncherActivity extends AppCompatActivity
         imageConstructor.giveContext(this);
 
         DBInterfacer helper = DBInterfacer.getInstance(this);
+        // TODO: make this async
+        helper.verifyDbExistsOrCreate();
 
         Button newGame = (Button) findViewById(R.id.buttonLauncherNewGame);
         newGame.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +87,7 @@ public class LauncherActivity extends AppCompatActivity
 ////        TODO: temp code. resets DB on every new instance
 //        SQLiteDatabase db = helper.getWritableDatabase();
 //        helper.dropAllTables(db);
+//        System.out.println("");
 //        helper.onCreate(helper.getWritableDatabase());
 //
 ////        TODO: temp code.  gives player 1 a weapon

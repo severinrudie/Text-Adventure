@@ -3,6 +3,7 @@ package com.rudie.severin.textadventure.DatabaseClasses;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
@@ -45,6 +46,21 @@ public class DBInterfacer extends SQLiteOpenHelper {
             DB = new DBInterfacer(context);
         }
         return DB;
+    }
+
+    public boolean verifyDbExistsOrCreate() {
+        SQLiteDatabase checkDB = null;
+        try {
+//            checkDB = SQLiteDatabase.openDatabase(DATABASE_NAME, null,
+//                    SQLiteDatabase.OPEN_READONLY);
+            checkDB = getReadableDatabase();
+            checkDB.rawQuery("SELECT * FROM " + PH.tbl_nodes, null);
+            checkDB.close();
+        } catch (SQLiteException e) {
+            SQLiteDatabase db = DBInterfacer.getInstance(mContext).getWritableDatabase();
+            onCreate(db);
+        }
+        return checkDB != null;
     }
 
     @Override
@@ -416,6 +432,10 @@ public class DBInterfacer extends SQLiteOpenHelper {
         }
         return charIds;
     }
+
+//    public void deleteCharacterFromDb(int charId) {
+//        String sql = "DELETE * "
+//    }
 
 
 
