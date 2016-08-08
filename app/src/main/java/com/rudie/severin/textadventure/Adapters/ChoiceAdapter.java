@@ -87,6 +87,7 @@ public class ChoiceAdapter extends
 //        checkType.setText(checkString);
         RadioButton radioButton = viewHolder.radioButton;
         radioButton.setText(choice.getText());
+        radioButton.setChecked(false);
         List<Integer> currentItemTypes = CurrentInventoryAndStats.getCurrentItemTypes();
         if (choice.getItemRequired() == -1 ||
                 currentItemTypes.contains(choice.getItemRequired())) {

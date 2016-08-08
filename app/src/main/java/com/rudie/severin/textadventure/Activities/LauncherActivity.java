@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.ion.Ion;
 import com.rudie.severin.textadventure.Activities.LoadActivity;
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
@@ -27,6 +29,17 @@ public class LauncherActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
+        String url = ImageConstructor.getInstance().getDrawable("BuffEagle");
+        Ion.with(imageView)
+//                .placeholder(R.color.colorPrimary)
+//                .error(R.color.colorAccent)
+//                .animateLoad(spinAnimation)
+//                .animateIn(fadeInAnimation)
+                .load(url)
+                .withBitmapInfo();
+//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
 
         TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
         TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);

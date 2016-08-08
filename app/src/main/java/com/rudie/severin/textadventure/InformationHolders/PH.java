@@ -225,8 +225,8 @@ public class PH {
     // These are ingested into the DB upon DB creation
 public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new ChoiceData("Proceed with mission.", 1, 3, 2, -1, -1, -1, -1, -1),
-            new ChoiceData("Scavange the wreckage.", 1, 3, 1, -1, -1, -1, -1, -1),
-            new ChoiceData("Shoot the Robosoldiers", 3, 5, 5, 5, 1, -1, -1, -1),
+            new ChoiceData("Scavenge the wreckage.", 1, 3, 1, -1, -1, -1, -1, -1),
+            new ChoiceData("Shoot the Robosoldiers", 3, 5, 3, -1, 1, -1, -1, -1),
             new ChoiceData("Punch the problem", 3, 5, 5, 5, -1, 2, 1, 2),
             new ChoiceData("Evade the patrol", 3, 5, 5, 5, -1, -1, 2, 2),
             new ChoiceData("Ambush the convoy", 7, 8, 8, 8, -1, 1, 2, 3),
@@ -234,15 +234,18 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new ChoiceData("Sweet talk the guards", 7, 8, 8, 8, -1, 3, 3, 3),
             new ChoiceData("Try to get in", 5, 5, 8, -1, -1, -1, -1, -1),
             new ChoiceData("Wait for an opening", 5, 7, 7, -1, -1, -1, -1, -1),
+            new ChoiceData("Continue", 8, 9, 16, -1, -1, -1, -1, -1),
             new ChoiceData("Punch the problem", 9, 10, 17, 18, -1, 2, 1, 3),
             new ChoiceData("Fight together", 9, 10, 19, -1, 3, -1, -1, -1),
             new ChoiceData("Continue", 10, 11, 11, -1, -1, -1, -1, -1),
+            new ChoiceData("Shoot the problem", 11, 12, 21, 22, -1, 1, 2, 4),
+            new ChoiceData("Command the charge", 11, 12, 23, 24, -1, 3, 3, 3),
             new ChoiceData("Loot the Mechaspider", 12, 13, 25, -1, -1, -1, -1, -1),
             new ChoiceData("Regroup and retreat", 12, 13, 26, -1, -1, -1, -1, -1),
             new ChoiceData("Continue", 13, 14, 27, -1, -1, -1, -1, -1),
             new ChoiceData("Train Strength", 14, 15, 28, -1, -1, -1, -1, -1),
             new ChoiceData("Train Agility", 14, 15, 29, -1, -1, -1, -1, -1),
-            new ChoiceData("Train Comraderie", 14, 15, 30, -1, -1, -1, -1, -1),
+            new ChoiceData("Train Comradery", 14, 15, 30, -1, -1, -1, -1, -1),
             new ChoiceData("Assault the Fuel Depot", 15, 16, 31, -1, -1, -1, -1, -1),
             new ChoiceData("Display Patriotism", 15, 16, 32, -1, 4, -1, -1, -1),
             new ChoiceData("Assault the hoverpad", 16, 17, 33, -1, -1, -1, -1, -1),
@@ -260,7 +263,7 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 
     // BEGIN popup details
     public static final String [][] popupDetails = new String[][] {
-            new String[] {"1", "Scavange Popup Placeholder Text", "NULL", "NULL", "-1", "1"},
+            new String[] {"1", "Scavenge Popup Placeholder Text", "PodsScavange", "NULL", "-1", "1"},
             new String[] {"2", "The fires in the field start to fall back behind you as you proceed away from the crash site.  They weren't supposed to know you were coming, but they were ready.  Somebody dropped the ball.  Whether it was intel, mission control, or Colonel Notaspy somebody was leaking information to the enemy.", "NULL", "NULL", "-1", "-1"},
             new String[] {"3", "You steady the Megalaser 3,000 against a nearby branch, letting the capacitors build to full charge as you move the scope reticule towards the enemy.  One of the &BadMinionPlural& starts to look quizzically at the initial target laser upon his chest, right before you let loose a burst.  As the first hostile hit the ground the others whirled about, trying to locate their attacker.  The bright red bolts struck too fast for them to react however, proving once again that nothing can stop a Space American armed with the greatest weapons Space America can buy from Space Belgium.", "RoboBodies", "NULL", "-1", "-1"},
             new String[] {"4", "The &BadMinionPlural& aren't the most observant enemy you've ever faced.  Even the Quasar Qommunists pay more attention as they search an area.  As their patrol approached your location, you let out a battle cry and charged.  \"DEMOCRACY!!!\"  You scream as you grab the first &BadMinion& by the wrists, and swing him like a giant club into the others.  Hydraulics, gears, and blinking lights of questionable usefulness fly in all directions as you beat the patrol, with the patrol until the only thing moving in the area is a registered voter.", "RoboBodies", "NULL", "-1", "-1"},
@@ -311,10 +314,10 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 
     // BEGIN item details
     public static final ItemData[] itemTemplates = new ItemData[] {
-            new ItemData("Flag Bandana", 1, ITEM_TYPE_FLAG, STRENGTH_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \n\nIn one of the hardest moments of your long and storied career, you come across one of &BuddyNickname&’s American Flag Bandanas.  With a moment of flexing silence you wrap it around your own head.  He’s suplexing angels now, and if these robots are half the trouble command expects them to be you’ll need all the Patriotism you can get."),
-            new ItemData("MegaLaser 3000", ITEM_TYPE_GUN, 2, AGILITY_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \n\nWith some dedication, gumption, and the skills you acquired in the volunteer commando firefighters you manage to find something useful while sifting through the wreckage.  You find a Megalaser 3,000 with a full Cased Laser Injection Pod, or CLIP."),
-            new ItemData("Hazard's Hat", 2, ITEM_TYPE_PANACHE, COMRADERY_ID, 0, "While every pod but yours got hit, you did notice that Hazard’s had gone down not too far from the drop zone.  Yeah, it was on fire, and sure parts of the metal had been vaporized, but damnit.  Hazard is one of the most American men you know, and wouldn’t let something like a 40,000 foot drop end him.  Not while there were Space Nazis to defeat.  The walk gives you time to recite the Pledge of Allegiance a few times, but eventually you reach a small stand of trees with the remains of Hazard’s pod littered all around it.  There's almost nothing left.  Some metal plating sits on the ground, flames licking at the heated metal.  A broken jar of military grade flexing oil sits spilling its precious contents into the ground.  But worst of all, sitting on the ground is Duke Hazard’s Cowboy Hat, given to him by the Space President for breaking the galactic record for most consecutive hours singing the national anthem.  You take it, knowing he’d want you to bring it to his wife."),
-
+//            new ItemData("Flag Bandana", 1, ITEM_TYPE_FLAG, STRENGTH_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \n\nIn one of the hardest moments of your long and storied career, you come across one of &BuddyNickname&’s American Flag Bandanas.  With a moment of flexing silence you wrap it around your own head.  He’s suplexing angels now, and if these robots are half the trouble command expects them to be you’ll need all the Patriotism you can get."),
+            new ItemData("MegaLaser 3000", 2, ITEM_TYPE_GUN, AGILITY_ID, 0, "After some thought you decide that even with your bulging muscles, emergency patriotism bag, and righteous fury you were still outgunned.  Its obvious then that you must scavenge the nearby fields in the hopes of finding anything that might’ve been thrown clear of the equipment pod.  The wreckage covers most of the nearby fields, pieces burning poetically against the night sky backdrop. \n\nWith some dedication, gumption, and the skills you acquired in the volunteer commando firefighters you manage to find something useful while sifting through the wreckage.  You find a Megalaser 3,000 with a full Cased Laser Injection Pod, or CLIP."),
+//            new ItemData("Hazard's Hat", 2, ITEM_TYPE_PANACHE, COMRADERY_ID, 0, "While every pod but yours got hit, you did notice that Hazard’s had gone down not too far from the drop zone.  Yeah, it was on fire, and sure parts of the metal had been vaporized, but damnit.  Hazard is one of the most American men you know, and wouldn’t let something like a 40,000 foot drop end him.  Not while there were Space Nazis to defeat.  The walk gives you time to recite the Pledge of Allegiance a few times, but eventually you reach a small stand of trees with the remains of Hazard’s pod littered all around it.  There's almost nothing left.  Some metal plating sits on the ground, flames licking at the heated metal.  A broken jar of military grade flexing oil sits spilling its precious contents into the ground.  But worst of all, sitting on the ground is Duke Hazard’s Cowboy Hat, given to him by the Space President for breaking the galactic record for most consecutive hours singing the national anthem.  You take it, knowing he’d want you to bring it to his wife."),
+//            new ItemData("Brass Knuckles", 1, ITEM_TYPE_WEAPON, STRENGTH_ID, 0, "You find some scrap metal in serviceable enough condition to be wrapped into crude brass knuckles.  Internally you give thanks to your Space American ingenuity, then move on.")
     };
 
     // items are cleaned once before the game runs, then never again
