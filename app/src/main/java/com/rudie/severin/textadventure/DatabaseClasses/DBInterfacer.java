@@ -31,7 +31,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     private Context mContext;
 
     private static final String DATABASE_NAME = "TEXT_GAME_DB";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     private static DBInterfacer DB;
 
