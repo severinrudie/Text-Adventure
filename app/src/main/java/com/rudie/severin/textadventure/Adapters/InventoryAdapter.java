@@ -69,7 +69,7 @@ public class InventoryAdapter extends
             tvPower.setText("");
         }
         TextView tvStat = viewHolder.tvStat;
-        if (!item.getItemStatName().equals(PH.NULL)) {
+        if (power != 0) {
             tvStat.setText("Boosts: " + item.getItemStatName());
         } else {
             tvStat.setText("");

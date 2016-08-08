@@ -381,13 +381,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
         String name = item.getItemName();
         int power = item.getItemPower();
         int type = item.getItemTypeId();
+        int statId = item.getItemStatId();
         int charId = item.getItemOwnerId();
         String acquireText = item.getAcquireText();
 
         String sql = "INSERT INTO " + PH.tbl_inventory + " (" + PH.tbl_inventory_name + ", "
-                + PH.tbl_inventory_power + ", " + PH.tbl_inventory_type_id + ", "
+                + PH.tbl_inventory_power + ", " + PH.tbl_inventory_type_id + ", " + PH.tbl_inventory_stat_id + ", "
                 + PH.tbl_inventory_character_id + ", " + PH.tbl_inventory_acquisition_text
-                + ") VALUES ('" + name + "', '" + power + "', '" + type + "', '" + charId + "', '"
+                + ") VALUES ('" + name + "', '" + power + "', '" + type + "', '" + statId + "', '" + charId + "', '"
                 + acquireText + "');";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(sql);
