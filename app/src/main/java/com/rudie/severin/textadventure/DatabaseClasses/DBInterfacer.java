@@ -31,7 +31,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     private Context mContext;
 
     private static final String DATABASE_NAME = "TEXT_GAME_DB";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static DBInterfacer DB;
 
@@ -74,12 +74,11 @@ public class DBInterfacer extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        dropAllTables();
+        dropAllTables(db);
         this.onCreate(db);
     }
 
-    public void dropAllTables() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void dropAllTables(SQLiteDatabase db) {
         for (String string : PH.all_tables) {
             db.execSQL("DROP TABLE IF EXISTS " + string);
         }
@@ -186,8 +185,9 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public static String cleanTextForDb(String string) {
-        string = string.replace("'", "''");
-        string = string.replace("\"", "\\\"");
+        string = string.replaceAll("\\w'\\w", "''");
+        string = string.replaceAll("[\\w|\\s](')[\\w|\\s]", "''");
+        string = string.replaceAll("\\w\"\\w", "\\\"");
         return string;
     }
 

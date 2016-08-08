@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,11 @@ public class StatisticsFragment extends android.support.v4.app.Fragment {
         tvAgility.setText("Agility: " + statArray[1]);
         tvComradery.setText("Comradery: " + statArray[2]);
 
-        int baseLength = 500;
+        DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        int baseLength = (int) (width * .7);
 
         ivHp.getLayoutParams().width = ((baseLength / 10) * hp);
         ivStrength.getLayoutParams().width = ((baseLength / 10) * (statArray[0]));
