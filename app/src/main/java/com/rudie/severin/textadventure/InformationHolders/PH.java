@@ -2,6 +2,10 @@ package com.rudie.severin.textadventure.InformationHolders;
 
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Created by erikrudie on 7/23/16.
  */
@@ -276,12 +280,56 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
 
     };
 
+    // items are cleaned once before the game runs, then never again
     public static void cleanItemsForDb() {
         for (ItemData item : itemTemplates) {
             item.setItemName(DBInterfacer.cleanTextForDb(item.getItemName()));
             item.setAcquireText(DBInterfacer.cleanTextForDb(item.getAcquireText()));
         }
     }
+
+    public static void replaceNames() {
+        Map<String, String> nameReplacements = populateNameReplacements();
+        Set<String> keys = nameReplacements.keySet();
+
+        for (String[] nodeArray : nodeDetails) {
+            for (String key : keys) {
+                nodeArray[1] = nodeArray[1].replace(key, nameReplacements.get(key));
+            }
+        }
+
+        for (ChoiceData choiceData : choiceDetails) {
+            for (String key: keys) {
+                choiceData.setText(choiceData.getText().replace(key, nameReplacements.get(key)));
+            }
+        }
+
+        for (String[] popupArray : popupDetails) {
+            for (String key: keys) {
+                popupArray[1] = popupArray[1].replace(key, nameReplacements.get(key));
+            }
+        }
+
+        for (ItemData item : itemTemplates) {
+            for (String key: keys) {
+                item.setItemName(item.getItemName().replace(key, nameReplacements.get(key)));
+                item.setAcquireText(item.getAcquireText().replace(key, nameReplacements.get(key)));
+            }
+        }
+
+
+    }
+
+    private static Map<String, String> populateNameReplacements() {
+        Map<String, String> nameReplacements = new HashMap<>();
+
+        nameReplacements.put("&ProfessorFullTitle&", "Governor-Professor Notevil");
+
+        // TODO: add things to replace here
+
+        return nameReplacements;
+    }
+
     
     // END item details
 }

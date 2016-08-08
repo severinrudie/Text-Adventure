@@ -11,7 +11,7 @@ This class holds all information relevent to Choices, and is used to build the d
  */
 public class ChoiceData {
 
-    private final String text;
+    private String text;
     private final int nodeId;
     private final int toNode;
     private final int connectedSuccessPopup;
@@ -75,5 +75,9 @@ public class ChoiceData {
 
     public int[] getInts() {
         return ints;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

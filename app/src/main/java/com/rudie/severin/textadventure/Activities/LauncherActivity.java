@@ -28,7 +28,10 @@ public class LauncherActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
+        // TODO: have this happen only when db is created
         PH.cleanItemsForDb();
+        PH.replaceNames();
+        // TODO: have this happen only when db is created
 
         TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
         TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);
