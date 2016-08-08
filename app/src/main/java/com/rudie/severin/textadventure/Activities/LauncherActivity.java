@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.koushikdutta.ion.Ion;
 import com.rudie.severin.textadventure.Activities.LoadActivity;
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
@@ -19,6 +21,7 @@ import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
+import io.fabric.sdk.android.Fabric;
 
 public class LauncherActivity extends AppCompatActivity
         implements CharacterSelectFragment.OnCharacterCreatedListener {
@@ -28,6 +31,7 @@ public class LauncherActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Answers(), new Crashlytics());
         setContentView(R.layout.activity_launcher);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);

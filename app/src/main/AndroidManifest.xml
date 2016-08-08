@@ -18,6 +18,10 @@
         </activity>
         <activity android:name=".Activities.LoadActivity" />
         <activity android:name=".Activities.PlayActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4b771c8fe893bbce81da57ecf8127dcea7d8c9f9" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
