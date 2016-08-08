@@ -77,6 +77,8 @@ public class PopupFragment extends DialogFragment {
         } else if (item == PH.MONTAGE_COMRADERY_FLAG) {
 //            popupId = PH.MONTAGE_COMRADERY_POPUP;
             helper.upgradeCharacterStat(charId, PH.COMRADERY_ID);
+        } else if (item == PH.MECHASPIDER_DEAD) {
+            popupId = PH.MECHASPIDER_POPUP;
         }
 
         popupData = helper.getPopupData(popupId);

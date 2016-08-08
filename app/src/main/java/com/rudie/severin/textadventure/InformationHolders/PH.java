@@ -65,6 +65,8 @@ public class PH {
     public static final int MONTAGE_AGILITY_FLAG = 4;
     public static final int MONTAGE_COMRADERY_POPUP = 10005;
     public static final int MONTAGE_COMRADERY_FLAG = 5;
+    public static final int MECHASPIDER_DEAD = 6;
+    public static final int MECHASPIDER_POPUP = 25;
 
     public static final String COOKIE = "cookie";  // used to interpret node/popup images
     // END constants
@@ -240,12 +242,12 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new ChoiceData("Continue", 10, 11, 20, -1, -1, -1, -1, -1),
             new ChoiceData("Shoot the problem", 11, 12, 21, 22, -1, 1, 2, 4),
             new ChoiceData("Command the charge", 11, 12, 23, 24, -1, 3, 3, 3),
-            new ChoiceData("Loot the Mechaspider", 12, 13, 25, -1, -1, -1, -1, -1),
+            new ChoiceData("Loot the Mechaspider", 12, 13, 25, -1, -1, -1, -1, 6),
             new ChoiceData("Regroup and retreat", 12, 13, 26, -1, -1, -1, -1, -1),
             new ChoiceData("Continue", 13, 14, 27, -1, -1, -1, -1, -1),
-            new ChoiceData("Train Strength", 14, 15, 28, -1, -1, -1, -1, -1),
-            new ChoiceData("Train Agility", 14, 15, 29, -1, -1, -1, -1, -1),
-            new ChoiceData("Train Comradery", 14, 15, 30, -1, -1, -1, -1, -1),
+            new ChoiceData("Train Strength", 14, 15, 28, -1, -1, -1, -1, PH.MONTAGE_STRENGTH_FLAG),
+            new ChoiceData("Train Agility", 14, 15, 29, -1, -1, -1, -1, PH.MONTAGE_AGILITY_FLAG),
+            new ChoiceData("Train Comradery", 14, 15, 30, -1, -1, -1, -1, PH.MONTAGE_COMRADERY_FLAG),
             new ChoiceData("Assault the Fuel Depot", 15, 16, 31, -1, -1, -1, -1, -1),
             new ChoiceData("Display Patriotism", 15, 16, 32, -1, 4, -1, -1, -1),
             new ChoiceData("Assault the hoverpad", 16, 17, 33, -1, -1, -1, -1, -1),
@@ -266,7 +268,7 @@ public static final ChoiceData [] choiceDetails = new ChoiceData[]{
             new String[] {"1", "Scavenge Popup Placeholder Text", "PodsScavange", "NULL", "-1", "1"},
             new String[] {"2", "The fires in the field start to fall back behind you as you proceed away from the crash site.  They weren't supposed to know you were coming, but they were ready.  Somebody dropped the ball.  Whether it was intel, mission control, or Colonel Notaspy somebody was leaking information to the enemy.", "NULL", "NULL", "-1", "-1"},
             new String[] {"3", "You steady the Megalaser 3,000 against a nearby branch, letting the capacitors build to full charge as you move the scope reticule towards the enemy.  One of the &BadMinionPlural& starts to look quizzically at the initial target laser upon his chest, right before you let loose a burst.  As the first hostile hit the ground the others whirled about, trying to locate their attacker.  The bright red bolts struck too fast for them to react however, proving once again that nothing can stop a Space American armed with the greatest weapons Space America can buy from Space Belgium.", "RoboBodies", "NULL", "-1", "-1"},
-            new String[] {"4", "The &BadMinionPlural& aren't the most observant enemy you've ever faced.  Even the Quasar Qommunists pay more attention as they search an area.  As their patrol approached your location, you let out a battle cry and charged.  \"DEMOCRACY!!!\"  You scream as you grab the first &BadMinion& by the wrists, and swing him like a giant club into the others.  Hydraulics, gears, and blinking lights of questionable usefulness fly in all directions as you beat the patrol, with the patrol until the only thing moving in the area is a registered voter.", "RoboBodies", "NULL", "-1", "-1"},
+            new String[] {"4", "The &BadMinionPlural& aren't the most observant enemy you've ever faced.  Even the Quasar Qommunists pay more attention as they search an area.  As their patrol approached your location, you let out a battle cry and charged.  'DEMOCRACY!!!'  You scream as you grab the first &BadMinion& by the wrists, and swing him like a giant club into the others.  Hydraulics, gears, and blinking lights of questionable usefulness fly in all directions as you beat the patrol, with the patrol until the only thing moving in the area is a registered voter.", "RoboBodies", "NULL", "-1", "-1"},
             new String[] {"5", "You wait while the patrol moves closer and closer to your position, making mental note to make physical note of their lack of caution in the after action report.  As one of the soldiers gets particularly close you grab its arm and try to pull it into the trees with you.  However you get the feeling that the &BadMinion& is far heavier, and stronger than you'd anticipated as you flew through the air, colliding another &BadMinion&.  Thinking quickly you switch to Antimatter Cobra Style, and land a series of blows no generic, nameless foe could withstand.  In short order you find yourself alone in the field, with a reminder that the &BadMinionPlural& are dangerous", "RoboBodies", "NULL", "3", "-1"},
             new String[] {"6", "As much as ridding Trapistan, and the Galaxy of a few &BadMinionPlural& would help Space America, you have a mission.  Saving &ProfessorFullTitle& quickly means that these &BadMinionSlang& get a pardon.  For today.  Using all of the training you got in Space Commando Camp, you throw a rock at a in another direction and watch as they search in its vicinity for the next ten to forty-five minutes.", "NULL", "NULL", "-1", "-1"},
             new String[] {"7", "The &BadMinionPlural& are a blight on the galaxy, but one that will have to wait.  You've got a mission to do.  Summoning all of your strength, skill, and raw aptitude you duck under the tree branches and sprint past the &BadMinionPlural& while their backs are turned.  However you find yourself distracted naming all of the Space States and their Space Capitals, not noticing the dry branch until your foot falls on top of it.  Their knock-off Inferiorlaser 1,500s still smart as they burn through your standard issue Tank Top.  Thinking fast you plant your foot on a nearby log and push off, jumping through the air and over a nearby fence.  With some breathing room you are easily able to outpace the &BadMinionPlural&.", "NULL", "NULL", "3", "-1"},
