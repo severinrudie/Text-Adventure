@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import com.rudie.severin.textadventure.InformationHolders.ChoiceData;
-import com.rudie.severin.textadventure.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 
@@ -32,7 +31,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
     private Context mContext;
 
     private static final String DATABASE_NAME = "TEXT_GAME_DB";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
+    private static final boolean DELETE_SAVES_ON_FIRST_UPGRADE = false;
 
     private static DBInterfacer DB;
 
@@ -95,8 +95,14 @@ public class DBInterfacer extends SQLiteOpenHelper {
     }
 
     public void dropAllTables(SQLiteDatabase db) {
-        for (String string : PH.all_tables) {
-            db.execSQL("DROP TABLE IF EXISTS " + string);
+        if (DELETE_SAVES_ON_FIRST_UPGRADE) {
+            for (String string : PH.all_tables) {
+                db.execSQL("DROP TABLE IF EXISTS " + string);
+            }
+        } else {
+            for (String string : PH.content_tables_only) {
+                db.execSQL("DROP TABLE IF EXISTS " + string);
+            }
         }
     }
 

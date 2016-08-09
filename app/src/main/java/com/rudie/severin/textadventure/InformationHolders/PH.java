@@ -133,9 +133,12 @@ public class PH {
     public static final String[] all_tables = {tbl_choice, tbl_inventory, tbl_statistics,
             tbl_nodes, tbl_character, tbl_item_type, tbl_popup};
 
+    public static final String[] content_tables_only = {tbl_choice,
+            tbl_nodes, tbl_item_type, tbl_popup};
+
     public static final String[] create_tables = new String[] {
 
-            "CREATE TABLE " + tbl_choice + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_choice + " (" +
                     tbl_choice_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_choice_node_id + " integer, " +
                     tbl_choice_to_node_id + " integer, " +
@@ -148,7 +151,7 @@ public class PH {
                     tbl_choice_test_difficulty + " integer " +
                     ");" +
                     "",
-            "CREATE TABLE " + tbl_inventory +" (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_inventory +" (" +
                     tbl_inventory_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_inventory_name + " text, " +
                     tbl_inventory_power + " integer, " +
@@ -158,26 +161,26 @@ public class PH {
                     tbl_inventory_acquisition_text + " text " +
                     ");" +
                     "",
-            "CREATE TABLE " + tbl_statistics + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_statistics + " (" +
                     tbl_statistics_type_id + " integer, " +
                     tbl_statistics_stat_name + " text, " +
                     tbl_statistics_stat_value + " integer, " +
                     tbl_statistics_character_id + " integer" +
                     ");" +
                     "",
-            "CREATE TABLE " + tbl_nodes + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_nodes + " (" +
                     tbl_nodes_id + " integer PRIMARY KEY, " +
                     tbl_nodes_text + " text, " +
                     tbl_nodes_image + " text, " +
                     tbl_nodes_animation + " text"+
                     ");" +
                     " ",
-            "CREATE TABLE " + tbl_item_type + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_item_type + " (" +
                     tbl_item_type_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_item_type_name + " text" +
                     ");" +
                     "",
-            "CREATE TABLE " + tbl_character + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_character + " (" +
                     tbl_character_id + " integer PRIMARY KEY AUTOINCREMENT, " +
                     tbl_character_firstname + " text, " +
                     tbl_character_lastname + " text, " +
@@ -186,7 +189,7 @@ public class PH {
                     tbl_character_is_backup_for + " integer, " +
                     tbl_character_hp + " integer" +
                     ");",
-            "CREATE TABLE " + tbl_popup + " (" +
+            "CREATE TABLE IF NOT EXISTS " + tbl_popup + " (" +
                     tbl_popup_id + " integer PRIMARY KEY, " +
                     tbl_popup_text + " text, " +
                     tbl_popup_image + " text, " +

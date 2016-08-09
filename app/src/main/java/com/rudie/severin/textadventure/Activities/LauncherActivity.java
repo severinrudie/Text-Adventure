@@ -85,10 +85,10 @@ public class LauncherActivity extends AppCompatActivity
         });
 
 ////        TODO: temp code. resets DB on every new instance
-        SQLiteDatabase db = helper.getWritableDatabase();
-        helper.dropAllTables(db);
-        System.out.println("");
-        helper.onCreate(helper.getWritableDatabase());
+//        SQLiteDatabase db = helper.getWritableDatabase();
+//        helper.dropAllTables(db);
+//        System.out.println("");
+//        helper.onCreate(helper.getWritableDatabase());
 //
 ////        TODO: temp code.  gives player 1 a weapon
 ////        SQLiteDatabase db = helper.getWritableDatabase();
