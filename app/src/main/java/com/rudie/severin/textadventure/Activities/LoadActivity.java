@@ -15,7 +15,7 @@ import com.rudie.severin.textadventure.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadActivity extends AppCompatActivity {
+public class LoadActivity extends AppCompatActivity implements LoadAdapter.RefreshLoadListListener {
 
     List<Character> characters;
 
@@ -24,12 +24,22 @@ public class LoadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
 
+//        characters = getUniqueCharacters();
+//        LoadAdapter adapter = new LoadAdapter(this, characters);
+//        RecyclerView rvLoad = (RecyclerView) findViewById(R.id.recyclerviewLoad);
+//        rvLoad.setAdapter(adapter);
+//        rvLoad.setLayoutManager(new LinearLayoutManager(this));
+        refreshLoadList();
+
+    }
+
+    public void refreshLoadList() {
         characters = getUniqueCharacters();
         LoadAdapter adapter = new LoadAdapter(this, characters);
         RecyclerView rvLoad = (RecyclerView) findViewById(R.id.recyclerviewLoad);
         rvLoad.setAdapter(adapter);
         rvLoad.setLayoutManager(new LinearLayoutManager(this));
-
+        onPostResume();
     }
 
     @Override
@@ -54,5 +64,8 @@ public class LoadActivity extends AppCompatActivity {
         return characters;
     }
 
-
+    @Override
+    public void refreshLoadListNow() {
+        refreshLoadList();
+    }
 }

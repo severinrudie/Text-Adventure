@@ -10,9 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rudie.severin.textadventure.Activities.LoadActivity;
 import com.rudie.severin.textadventure.Activities.PlayActivity;
+import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.Character;
-import com.rudie.severin.textadventure.InformationHolders.ItemData;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
 
@@ -24,11 +25,13 @@ import java.util.List;
 public class LoadAdapter extends
         RecyclerView.Adapter<LoadAdapter.ViewHolder> {
 
+    RefreshLoadListListener mCallback;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name, characterId, hp, inventorySize, bestSkill;
         private View parent;
 
-        public ViewHolder(View loadView) {
+        public ViewHolder(View loadView, Context context) {
             super(loadView);
 //            characterId = (TextView) loadView.findViewById(R.id.textview_charId_loadRecyclerview);
             hp = (TextView) loadView.findViewById(R.id.textview_hp_loadRecyclerview);
@@ -58,7 +61,7 @@ public class LoadAdapter extends
 
         View loadView = inflater.inflate(R.layout.recycleritem_load_layout, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(loadView);
+        ViewHolder viewHolder = new ViewHolder(loadView, context);
         return viewHolder;
     }
 
@@ -102,7 +105,10 @@ public class LoadAdapter extends
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
+                                DBInterfacer.getInstance(getContext())
+                                        .deleteCharacterFromDb(character.getCharId());
+                                mCallback = (RefreshLoadListListener) mContext;
+                                mCallback.refreshLoadListNow();
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
@@ -134,5 +140,12 @@ public class LoadAdapter extends
         return characters.size();
     }
 
+    public interface RefreshLoadListListener {
+        public void refreshLoadListNow();
+    }
+
+
 }
+
+
 

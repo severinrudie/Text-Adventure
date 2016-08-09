@@ -433,10 +433,17 @@ public class DBInterfacer extends SQLiteOpenHelper {
         return charIds;
     }
 
-//    public void deleteCharacterFromDb(int charId) {
-//        String sql = "DELETE * "
-//    }
-
-
-
+    public void deleteCharacterFromDb(int charId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM " + PH.tbl_inventory +" WHERE " + PH.tbl_inventory_character_id + " = '"
+                + charId + "';";
+        db.execSQL(sql);
+        sql = "DELETE FROM " + PH.tbl_statistics +" WHERE " + PH.tbl_statistics_character_id + " = '"
+                + charId + "';";
+        db.execSQL(sql);
+        sql = "DELETE FROM " + PH.tbl_character +" WHERE " + PH.tbl_character_id + " = '"
+                + charId + "';";
+        db.execSQL(sql);
+        db.close();
+    }
 }
