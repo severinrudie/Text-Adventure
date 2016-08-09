@@ -147,6 +147,7 @@ public class PopupFragment extends DialogFragment {
     }
 
     private String cleanFormattingFromText(String text) {
+        text = text.replace("``", "\"");
         text = text.replace("`", "'");
         return text;
     }
