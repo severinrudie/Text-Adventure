@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rudie.severin.textadventure.Adapters.LoadAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
@@ -31,6 +32,7 @@ public class LoadActivity extends AppCompatActivity implements LoadAdapter.Refre
 //        rvLoad.setLayoutManager(new LinearLayoutManager(this));
         refreshLoadList();
 
+        Toast.makeText(this, "Long press a saved game to delete it", Toast.LENGTH_SHORT).show();
     }
 
     public void refreshLoadList() {

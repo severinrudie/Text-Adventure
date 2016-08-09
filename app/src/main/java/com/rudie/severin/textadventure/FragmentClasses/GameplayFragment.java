@@ -182,6 +182,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
     private String cleanEscapeCharactersFromText(String text) {
         text = text.replace("''", "'");
         text = text.replace("\\", "");
+        text = text.replace("`", "'");
         return text;
     }
 

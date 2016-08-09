@@ -141,7 +141,14 @@ public class PopupFragment extends DialogFragment {
 //                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
         }
 
+        tvText.setText(cleanFormattingFromText(tvText.getText().toString()));
+
         return view;
+    }
+
+    private String cleanFormattingFromText(String text) {
+        text = text.replace("`", "'");
+        return text;
     }
 
     @Override
