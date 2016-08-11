@@ -3,7 +3,7 @@
 #####- 1. Description
 #####- 2. Roadmap and Current State
 #####- 3. Future Goals
-#####- 5. Pictures
+#####- 4. Pictures
 
 
 ## 1. Description
@@ -32,5 +32,9 @@ Popup - Appears after a choice is selected.  Contains text, and optionally image
 * Animate launch page
 * Move DB ingestion into a seperate thread, and start it as soon as the app is opened
 
-## 5. Pictures
+## 4. Pictures
 
+<img src="/Screenshots/machosquad1.png" alt="Drawing" width= "200"/>
+<img src="/Screenshots/machosquad2.png" alt="Drawing" width= "200"/>
+<img src="/Screenshots/machosquad3.png" alt="Drawing" width= "200"/>
+<img src="/Screenshots/machosquad4.png" alt="Drawing" width= "200"/>
