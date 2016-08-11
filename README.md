@@ -1,12 +1,36 @@
-# Text-Adventure
+# Macho Squad: Back to Trapistan
 
--SQL Schema: http://dbdesigner.net/designer/schema/41747
--Story Web: https://docs.google.com/presentation/d/1gyh-Az30jYY-_j6KF5kWwVTJ_WzJ6uOxZlr6UeZdZCM/edit?ts=5793eecc#slide=id.p
--Doc: https://docs.google.com/document/d/1lMTHHtUkUCOfh5sDhuH11DhFWgGcll5yLNFE0yGHYq4/edit?ts=5794075d
+#####- 1. Description
+#####- 2. Roadmap and Current State
+#####- 3. Future Goals
+#####- 5. Pictures
 
--NPCs: Duke Hazard, 
 
--Random Names: Jordan Powers, Hanz Punchman
+## 1. Description
 
--Statistics: HP, Strength, Stealth, Agility, Comradery
+Macho Squad is a text adventure game set in an over the top, 1980's sci fi, hypermasculine environment.  The game is played in a simple manner, by reading the current situation, selecting an available choice, and progressing to the next point.  Success and failure is determined by checking choice difficulty versus character stats and items, and failures will reduce character hit points.
+
+Content may be generated using the included Python script (TextAdventureContentGenerator.py), using the following terminology:
+Node - Current story position.  Has attached text, and optionally image, and animation information.
+Choice - Bridge between current and next node.  Contains information regarding difficulty, required items, attached nodes, etc.
+Popup - Appears after a choice is selected.  Contains text, and optionally image and animation.  Describes the results of an attempted choice.
+
+## 2. Roadmap and Current State
+
+* Python script - completed
+* Nodes, choices, and popups ingest into database when version is incremented - complete
+* Character selection allows for different statistics, and includes a manly name generator - complete
+* Image tags (entered into script) map to images hosted online - complete
+* Animation tags map to different page change animations - incomplete
+* Old games can be loaded, and saves can be deleted - complete
+* Sound effects at important points - incomplete
+
+## 3. Future Goals
+
+* Complete content
+* Improve statistic selection interface
+* Animate launch page
+* Move DB ingestion into a seperate thread, and start it as soon as the app is opened
+
+## 5. Pictures
 
