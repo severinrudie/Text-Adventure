@@ -153,11 +153,13 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
 
 
 //            String url = ImageConstructor.getInstance().getUrl(nodeImage);
-            String url = "fake url so that error drawable is used instead";
+//            String url = "fake url so that error drawable is used instead";
           int drawableInt = ImageConstructor.getInstance().getDrawable(nodeImage);
+          String url = "android.resource://com.rudie.severin.textadventure/"
+            + drawableInt;
 
             Ion.with(imageView)
-                    .placeholder(R.color.colorPrimary)
+//                    .placeholder(R.color.colorPrimary)
                     .error(drawableInt)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)

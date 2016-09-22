@@ -40,11 +40,12 @@ public class LauncherActivity extends AppCompatActivity
 //                .load(url)
 //                .withBitmapInfo();
 //                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+      String url = "android.resource://com.rudie.severin.textadventure/"
+        + R.drawable.buff_bird;
 
       Ion.with(imageView)
         .error(R.drawable.buff_bird)
-        .resize(250, 250)
-        .load("fake url so that error drawable is used instead");
+        .load(url);
 
         TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
         TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);

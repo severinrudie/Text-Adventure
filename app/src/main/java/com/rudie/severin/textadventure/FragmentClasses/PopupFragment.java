@@ -130,8 +130,9 @@ public class PopupFragment extends DialogFragment {
 //            imageView.setImageDrawable(imageDrawable);
             // TODO: add ion here once it's working
 //            String url = ImageConstructor.getInstance().getUrl(image);
-            String url = "fake url so that error drawable is used instead";
             int drawableInt = ImageConstructor.getInstance().getDrawable(image);
+            String url = "android.resource://com.rudie.severin.textadventure/"
+              + drawableInt;
             Ion.with(imageView)
 //                    .placeholder(R.color.colorPrimary)
                     .error(drawableInt)
