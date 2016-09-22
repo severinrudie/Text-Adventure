@@ -148,14 +148,17 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-//            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(nodeImage));
+//            Drawable imageDrawable = getResources().getUrl(ImageConstructor.getInstance().getUrl(nodeImage));
 //            imageView.setImageDrawable(imageDrawable);
 
 
-            String url = ImageConstructor.getInstance().getDrawable(nodeImage);
+//            String url = ImageConstructor.getInstance().getUrl(nodeImage);
+            String url = "fake url so that error drawable is used instead";
+          int drawableInt = ImageConstructor.getInstance().getDrawable(nodeImage);
+
             Ion.with(imageView)
                     .placeholder(R.color.colorPrimary)
-                    .error(R.color.colorAccent)
+                    .error(drawableInt)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
                     .load(url)

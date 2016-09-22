@@ -1,7 +1,6 @@
 package com.rudie.severin.textadventure.Activities;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +13,9 @@ import android.widget.TextView;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.koushikdutta.ion.Ion;
-import com.rudie.severin.textadventure.Activities.LoadActivity;
 import com.rudie.severin.textadventure.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.InformationHolders.ImageConstructor;
-import com.rudie.severin.textadventure.InformationHolders.ItemData;
-import com.rudie.severin.textadventure.InformationHolders.PH;
 import com.rudie.severin.textadventure.R;
 import io.fabric.sdk.android.Fabric;
 
@@ -35,15 +31,20 @@ public class LauncherActivity extends AppCompatActivity
         setContentView(R.layout.activity_launcher);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
-        String url = ImageConstructor.getInstance().getDrawable("BuffEagle");
-        Ion.with(imageView)
-//                .placeholder(R.color.colorPrimary)
-//                .error(R.color.colorAccent)
-//                .animateLoad(spinAnimation)
-//                .animateIn(fadeInAnimation)
-                .load(url)
-                .withBitmapInfo();
+//        String url = ImageConstructor.getInstance().getUrl("BuffEagle");
+//        Ion.with(imageView)
+////                .placeholder(R.color.colorPrimary)
+////                .error(R.color.colorAccent)
+////                .animateLoad(spinAnimation)
+////                .animateIn(fadeInAnimation)
+//                .load(url)
+//                .withBitmapInfo();
 //                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+
+      Ion.with(imageView)
+        .error(R.drawable.buff_bird)
+        .resize(250, 250)
+        .load("fake url so that error drawable is used instead");
 
         TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);
         TextView titleMain2 = (TextView) findViewById(R.id.titlemain2);

@@ -1,7 +1,6 @@
 package com.rudie.severin.textadventure.FragmentClasses;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -127,13 +126,15 @@ public class PopupFragment extends DialogFragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-//            Drawable imageDrawable = getResources().getDrawable(ImageConstructor.getInstance().getDrawable(image));
+//            Drawable imageDrawable = getResources().getUrl(ImageConstructor.getInstance().getUrl(image));
 //            imageView.setImageDrawable(imageDrawable);
             // TODO: add ion here once it's working
-            String url = ImageConstructor.getInstance().getDrawable(image);
+//            String url = ImageConstructor.getInstance().getUrl(image);
+            String url = "fake url so that error drawable is used instead";
+            int drawableInt = ImageConstructor.getInstance().getDrawable(image);
             Ion.with(imageView)
-                    .placeholder(R.color.colorPrimary)
-                    .error(R.color.colorAccent)
+//                    .placeholder(R.color.colorPrimary)
+                    .error(drawableInt)
 //                .animateLoad(spinAnimation)
 //                .animateIn(fadeInAnimation)
                     .load(url)

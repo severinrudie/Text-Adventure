@@ -2,8 +2,6 @@ package com.rudie.severin.textadventure.InformationHolders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v4.content.res.ResourcesCompat;
 
 import com.rudie.severin.textadventure.R;
 
@@ -15,26 +13,37 @@ import java.util.HashMap;
 public class ImageConstructor {
 
     private static ImageConstructor instance;
-//    private HashMap<String, Integer> imageHashMap = new HashMap<>();
-    private HashMap<String, String> imageHashMap = new HashMap<>();
+//    private HashMap<String, Integer> urlHashMap = new HashMap<>();
+    private HashMap<String, String> urlHashMap = new HashMap<>();
+    private HashMap<String, Integer> drawableHashMap = new HashMap<>();
     private Context mContext;
 
     private ImageConstructor() {
-//        imageHashMap.put(PH.COOKIE, R.drawable.cookie_small);
-//        imageHashMap.put("PodsLanding", R.drawable.pods_landing);
-//        imageHashMap.put("PodsScavange", R.drawable.pods_scavenge);
-//        imageHashMap.put("RoboBodies", R.drawable.robo_pile);
-//        imageHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
+//        urlHashMap.put(PH.COOKIE, R.drawable.cookie_small);
+//        urlHashMap.put("PodsLanding", R.drawable.pods_landing);
+//        urlHashMap.put("PodsScavange", R.drawable.pods_scavenge);
+//        urlHashMap.put("RoboBodies", R.drawable.robo_pile);
+//        urlHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
 
-        imageHashMap.put("PodsLanding", "https://s5.postimg.org/495sn2b0j/Pods_Landing.jpg");
-        imageHashMap.put("PodsScavange", "https://s5.postimg.org/fmsby9lj7/Pods_Scavange.jpg");
-        imageHashMap.put("RoboBodies", "https://s5.postimg.org/3ngtqyfyb/Robo_Pile.jpg");
-        imageHashMap.put("ProfessorNotevil", "https://s5.postimg.org/e90p2ym9v/Professor_Notevil.jpg");
-        imageHashMap.put("Mechaspider", "https://s5.postimg.org/ub389clz7/Mechaspider.jpg");
-        imageHashMap.put("BuddyLounging", "https://s5.postimg.org/lesg5evcz/Buddy_Lounging.jpg");
-        imageHashMap.put("EmergencyFlag", "https://s5.postimg.org/r97e2a2ir/Emergency_Flag.jpg");
-        imageHashMap.put("BuffEagle", "https://s5.postimg.org/4ay3zg6dj/buff_bird_medium.png");
-        imageHashMap.put("HackTheButton", "https://s5.postimg.org/lz2fazi9v/Hack_The_Button.jpg");
+        urlHashMap.put("PodsLanding", "https://s5.postimg.org/495sn2b0j/Pods_Landing.jpg");
+        urlHashMap.put("PodsScavange", "https://s5.postimg.org/fmsby9lj7/Pods_Scavange.jpg");
+        urlHashMap.put("RoboBodies", "https://s5.postimg.org/3ngtqyfyb/Robo_Pile.jpg");
+        urlHashMap.put("ProfessorNotevil", "https://s5.postimg.org/e90p2ym9v/Professor_Notevil.jpg");
+        urlHashMap.put("Mechaspider", "https://s5.postimg.org/ub389clz7/Mechaspider.jpg");
+        urlHashMap.put("BuddyLounging", "https://s5.postimg.org/lesg5evcz/Buddy_Lounging.jpg");
+        urlHashMap.put("EmergencyFlag", "https://s5.postimg.org/r97e2a2ir/Emergency_Flag.jpg");
+        urlHashMap.put("BuffEagle", "https://s5.postimg.org/4ay3zg6dj/buff_bird_medium.png");
+        urlHashMap.put("HackTheButton", "https://s5.postimg.org/lz2fazi9v/Hack_The_Button.jpg");
+
+        drawableHashMap.put("PodsLanding", R.drawable.pods_landing);
+        drawableHashMap.put("PodsScavange", R.drawable.pods_scavange);
+        drawableHashMap.put("RoboBodies", R.drawable.robo_pile);
+        drawableHashMap.put("ProfessorNotevil", R.drawable.professor_notevil);
+        drawableHashMap.put("Mechaspider", R.drawable.mechaspider);
+        drawableHashMap.put("BuddyLounging", R.drawable.buddy_lounging);
+        drawableHashMap.put("EmergencyFlag", R.drawable.emergency_flag);
+        drawableHashMap.put("BuffEagle", R.drawable.buff_bird);
+        drawableHashMap.put("HackTheButton", R.drawable.hack_the_button);
     }
 
     public void giveContext(Context context) {
@@ -48,8 +57,12 @@ public class ImageConstructor {
         return instance;
     }
 
-    public String getDrawable(String key) {
-        return imageHashMap.get(key);
+    public String getUrl(String key) {
+        return urlHashMap.get(key);
+    }
+    
+    public int getDrawable(String key) {
+        return drawableHashMap.get(key);
     }
 
 }
