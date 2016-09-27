@@ -31,15 +31,7 @@ public class LauncherActivity extends AppCompatActivity
         setContentView(R.layout.activity_launcher);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
-//        String url = ImageConstructor.getInstance().getUrl("BuffEagle");
-//        Ion.with(imageView)
-////                .placeholder(R.color.colorPrimary)
-////                .error(R.color.colorAccent)
-////                .animateLoad(spinAnimation)
-////                .animateIn(fadeInAnimation)
-//                .load(url)
-//                .withBitmapInfo();
-//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
+
       String url = "android.resource://com.rudie.severin.textadventure/"
         + R.drawable.buff_bird;
 
@@ -52,9 +44,6 @@ public class LauncherActivity extends AppCompatActivity
         Typeface font = Typeface.createFromAsset(getAssets(), "BLADRMF_.TTF");
         titleMain1.setTypeface(font);
         titleMain2.setTypeface(font);
-//        titleMain1.setTextScaleX((float) 0.7 );
-//        titleMain2.setTextScaleX((float) 0.7 );
-
 
         ImageConstructor imageConstructor = ImageConstructor.getInstance();
         imageConstructor.giveContext(this);

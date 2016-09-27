@@ -90,7 +90,6 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                // TODO: give the inventory fragment the charid
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return inventoryFragment;
                 case 1: // Fragment # 0 - This will show FirstFragment different title

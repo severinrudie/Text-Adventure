@@ -28,7 +28,7 @@ public class PopupFragment extends DialogFragment {
     }
 
     public interface PopupCompleteListener {
-        public void closePopupNow();
+        void closePopupNow();
     }
 
     TextView tvText, tvDamage, tvItem;
@@ -126,21 +126,13 @@ public class PopupFragment extends DialogFragment {
             imageView.setVisibility(View.GONE);
         } else {
             imageView.setVisibility(View.VISIBLE);
-//            Drawable imageDrawable = getResources().getUrl(ImageConstructor.getInstance().getUrl(image));
-//            imageView.setImageDrawable(imageDrawable);
-            // TODO: add ion here once it's working
-//            String url = ImageConstructor.getInstance().getUrl(image);
             int drawableInt = ImageConstructor.getInstance().getDrawable(image);
             String url = "android.resource://com.rudie.severin.textadventure/"
               + drawableInt;
             Ion.with(imageView)
-//                    .placeholder(R.color.colorPrimary)
                     .error(drawableInt)
-//                .animateLoad(spinAnimation)
-//                .animateIn(fadeInAnimation)
                     .load(url)
                     .withBitmapInfo();
-//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
         }
 
         tvText.setText(cleanFormattingFromText(tvText.getText().toString()));
