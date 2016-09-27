@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rudie.severin.textadventure.Activities.PlayActivity;
+import com.rudie.severin.textadventure.Adapters.CharacterStatisticsAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.InformationHolders.PH;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class CharacterSelectFragment extends DialogFragment {
     OnCharacterCreatedListener mCallback;
@@ -71,38 +77,47 @@ public class CharacterSelectFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_character_select, container, false);
 
-        topSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentTop);
-        midSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentMid);
-        botSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentBot);
+        //TODO: begin drag refactor
+//        topSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentTop);
+//        midSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentMid);
+//        botSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentBot);
+//
+//        ImageButton topDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentTopDown);
+//        topDown.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                swapSkills(topSkill, midSkill);
+//            }
+//        });
+//        final ImageButton midDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidDown);
+//        midDown.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                swapSkills(midSkill, botSkill);
+//            }
+//        });
+//        ImageButton midUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidUp);
+//        midUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                swapSkills(midSkill, topSkill);
+//            }
+//        });
+//        ImageButton botUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentBotUp);
+//        botUp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                swapSkills(botSkill, midSkill);
+//            }
+//        });
 
-        ImageButton topDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentTopDown);
-        topDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                swapSkills(topSkill, midSkill);
-            }
-        });
-        final ImageButton midDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidDown);
-        midDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                swapSkills(midSkill, botSkill);
-            }
-        });
-        ImageButton midUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidUp);
-        midUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                swapSkills(midSkill, topSkill);
-            }
-        });
-        ImageButton botUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentBotUp);
-        botUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                swapSkills(botSkill, midSkill);
-            }
-        });
+        RecyclerView rvStats = (RecyclerView) view.findViewById(R.id.recyclerview_stats_characterSelectFragment);
+
+        List<String> statistics = Arrays.asList(new String[] {"Strength", "Agility", "Comradery"});
+        CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), statistics);
+        rvStats.setAdapter(adapter);
+        rvStats.setLayoutManager(new LinearLayoutManager(getContext()));
+        //TODO: end drag refactor
 
         final EditText editText = (EditText) view.findViewById(R.id.edittextCharacterSelectFragment);
         editText.setText(generateRandomName());
@@ -120,7 +135,9 @@ public class CharacterSelectFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 if (editText.getText().toString().length() > 0) {
+                    //TODO: begin drag refactor
                     int currentCharacterId = passCharacterToDb(editText, topSkill, midSkill, botSkill);
+                    //TODO: end drag refactor
                     DBInterfacer helper = DBInterfacer.getInstance(getActivity());
                     helper.giveCharacterStartingInventory(currentCharacterId);
                     // TODO: this currently goes to PlayActivity, but once animations are in it will direct
