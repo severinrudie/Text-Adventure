@@ -1,14 +1,18 @@
 package com.rudie.severin.textadventure.Adapters;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.Utility.ItemTouchHelperAdapter;
+import com.rudie.severin.textadventure.Utility.OnStartDragListener;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,20 +28,25 @@ public class CharacterStatisticsAdapter extends
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public Button button;
+    public View parent;
 
     public ViewHolder(View itemView) {
       super(itemView);
 
       button = (Button) itemView.findViewById(R.id.textview_statistic_characterStatsRecycler);
+      parent = (View) itemView;
     }
   }
 
   private List<String> mStatistics;
   private Context mContext;
+  private final OnStartDragListener mDragStartListener;
 
-  public CharacterStatisticsAdapter(Context context, List<String> statistics) {
+  public CharacterStatisticsAdapter(Context context, List<String> statistics,
+                                    OnStartDragListener dragStartListener) {
     mStatistics = statistics;
     mContext = context;
+    mDragStartListener = dragStartListener;
   }
 
   private Context getContext() {
@@ -56,11 +65,23 @@ public class CharacterStatisticsAdapter extends
   }
 
   @Override
-  public void onBindViewHolder(CharacterStatisticsAdapter.ViewHolder viewHolder, int position) {
+  public void onBindViewHolder(final CharacterStatisticsAdapter.ViewHolder viewHolder,
+                               int position) {
     String statName = mStatistics.get(position);
 
     Button textView = viewHolder.button;
     textView.setText(statName);
+
+    viewHolder.parent.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (MotionEventCompat.getActionMasked(event) ==
+          MotionEvent.ACTION_DOWN) {
+          mDragStartListener.onStartDrag(viewHolder);
+        }
+        return false;
+      }
+    });
   }
 
   // Returns the total count of items in the list
@@ -89,5 +110,6 @@ public class CharacterStatisticsAdapter extends
     notifyItemMoved(fromPosition, toPosition);
     return true;
   }
+
 }
 

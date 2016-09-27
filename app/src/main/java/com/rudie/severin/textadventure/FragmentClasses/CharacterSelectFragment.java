@@ -22,6 +22,7 @@ import com.rudie.severin.textadventure.Adapters.CharacterStatisticsAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.InformationHolders.PH;
+import com.rudie.severin.textadventure.Utility.OnStartDragListener;
 import com.rudie.severin.textadventure.Utility.SimpleItemTouchHelperCallback;
 
 import java.util.ArrayList;
@@ -29,9 +30,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CharacterSelectFragment extends DialogFragment {
+public class CharacterSelectFragment extends DialogFragment
+  implements OnStartDragListener {
     OnCharacterCreatedListener mCallback;
     Context mContext;
+
+    ItemTouchHelper mItemTouchHelper;
 
     public static CharacterSelectFragment newInstance() {
         return new CharacterSelectFragment();
@@ -116,14 +120,14 @@ public class CharacterSelectFragment extends DialogFragment {
         RecyclerView rvStats = (RecyclerView) view.findViewById(R.id.recyclerview_stats_characterSelectFragment);
 
         List<String> statistics = Arrays.asList(new String[] {"Strength", "Agility", "Comradery"});
-        CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), statistics);
+        CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), statistics, this);
         rvStats.setAdapter(adapter);
         rvStats.setLayoutManager(new LinearLayoutManager(getContext()));
 
         ItemTouchHelper.Callback callback =
           new SimpleItemTouchHelperCallback(adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-        touchHelper.attachToRecyclerView(rvStats);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(rvStats);
         //TODO: end drag refactor
 
         final EditText editText = (EditText) view.findViewById(R.id.edittextCharacterSelectFragment);
@@ -166,6 +170,11 @@ public class CharacterSelectFragment extends DialogFragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
     }
 
     @Override
