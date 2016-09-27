@@ -69,10 +69,10 @@ public class CharacterStatisticsAdapter extends
                                int position) {
     String statName = mStatistics.get(position);
 
-    Button textView = viewHolder.button;
-    textView.setText(statName);
+    Button button = viewHolder.button;
+    button.setText(statName);
 
-    viewHolder.parent.setOnTouchListener(new View.OnTouchListener() {
+    button.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         if (MotionEventCompat.getActionMasked(event) ==

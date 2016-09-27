@@ -34,6 +34,7 @@ public class CharacterSelectFragment extends DialogFragment
   implements OnStartDragListener {
     OnCharacterCreatedListener mCallback;
     Context mContext;
+    List<String> mStatistics;
 
     ItemTouchHelper mItemTouchHelper;
 
@@ -83,44 +84,10 @@ public class CharacterSelectFragment extends DialogFragment
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_character_select, container, false);
 
-        //TODO: begin drag refactor
-//        topSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentTop);
-//        midSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentMid);
-//        botSkill = (TextView) view.findViewById(R.id.textviewCharacterFragmentBot);
-//
-//        ImageButton topDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentTopDown);
-//        topDown.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                swapSkills(topSkill, midSkill);
-//            }
-//        });
-//        final ImageButton midDown = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidDown);
-//        midDown.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                swapSkills(midSkill, botSkill);
-//            }
-//        });
-//        ImageButton midUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentMidUp);
-//        midUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                swapSkills(midSkill, topSkill);
-//            }
-//        });
-//        ImageButton botUp = (ImageButton) view.findViewById(R.id.buttonCharacterSelectFragmentBotUp);
-//        botUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                swapSkills(botSkill, midSkill);
-//            }
-//        });
-
         RecyclerView rvStats = (RecyclerView) view.findViewById(R.id.recyclerview_stats_characterSelectFragment);
 
-        List<String> statistics = Arrays.asList(new String[] {"Strength", "Agility", "Comradery"});
-        CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), statistics, this);
+        mStatistics = Arrays.asList(new String[] {"Strength", "Agility", "Comradery"});
+        CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), mStatistics, this);
         rvStats.setAdapter(adapter);
         rvStats.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -128,7 +95,6 @@ public class CharacterSelectFragment extends DialogFragment
           new SimpleItemTouchHelperCallback(adapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(rvStats);
-        //TODO: end drag refactor
 
         final EditText editText = (EditText) view.findViewById(R.id.edittextCharacterSelectFragment);
         editText.setText(generateRandomName());
@@ -146,9 +112,9 @@ public class CharacterSelectFragment extends DialogFragment
             @Override
             public void onClick(View view) {
                 if (editText.getText().toString().length() > 0) {
-                    //TODO: begin drag refactor
-                    int currentCharacterId = passCharacterToDb(editText, topSkill, midSkill, botSkill);
-                    //TODO: end drag refactor
+                    int currentCharacterId = passCharacterToDb(editText, mStatistics.get(0),
+                      mStatistics.get(1), mStatistics.get(2));
+
                     DBInterfacer helper = DBInterfacer.getInstance(getActivity());
                     helper.giveCharacterStartingInventory(currentCharacterId);
                     // TODO: this currently goes to PlayActivity, but once animations are in it will direct
@@ -209,7 +175,7 @@ public class CharacterSelectFragment extends DialogFragment
 //    getNames and getSkills contain all logic for deciding names/skills.  Node here is set to 0
 //    (the first node) and backup for to null (this is a new character).  This method only passes
 //    information to the DBInterfacer
-    public int passCharacterToDb(EditText editText, TextView top, TextView mid, TextView bot) {
+    public int passCharacterToDb(EditText editText, String top, String mid, String bot) {
         String[] names = getNames(editText);
         String firstName = names[0];
         String nickName = names[1];
@@ -239,11 +205,11 @@ public class CharacterSelectFragment extends DialogFragment
         return new String[] {firstName, nickName, lastName};
     }
 
-    public HashMap<String, Integer> getSkills(TextView top, TextView mid, TextView bot) {
+    public HashMap<String, Integer> getSkills(String top, String mid, String bot) {
         HashMap<String, Integer> skillMap = new HashMap<>();
-        skillMap.put(top.getText().toString(), 3);
-        skillMap.put(mid.getText().toString(), 2);
-        skillMap.put(bot.getText().toString(), 1);
+        skillMap.put(top, 3);
+        skillMap.put(mid, 2);
+        skillMap.put(bot, 1);
         return skillMap;
     }
 
