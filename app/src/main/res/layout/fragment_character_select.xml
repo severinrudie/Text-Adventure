@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rank your skills from best to worst"
+                    android:text="Rank your skills from strongest to weakest"
                     android:gravity="center_horizontal"/>
 
             <LinearLayout

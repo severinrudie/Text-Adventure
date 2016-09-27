@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.rudie.severin.textadventure.Adapters.CharacterStatisticsAdapter;
 import com.rudie.severin.textadventure.DatabaseClasses.DBInterfacer;
 import com.rudie.severin.textadventure.R;
 import com.rudie.severin.textadventure.InformationHolders.PH;
+import com.rudie.severin.textadventure.Utility.SimpleItemTouchHelperCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,6 +119,11 @@ public class CharacterSelectFragment extends DialogFragment {
         CharacterStatisticsAdapter adapter = new CharacterStatisticsAdapter(getContext(), statistics);
         rvStats.setAdapter(adapter);
         rvStats.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ItemTouchHelper.Callback callback =
+          new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rvStats);
         //TODO: end drag refactor
 
         final EditText editText = (EditText) view.findViewById(R.id.edittextCharacterSelectFragment);

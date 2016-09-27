@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.rudie.severin.textadventure.R;
+import com.rudie.severin.textadventure.Utility.ItemTouchHelperAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,7 +19,8 @@ import java.util.List;
 
 
 public class CharacterStatisticsAdapter extends
-  RecyclerView.Adapter<CharacterStatisticsAdapter.ViewHolder> {
+  RecyclerView.Adapter<CharacterStatisticsAdapter.ViewHolder>
+  implements ItemTouchHelperAdapter {
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
     public Button button;
@@ -64,6 +67,27 @@ public class CharacterStatisticsAdapter extends
   @Override
   public int getItemCount() {
     return mStatistics.size();
+  }
+
+  @Override
+  public void onItemDismiss(int position) {
+    mStatistics.remove(position);
+    notifyItemRemoved(position);
+  }
+
+  @Override
+  public boolean onItemMove(int fromPosition, int toPosition) {
+    if (fromPosition < toPosition) {
+      for (int i = fromPosition; i < toPosition; i++) {
+        Collections.swap(mStatistics, i, i + 1);
+      }
+    } else {
+      for (int i = fromPosition; i > toPosition; i--) {
+        Collections.swap(mStatistics, i, i - 1);
+      }
+    }
+    notifyItemMoved(fromPosition, toPosition);
+    return true;
   }
 }
 
