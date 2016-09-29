@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rudie.severin.textadventure">
+    package="com.rudie.severin.machosquad">
 
     <application
         android:largeHeap="true"
@@ -9,15 +9,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LauncherActivity">
+        <activity android:name="com.rudie.severin.machosquad.Activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.LoadActivity" />
-        <activity android:name=".Activities.PlayActivity"></activity>
+        <activity android:name="com.rudie.severin.machosquad.Activities.LoadActivity" />
+        <activity android:name="com.rudie.severin.machosquad.Activities.PlayActivity"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="4b771c8fe893bbce81da57ecf8127dcea7d8c9f9" />
