@@ -127,8 +127,7 @@ public class PopupFragment extends DialogFragment {
         } else {
             imageView.setVisibility(View.VISIBLE);
             int drawableInt = ImageConstructor.getInstance().getDrawable(image);
-            String url = "android.resource://com.rudie.severin.textadventure/"
-              + drawableInt;
+            String url = "Dummy URL to load error image";
             Ion.with(imageView)
                     .error(drawableInt)
                     .load(url)

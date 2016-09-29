@@ -32,8 +32,7 @@ public class LauncherActivity extends AppCompatActivity
 
         ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
 
-      String url = "android.resource://com.rudie.severin.textadventure/"
-        + R.drawable.buff_bird;
+      String url = "Dummy URL to load error image";
 
       Ion.with(imageView)
         .error(R.drawable.buff_bird)
