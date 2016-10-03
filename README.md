@@ -34,7 +34,10 @@ Popup - Appears after a choice is selected.  Contains text, and optionally image
 
 ## 4. Pictures
 
-<img src="/Screenshots/machosquad1.png" alt="Drawing" width= "200"/>
-<img src="/Screenshots/machosquad2.png" alt="Drawing" width= "200"/>
-<img src="/Screenshots/machosquad3.png" alt="Drawing" width= "200"/>
-<img src="/Screenshots/machosquad4.png" alt="Drawing" width= "200"/>
+<p align="left">
+<img style="padding: 100px" src="/Screenshots/app1.png" width="200">
+<img style="padding: 100px" src="/Screenshots/app2.png" width="200">
+<img style="padding: 100px" src="/Screenshots/app3.png" width="200">
+<img style="padding: 100px" src="/Screenshots/app4.png" width="200">
+
+</p>
