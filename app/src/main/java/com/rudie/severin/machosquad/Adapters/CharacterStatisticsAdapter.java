@@ -16,31 +16,13 @@ import com.rudie.severin.machosquad.Utility.OnStartDragListener;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by erikrudie on 9/26/16.
- */
-
-
 public class CharacterStatisticsAdapter extends
   RecyclerView.Adapter<CharacterStatisticsAdapter.ViewHolder>
   implements ItemTouchHelperAdapter {
 
-  public static class ViewHolder extends RecyclerView.ViewHolder {
-    public Button button;
-    public View parent;
-
-    public ViewHolder(View itemView) {
-      super(itemView);
-
-      button = (Button) itemView.findViewById(R.id.textview_statistic_characterStatsRecycler);
-      parent = (View) itemView;
-    }
-  }
-
+  private final OnStartDragListener mDragStartListener;
   private List<String> mStatistics;
   private Context mContext;
-  private final OnStartDragListener mDragStartListener;
-
   public CharacterStatisticsAdapter(Context context, List<String> statistics,
                                     OnStartDragListener dragStartListener) {
     mStatistics = statistics;
@@ -83,7 +65,6 @@ public class CharacterStatisticsAdapter extends
     });
   }
 
-  // Returns the total count of items in the list
   @Override
   public int getItemCount() {
     return mStatistics.size();
@@ -108,6 +89,18 @@ public class CharacterStatisticsAdapter extends
     }
     notifyItemMoved(fromPosition, toPosition);
     return true;
+  }
+
+  public static class ViewHolder extends RecyclerView.ViewHolder {
+    public Button button;
+    public View parent;
+
+    public ViewHolder(View itemView) {
+      super(itemView);
+
+      button = (Button) itemView.findViewById(R.id.textview_statistic_characterStatsRecycler);
+      parent = (View) itemView;
+    }
   }
 
 }

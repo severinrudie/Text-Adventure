@@ -27,168 +27,157 @@ import java.util.List;
 
 public class GameplayFragment extends android.support.v4.app.Fragment {
 
-    private List<ChoiceData> choiceList;
-    private RecyclerView rvChoices;
-    private ChoiceAdapter adapter;
-    private DBInterfacer helper;
-    private TextView textviewText;
-//    private int nextNode;
-    private int currentCharacterId;
-    private ImageView imageView;
-    private ScrollView scrollView;
+  private List<ChoiceData> choiceList;
+  private RecyclerView rvChoices;
+  private ChoiceAdapter adapter;
+  private DBInterfacer helper;
+  private TextView textviewText;
+  private int currentCharacterId;
+  private ImageView imageView;
+  private ScrollView scrollView;
 
-    public GameplayFragment() {
-        // Required empty public constructor
+  public GameplayFragment() {
+    // Required empty public constructor
+  }
+
+  public static GameplayFragment newInstance(int currentCharacterId) {
+    GameplayFragment fragment = new GameplayFragment();
+    Bundle args = new Bundle();
+    args.putInt(PH.CURRENT_CHARACTER, currentCharacterId);
+    fragment.setArguments(args);
+    return fragment;
+  }
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    if (getArguments() != null) {
+      currentCharacterId = getArguments().getInt(PH.CURRENT_CHARACTER);
     }
+  }
 
-    public static GameplayFragment newInstance(int currentCharacterId) {
-        GameplayFragment fragment = new GameplayFragment();
-        Bundle args = new Bundle();
-        args.putInt(PH.CURRENT_CHARACTER, currentCharacterId);
-        fragment.setArguments(args);
-        return fragment;
-    }
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_gameplay, container, false);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            currentCharacterId = getArguments().getInt(PH.CURRENT_CHARACTER);
+    helper = DBInterfacer.getInstance(getActivity());
+    textviewText = (TextView) view.findViewById(R.id.textviewPlayContent);
+    rvChoices = (RecyclerView) view.findViewById(R.id.recyclerviewPlayChoices);
+    imageView = (ImageView) view.findViewById(R.id.imageviewPlayHeader);
+    scrollView = (ScrollView) view.findViewById(R.id.scrollView);
+
+    changeToNewNode(currentCharacterId);
+
+    Button setNextNode = (Button) view.findViewById(R.id.buttonPlayContinue);
+    setNextNode.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (adapter.getSelectedButtonPos() != -1) {
+          int selectedButtonPos = adapter.getSelectedButtonPos();
+          ChoiceData selectedChoice = choiceList.get(selectedButtonPos);
+          int testType = selectedChoice.getTestType();
+          int testDifficulty = selectedChoice.getDifficulty();
+          int testedValue = 0;
+          if (testType != -1) {
+            HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
+            testedValue = charStats.get(testType);
+            testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
+          }
+          int nextNode = choiceList.get(selectedButtonPos).getToNode();
+          helper.setCharacterAtNode(nextNode, currentCharacterId);
+          int popupId;
+          FragmentManager manager = getActivity().getSupportFragmentManager();
+          PopupFragment popupFragment = PopupFragment.newInstance();
+          if ((testType == -1) || testedValue >= testDifficulty) {
+            popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
+          } else {
+            popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
+          }
+          Bundle bundle = new Bundle();
+          bundle.putInt(PH.tbl_popup_id, popupId);
+          bundle.putInt(PH.tbl_character_id, currentCharacterId);
+          popupFragment.setArguments(bundle);
+          popupFragment.show(manager, PH.tbl_popup_id);
         }
+        adapter.resetSelectedButton();
+      }
+    });  // END setNextNode.setOnClickListener
+
+
+    return view;
+  }
+
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+  }
+
+  public void changeToNewNode(int charId) {
+    if (helper.getCharacterHp(currentCharacterId) <= 0) {
+      helper.setCharacterAtNode(PH.DEATH_NODE, currentCharacterId);
     }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gameplay, container, false);
-
-        helper = DBInterfacer.getInstance(getActivity());
-        textviewText = (TextView) view.findViewById(R.id.textviewPlayContent);
-        rvChoices = (RecyclerView) view.findViewById(R.id.recyclerviewPlayChoices);
-        imageView = (ImageView) view.findViewById(R.id.imageviewPlayHeader);
-        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
-
-        changeToNewNode(currentCharacterId);
-
-        Button setNextNode = (Button) view.findViewById(R.id.buttonPlayContinue);
-        setNextNode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (adapter.getSelectedButtonPos() != -1) {
-                    int selectedButtonPos = adapter.getSelectedButtonPos();
-                    ChoiceData selectedChoice = choiceList.get(selectedButtonPos);
-                    int testType = selectedChoice.getTestType();
-                    int testDifficulty = selectedChoice.getDifficulty();
-                    int testedValue = 0;
-                    if (testType != -1) {
-                        HashMap<Integer, Integer> charStats = CurrentInventoryAndStats.getCurrentStats();
-                        testedValue = charStats.get(testType);
-                        testedValue += CurrentInventoryAndStats.getBestValueForTest(testType);
-                    }
-                    int nextNode = choiceList.get(selectedButtonPos).getToNode();
-                    helper.setCharacterAtNode(nextNode, currentCharacterId);
-                    int popupId;
-                    FragmentManager manager = getActivity().getSupportFragmentManager();
-                    PopupFragment popupFragment = PopupFragment.newInstance();
-                    if ((testType == -1) || testedValue >= testDifficulty ) {
-                        popupId = choiceList.get(selectedButtonPos).getConnectedSuccessPopup();
-                    } else {
-                        popupId = choiceList.get(selectedButtonPos).getConnectedFailPopup();
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(PH.tbl_popup_id, popupId);
-                    bundle.putInt(PH.tbl_character_id, currentCharacterId);
-                    popupFragment.setArguments(bundle);
-                    popupFragment.show(manager, PH.tbl_popup_id);
-                }
-                adapter.resetSelectedButton();
-            }
-        });  // END setNextNode.setOnClickListener
-
-
-
-        return view;
+    int nextNode = helper.getCurrentNode(currentCharacterId);
+    if (choiceList == null) {
+      choiceList = helper.getAvailableChoices(nextNode, getActivity());
+      adapter = new ChoiceAdapter(getActivity(), choiceList);
+      rvChoices.setAdapter(adapter);
+      rvChoices.setLayoutManager(new LinearLayoutManager(getActivity()));
+    } else {
+      choiceList.clear();
+      choiceList.addAll(helper.getAvailableChoices(nextNode, getActivity()));
+      adapter.notifyDataSetChanged();
     }
+    String nodeText = helper.getCurrentNodeText(nextNode);
+    nodeText = insertNamesIntoNodeText(nodeText, charId);
+    nodeText = cleanEscapeCharactersFromText(nodeText);
+    textviewText.setText(nodeText);
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
+    String nodeImage = helper.getCurrentNodeImage(nextNode);
+    if (nodeImage.equals(PH.NULL)) {
+      imageView.setVisibility(View.GONE);
+    } else {
+      imageView.setVisibility(View.VISIBLE);
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
+      int drawableInt = ImageConstructor.getInstance().getDrawable(nodeImage);
+      String url = "Dummy URL to load error image"
+        + drawableInt;
 
-    public void changeToNewNode( int charId) {
-        if (helper.getCharacterHp(currentCharacterId) <= 0) {
-            helper.setCharacterAtNode(PH.DEATH_NODE, currentCharacterId);
-        }
-        int nextNode = helper.getCurrentNode(currentCharacterId);
-        if (choiceList == null) {
-            choiceList = helper.getAvailableChoices(nextNode, getActivity());
-            adapter = new ChoiceAdapter(getActivity(), choiceList);
-            rvChoices.setAdapter(adapter);
-            rvChoices.setLayoutManager(new LinearLayoutManager(getActivity()));
-        } else {
-            choiceList.clear();
-            choiceList.addAll(helper.getAvailableChoices(nextNode, getActivity()));
-            adapter.notifyDataSetChanged();
-        }
-        String nodeText = helper.getCurrentNodeText(nextNode);
-        nodeText = insertNamesIntoNodeText(nodeText, charId);
-        nodeText = cleanEscapeCharactersFromText(nodeText);
-        textviewText.setText(nodeText);
-
-        String nodeImage = helper.getCurrentNodeImage(nextNode);
-        if (nodeImage.equals(PH.NULL)) {
-            imageView.setVisibility(View.GONE);
-        } else {
-            imageView.setVisibility(View.VISIBLE);
-//            Drawable imageDrawable = getResources().getUrl(ImageConstructor.getInstance().getUrl(nodeImage));
-//            imageView.setImageDrawable(imageDrawable);
-
-
-//            String url = ImageConstructor.getInstance().getUrl(nodeImage);
-//            String url = "fake url so that error drawable is used instead";
-          int drawableInt = ImageConstructor.getInstance().getDrawable(nodeImage);
-          String url = "Dummy URL to load error image"
-            + drawableInt;
-
-            Ion.with(imageView)
-//                    .placeholder(R.color.colorPrimary)
-                    .error(drawableInt)
-//                .animateLoad(spinAnimation)
-//                .animateIn(fadeInAnimation)
-                    .load(url)
-                    .withBitmapInfo();
-//                    .setCallback(NotFoundImageLoader.handleNotFound(holder.photo, mContext));
-
-        }
-
-        scrollView.fullScroll(scrollView.FOCUS_UP);
+      Ion.with(imageView)
+        .error(drawableInt)
+        .load(url)
+        .withBitmapInfo();
 
     }
 
-    private String insertNamesIntoNodeText(String nodeText, int charId) {
-        DBInterfacer helper = DBInterfacer.getInstance(getActivity());
-        String[] firstLastNick = helper.getCharacterFirstNickLast(charId, getActivity());
-        nodeText = nodeText.replace("FIRSTNAME", firstLastNick[0]);
-        nodeText = nodeText.replace("NICKNAME", firstLastNick[1]);
-        nodeText = nodeText.replace("LASTNAME", firstLastNick[2]);
-        nodeText = nodeText.replace("&PlayerCharacter&", firstLastNick[0] +" " + firstLastNick[1]
-                + " " + firstLastNick[2]);
-        return nodeText;
-    }
+    scrollView.fullScroll(scrollView.FOCUS_UP);
 
-    private String cleanEscapeCharactersFromText(String text) {
-        text = text.replace("''", "'");
-        text = text.replace("\\", "");
-        text = text.replace("``", "\"");
-        text = text.replace("`", "'");
-        return text;
-    }
+  }
 
-    // BEGIN getters and setters
+  private String insertNamesIntoNodeText(String nodeText, int charId) {
+    DBInterfacer helper = DBInterfacer.getInstance(getActivity());
+    String[] firstLastNick = helper.getCharacterFirstNickLast(charId, getActivity());
+    nodeText = nodeText.replace("FIRSTNAME", firstLastNick[0]);
+    nodeText = nodeText.replace("NICKNAME", firstLastNick[1]);
+    nodeText = nodeText.replace("LASTNAME", firstLastNick[2]);
+    nodeText = nodeText.replace("&PlayerCharacter&", firstLastNick[0] + " " + firstLastNick[1]
+      + " " + firstLastNick[2]);
+    return nodeText;
+  }
+
+  private String cleanEscapeCharactersFromText(String text) {
+    text = text.replace("''", "'");
+    text = text.replace("\\", "");
+    text = text.replace("``", "\"");
+    text = text.replace("`", "'");
+    return text;
+  }
+
+  // BEGIN getters and setters
 
 }

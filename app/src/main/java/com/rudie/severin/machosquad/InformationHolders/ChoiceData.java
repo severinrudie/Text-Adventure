@@ -1,81 +1,78 @@
 package com.rudie.severin.machosquad.InformationHolders;
 
-/**
- * Created by erikrudie on 7/28/16.
- */
 
 /*
 This class holds all information relevent to Choices, and is used to build the database
  */
 public class ChoiceData {
 
-    private String text;
-    private final int nodeId;
-    private final int toNode;
-    private final int connectedSuccessPopup;
-    private final int connectedFailPopup;
-    private final int itemRequired;
-    private final int itemImproves;
-    private final int testType;
-    private final int difficulty;
-    private final int[] ints;
+  private final int nodeId;
+  private final int toNode;
+  private final int connectedSuccessPopup;
+  private final int connectedFailPopup;
+  private final int itemRequired;
+  private final int itemImproves;
+  private final int testType;
+  private final int difficulty;
+  private final int[] ints;
+  private String text;
 
-    public ChoiceData(String text, int nodeId, int toNode, int connectedSuccess, int connectedFail,
-                      int itemRequired, int itemImproves, int testType, int difficulty) {
-        this.text = text;
-        this.nodeId = nodeId;
-        this.toNode = toNode;
-        this.connectedSuccessPopup = connectedSuccess;
-        this.connectedFailPopup = connectedFail;
-        this.itemRequired = itemRequired;
-        this.itemImproves = itemImproves;
-        this.testType = testType;
-        this.difficulty = difficulty;
-        this.ints = new int[] {nodeId, toNode, connectedSuccess, connectedFail, itemRequired, itemImproves, testType,
-                difficulty};
-    }
+  public ChoiceData(String text, int nodeId, int toNode, int connectedSuccess, int connectedFail,
+                    int itemRequired, int itemImproves, int testType, int difficulty) {
+    this.text = text;
+    this.nodeId = nodeId;
+    this.toNode = toNode;
+    this.connectedSuccessPopup = connectedSuccess;
+    this.connectedFailPopup = connectedFail;
+    this.itemRequired = itemRequired;
+    this.itemImproves = itemImproves;
+    this.testType = testType;
+    this.difficulty = difficulty;
+    this.ints = new int[]{nodeId, toNode, connectedSuccess, connectedFail, itemRequired, itemImproves, testType,
+      difficulty};
+  }
 
-    public String getText() {
-        return text;
-    }
+  public String getText() {
+    return text;
+  }
 
-    public int getNodeId() {
-        return nodeId;
-    }
+  public void setText(String text) {
+    this.text = text;
+  }
 
-    public int getToNode() {
-        return toNode;
-    }
+  public int getNodeId() {
+    return nodeId;
+  }
 
-    public int getConnectedSuccessPopup() {
-        return connectedSuccessPopup;
-    }
+  public int getToNode() {
+    return toNode;
+  }
 
-    public int getConnectedFailPopup() {
-        return connectedFailPopup;
-    }
+  public int getConnectedSuccessPopup() {
+    return connectedSuccessPopup;
+  }
 
-    public int getItemRequired() {
-        return itemRequired;
-    }
+  public int getConnectedFailPopup() {
+    return connectedFailPopup;
+  }
 
-    public int getItemImproves() {
-        return itemImproves;
-    }
+  public int getItemRequired() {
+    return itemRequired;
+  }
 
-    public int getTestType() {
-        return testType;
-    }
+  public int getItemImproves() {
+    return itemImproves;
+  }
 
-    public int getDifficulty() {
-        return difficulty;
-    }
+  public int getTestType() {
+    return testType;
+  }
 
-    public int[] getInts() {
-        return ints;
-    }
+  public int getDifficulty() {
+    return difficulty;
+  }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+  public int[] getInts() {
+    return ints;
+  }
 }
