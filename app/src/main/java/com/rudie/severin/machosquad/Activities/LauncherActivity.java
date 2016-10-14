@@ -19,6 +19,7 @@ import com.rudie.severin.machosquad.InformationHolders.ImageConstructor;
 import com.rudie.severin.machosquad.R;
 
 import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.services.concurrency.AsyncTask;
 
 public class LauncherActivity extends AppCompatActivity
   implements CharacterSelectFragment.OnCharacterCreatedListener {
@@ -48,19 +49,16 @@ public class LauncherActivity extends AppCompatActivity
     ImageConstructor imageConstructor = ImageConstructor.getInstance();
     imageConstructor.giveContext(this);
 
-    DBInterfacer helper = DBInterfacer.getInstance(this);
-    // TODO: make this async
-    helper.verifyDbExistsOrCreate();
+    CreateDbAsyncTask asyncTask = new CreateDbAsyncTask();
+    asyncTask.execute();
 
     Button newGame = (Button) findViewById(R.id.buttonLauncherNewGame);
     newGame.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // Create the fragment and show it as a dialog.
         FragmentManager manager = getSupportFragmentManager();
         CharacterSelectFragment newFragment = CharacterSelectFragment.newInstance();
         newFragment.show(manager, "dialog");
-//                }
       }
     });
 
@@ -68,13 +66,21 @@ public class LauncherActivity extends AppCompatActivity
     loadGame.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // Create the fragment and show it as a dialog.
         Intent intent = new Intent(getBaseContext(), LoadActivity.class);
         startActivity(intent);
 //                }
       }
     });
 
+  }
+
+  private class CreateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+    @Override
+    protected Void doInBackground(Void... voids) {
+      DBInterfacer helper = DBInterfacer.getInstance(getBaseContext());
+      helper.verifyDbExistsOrCreate();
+      return null;
+    }
   }
 
   @Override
