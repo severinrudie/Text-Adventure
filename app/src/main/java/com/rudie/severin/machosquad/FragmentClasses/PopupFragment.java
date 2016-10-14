@@ -1,9 +1,11 @@
 package com.rudie.severin.machosquad.FragmentClasses;
 
 import android.content.Context;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,11 @@ public class PopupFragment extends DialogFragment {
       helper.upgradeCharacterStat(charId, PH.COMRADERY_ID);
     } else if (item == PH.MECHASPIDER_DEAD) {
       popupId = PH.MECHASPIDER_POPUP;
+    } else if (item == PH.GAME_OVER_FLAG) {
+      Log.d("SEVTEST", "game over");
+      getActivity().finish();
+      helper.deleteCharacterFromDb(charId);
+      return null;
     }
 
     popupData = helper.getPopupData(popupId);
@@ -143,6 +150,9 @@ public class PopupFragment extends DialogFragment {
       e.printStackTrace();
       throw new ClassCastException(mContext.toString()
         + " must implement PopupCompleteListener");
+    } catch (CursorIndexOutOfBoundsException e) {
+      e.printStackTrace();
+      // This will occur when players return to main menu after end of game
     }
   }
 

@@ -64,6 +64,7 @@ public class PH {
     public static final int MONTAGE_COMRADERY_FLAG = 5;
     public static final int MECHASPIDER_DEAD = 6;
     public static final int MECHASPIDER_POPUP = 25;
+    public static final int GAME_OVER_FLAG = 7;
 
     public static final String COOKIE = "cookie";  // used to interpret node/popup images
     // END constants
@@ -256,7 +257,9 @@ public class PH {
       new ChoiceData("Punch the problem", 17, 19, 38, 39, -1, 2, 1, 3),
       new ChoiceData("Punch the problem", 18, 19, 40, 41, -1, 2, 1, 4),
       new ChoiceData("Think tactically", 18, 19, 42, 43, -1, 3, 3, 4),
-      new ChoiceData("Continue", 19, 20, 44, -1, -1, -1, -1, -1)
+      new ChoiceData("Continue", 19, 20, 44, -1, -1, -1, -1, -1),
+      new ChoiceData("Return to main menu", 20, -1, 45, -1, -1, -1, -1, GAME_OVER_FLAG)
+      // When adding new choices, make sure they don't overlap with current numbers
     };
     // END choices details
 
@@ -305,7 +308,9 @@ public class PH {
       new String[] {"41", "A squad of &BadMinionSlang& are covering the front door as you approach.  Grabbing a nearby fruit stand, you start wheeling it towards the enemy to provide yourself with cover.  Their Inferiorlasers hum with power as the beams cut into your barricade, and eventually into you.  But it serves well enough, allowing you to close the distance and engage them in honorable hand-to-hand combat.  Up close the &BadMinionSlang& stand no chance, falling quickly to the Saluting Eagle Style.", "NULL", "NULL", "5", "-1"},
       new String[] {"42", "The front door is guarded by a team of &BadMinionPlural&, but thats just fine.  You prepared for this.  Grabbing the waiting Resistance member by the wrists you mimic &BuddyNickname&, swinging the man around and tossing him through the air towards the enemy.  Soaring Eagle Style.  It works every time.  With the distance closed you and your team make quick work of the guards, leaving you ready to enter the Mansion.", "NULL", "NULL", "-1", "-1"},
       new String[] {"43", "You spend some time concocting a brilliant plan.  Directing a squad of Resistance troopers to the other side of the street, you instruct them to attack while you distract the &BadMinionSlang&.  Stepping free from the cover you execute your brilliant plan to draw their attention.  `Facism is dumb!` you yell.  The &BadMinionSlang& immediately open fire, striking you several times before the Resistance fighters are able to quell them.  Your plan seems to have worked too well.", "NULL", "NULL", "5", "-1"},
-      new String[] {"44", "Your victory is cut short as you spy odd movement on another screen.  You see &ProfessorFullTitle& making his way down a hallway on the other side of the building.  There`s no time to get there, and no way to delay his progress.  You watch with patriotic frustration as he boards a rocket, and blasts off into the unknown..", "NULL", "NULL", "-1", "-1"}
+      new String[] {"44", "Your victory is cut short as you spy odd movement on another screen.  You see &ProfessorFullTitle& making his way down a hallway on the other side of the building.  There`s no time to get there, and no way to delay his progress.  You watch with patriotic frustration as he boards a rocket, and blasts off into the unknown..", "NULL", "NULL", "-1", "-1"},
+      new String[] {"45", "Thanks for playing!", "NULL", "NULL", "-1", "" + GAME_OVER_FLAG}
+      // When adding new popups, make sure they don't overlap with current numbers
     };
     // END popup details
 
