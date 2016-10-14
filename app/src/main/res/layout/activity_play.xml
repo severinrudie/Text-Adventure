@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android.support.v7.recyclerview="http://schemas.android.com/apk/res-auto"
     android:id="@+id/framelayoutActivityPlay"
     tools:context=".Activities.PlayActivity">
 
@@ -31,10 +30,3 @@
 
 </FrameLayout>
 
-
-
-<!--<android.support.v7.recyclerview:layoutManager-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:id="@+id/recyclerviewPlayChoices">-->
-<!--</android.support.v7.recyclerview:layoutManager>-->

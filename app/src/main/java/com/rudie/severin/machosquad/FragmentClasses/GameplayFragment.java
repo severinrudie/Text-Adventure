@@ -145,8 +145,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
       imageView.setVisibility(View.VISIBLE);
 
       int drawableInt = ImageConstructor.getInstance().getDrawable(nodeImage);
-      String url = "Dummy URL to load error image"
-        + drawableInt;
+      String url = "Dummy URL to load error image";
 
       Ion.with(imageView)
         .error(drawableInt)
