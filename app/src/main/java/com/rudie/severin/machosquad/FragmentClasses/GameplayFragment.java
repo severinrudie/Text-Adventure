@@ -164,7 +164,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
     firstNickLast = removeNullNames(firstNickLast);
     nodeText = nodeText.replace("&PlayerCharacter&", firstNickLast[0] + " " + firstNickLast[1]
       + " " + firstNickLast[2]);
-    firstNickLast = removeNullNames(firstNickLast);
+    firstNickLast = useAvailableNames(firstNickLast);
     nodeText = nodeText.replace("FIRSTNAME", firstNickLast[0]);
     nodeText = nodeText.replace("NICKNAME", firstNickLast[1]);
     nodeText = nodeText.replace("LASTNAME", firstNickLast[2]);
