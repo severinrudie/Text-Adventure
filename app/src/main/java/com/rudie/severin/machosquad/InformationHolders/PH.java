@@ -54,6 +54,7 @@ public class PH {
     public static final String INVENTORY_FRAGMENT = "INVENTORY_FRAGMENT";
 
     public static final int DEATH_NODE = 10000;
+    public static final int VICTORY_NODE = 10006;
     public static final int HAT_POPUP = 10002;
     public static final int HAT_FLAG = 2;
     public static final int MONTAGE_STRENGTH_POPUP = 10003;
@@ -203,6 +204,7 @@ public class PH {
 
     public static final String [][] nodeDetails = new String[][] {
       new String[] {(String.valueOf(DEATH_NODE)), "You've died!  Who will save Trapistan now!?!", "NULL", "NULL"},
+      new String[] {(String.valueOf(VICTORY_NODE)), "Trapistan has been freed from Space Fascist control, but &ProfessorFullTitle& has escaped.  It will be up to Macho Squad to find him and bring him to Democratic justice...\n\nNext time.", "BuffEagle", "NULL"},
       new String[] {"1", "The pod rattles around you as it slices through the atmosphere, your cybernetics clacking against the steel drop chair.  You're getting too old for this, but Democracy needs you one more time.  Governor-Professor Notevil of the planet Trapistan has been captured, and only the raw machismo and untamed skill of &PlayerCharacter& and Macho Squad can save him.\n\nTurbulence shakes your vehicle, and through the structurally unnecessary window you see bursts of Anti-Aircraft fire streaking past.  The equipment pod is hit first, tearing apart as it screams towards the ground, but there is nothing to do but continue your pull-up routine as fire rakes your squad’s drop pods. You see &BuddyFullName&`s pod catch flame and veer off course just before your landing rockets fire.  He was just two space days from retirement.\n\nThe landing restraints dig against your bulging muscles as you crash to a stop.  Pulling the straps free, you do one final pull-up to finish your set.  ``One-hundred-thousand.``  Stepping free from the steel coffin you cast your gaze around.  You`ve landed in an open field surrounded by wheat.  In the distance you can see smoke rising from where you can assume Hawkins` pod came down.  Around you is the debris from the other pods.  Would you like to:", "PodsLanding", "NULL"},
       new String[] {"3", "With dawn breaking, you set your course away from the fields.  You`re here to rescue &ProfessorFullTitle&, and you`ll be damned if the complete obliteration of your team is going to slow you down.  Shouldering the few items you have left, you head towards the Capital City of Capitalcityton, due Space East of your position. \n\nThe walk is a long one, and made longer still by the nearly thirty minutes you spend applying war paint.  As you`re finishing the final line of reddened mud under your eyes and considering whether or not to shout a bestial roar, you hear the distinct whine of a hyper-jet engine.  A Spaceplane zooms by overhead and you hear the thudding of &BadMinionPlural& hitting the ground ahead of you.  Peering through the leaves you see four of them, what do you do?", "NULL", "NULL"},
       new String[] {"5", "With the pods, &BadMinionPlural&, and &BuddyNickname& behind you, Capitalcityton begins to stretch out to your front.  Despite being the largest city on the entire planet, you are able to enter it rather easily, soon finding yourself in the heart of the city.  The Professorial Mansion stands near the center as a testament to both Democracy and Science.  This is both the home of Freedom on Trapistan and the dwelling of &ProfessorFullTitle&, a sprawling complex of unregulated research labs and self guided law-making.  However, the justice that this esteemed domicile stands for is marred by the &BadMinionPlural&.  Judging from the &BadMinionSlang& patrolling around, the &ProfessorTitleShort& is probably inside.  You have a few options..", "NULL", "NULL"},
@@ -218,14 +220,15 @@ public class PH {
       new String[] {"16", "The Skull Battalion has been drawn out.  Your display was enough to draw their full ire, and the time has come to end this.  &ProfessorFullTitle& has been working against Space America, against Democracy, and it's Macho Squad`s job to take him out.  Using back roads and secret tunnels, you position yourself near the Professorial Mansion.  Even with the Skull Battalion gone the place is locked down tight, and you`ll have to decide how you`re going to assault it.", "NULL", "NULL"},
       new String[] {"17", "Readying your hover-cycle you activate your communicatron.  ``Alright everyone, we have one job: stop &ProfessorFullTitle&.  Begin the assault.`` Resistance troops pour out from the surrounding buildings, starting the attack in earnest.", "NULL", "NULL"},
       new String[] {"18", "The front doors of the Professorial Mansion stretch above you as you get into position.  On your word the assault begins, with Resistance forces hitting the building from all sides.  You and &BuddyNickname& lock forearms again in a display of raw manliness.  No more running, no more hiding.  Now it was time to enforce Democracy.", "NULL", "NULL"},
-      new String[] {"19", "&BuddyNickname& walks up to the locking mechanism, eyes the curling bar and smirks.  As he holds the door open you enter the building, a small team of Resistance eggheads in tow, &BuddyNickname& bringing up the rear.  Security inside is light, they didn`t expect Macho Squad or the raw curling power of &BuddyFullName&.  You make your way to the command and control room, dispatching the guards with ease.  Your hacker pushes his small rimmed glasses up his face, sits down, cracks his knuckles and gets to work.  \n\n``All I have to do is brute force the back door, reverse the polarity of the code buffer and..  There, complete control.``  The furious typing dies down as he enters one final command.  ``I`ve set the curl weight on the door controls to 1lbs.  &ProfessorFullTitle& is about to have a real bad day.``  He says as he lights up a cigarette, and you see a tide of people surging towards the Mansion on the monitors.", "HackTheButton", "NULL"},
-      new String[] {"20", "Trapistan has been freed from Space Fascist control, but &ProfessorFullTitle& has escaped.  It will be up to Macho Squad to find him and bring him to Democratic justice...\n\nNext time.", "BuffEagle", "NULL"}
+      new String[] {"19", "&BuddyNickname& walks up to the locking mechanism, eyes the curling bar and smirks.  As he holds the door open you enter the building, a small team of Resistance eggheads in tow, &BuddyNickname& bringing up the rear.  Security inside is light, they didn`t expect Macho Squad or the raw curling power of &BuddyFullName&.  You make your way to the command and control room, dispatching the guards with ease.  Your hacker pushes his small rimmed glasses up his face, sits down, cracks his knuckles and gets to work.  \n\n``All I have to do is brute force the back door, reverse the polarity of the code buffer and..  There, complete control.``  The furious typing dies down as he enters one final command.  ``I`ve set the curl weight on the door controls to 1lbs.  &ProfessorFullTitle& is about to have a real bad day.``  He says as he lights up a cigarette, and you see a tide of people surging towards the Mansion on the monitors.", "HackTheButton", "NULL"}
     };
     // END node details
 
     // BEGIN choices details
     // These are ingested into the DB upon DB creation
     public static final ChoiceData [] choiceDetails = new ChoiceData[]{
+      new ChoiceData("Return to main menu", DEATH_NODE, -1, 45, -1, -1, -1, -1, GAME_OVER_FLAG),
+      new ChoiceData("Return to main menu", VICTORY_NODE, -1, 45, -1, -1, -1, -1, GAME_OVER_FLAG),
       new ChoiceData("Proceed with mission.", 1, 3, 2, -1, -1, -1, -1, -1),
       new ChoiceData("Scavenge the wreckage.", 1, 3, 1, -1, -1, -1, -1, -1),
       new ChoiceData("Shoot the Robosoldiers", 3, 5, 3, -1, 1, -1, -1, -1),
@@ -257,8 +260,7 @@ public class PH {
       new ChoiceData("Punch the problem", 17, 19, 38, 39, -1, 2, 1, 3),
       new ChoiceData("Punch the problem", 18, 19, 40, 41, -1, 2, 1, 4),
       new ChoiceData("Think tactically", 18, 19, 42, 43, -1, 3, 3, 4),
-      new ChoiceData("Continue", 19, 20, 44, -1, -1, -1, -1, -1),
-      new ChoiceData("Return to main menu", 20, -1, 45, -1, -1, -1, -1, GAME_OVER_FLAG)
+      new ChoiceData("Continue", 19, 20, 44, -1, -1, -1, -1, -1)
       // When adding new choices, make sure they don't overlap with current numbers
     };
     // END choices details

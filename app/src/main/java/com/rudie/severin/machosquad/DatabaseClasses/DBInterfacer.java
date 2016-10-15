@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.rudie.severin.machosquad.InformationHolders.ChoiceData;
 import com.rudie.severin.machosquad.InformationHolders.ItemData;
@@ -26,7 +27,7 @@ All SQL queries are made from this class
 public class DBInterfacer extends SQLiteOpenHelper {
 
   private static final String DATABASE_NAME = "TEXT_GAME_DB";
-  private static final int DATABASE_VERSION = 5;
+  private static final int DATABASE_VERSION = 7;
   private static final boolean DELETE_SAVES_ON_FIRST_UPGRADE = false;
   private static DBInterfacer DB;
   private Context mContext;
@@ -48,6 +49,8 @@ public class DBInterfacer extends SQLiteOpenHelper {
     string = string.replace("\"", "\\\"");
     return string;
   }
+
+
 
   public boolean verifyDbExistsOrCreate() {
     SQLiteDatabase checkDB = null;
