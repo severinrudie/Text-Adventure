@@ -160,13 +160,35 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
 
   private String insertNamesIntoNodeText(String nodeText, int charId) {
     DBInterfacer helper = DBInterfacer.getInstance(getActivity());
-    String[] firstLastNick = helper.getCharacterFirstNickLast(charId, getActivity());
-    nodeText = nodeText.replace("FIRSTNAME", firstLastNick[0]);
-    nodeText = nodeText.replace("NICKNAME", firstLastNick[1]);
-    nodeText = nodeText.replace("LASTNAME", firstLastNick[2]);
-    nodeText = nodeText.replace("&PlayerCharacter&", firstLastNick[0] + " " + firstLastNick[1]
-      + " " + firstLastNick[2]);
+    String[] firstNickLast = helper.getCharacterFirstNickLast(charId, getActivity());
+    firstNickLast = removeNullNames(firstNickLast);
+    nodeText = nodeText.replace("&PlayerCharacter&", firstNickLast[0] + " " + firstNickLast[1]
+      + " " + firstNickLast[2]);
+    firstNickLast = removeNullNames(firstNickLast);
+    nodeText = nodeText.replace("FIRSTNAME", firstNickLast[0]);
+    nodeText = nodeText.replace("NICKNAME", firstNickLast[1]);
+    nodeText = nodeText.replace("LASTNAME", firstNickLast[2]);
     return nodeText;
+  }
+
+  public String[] removeNullNames(String[] firstNickLast) {
+    if (firstNickLast[1].equals(PH.NULL)) {
+      firstNickLast[1] = "";
+    }
+    if (firstNickLast[2].equals(PH.NULL)) {
+      firstNickLast[2] = "";
+    }
+    return firstNickLast;
+  }
+
+  public String[] useAvailableNames(String[] firstNickLast) {
+    if (firstNickLast[1].equals("")) {
+      firstNickLast[1] = firstNickLast[0];
+    }
+    if (firstNickLast[2].equals("")) {
+      firstNickLast[2] = firstNickLast[0];
+    }
+    return firstNickLast;
   }
 
   private String cleanEscapeCharactersFromText(String text) {

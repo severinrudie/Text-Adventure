@@ -260,7 +260,7 @@ public class PH {
       new ChoiceData("Punch the problem", 17, 19, 38, 39, -1, 2, 1, 3),
       new ChoiceData("Punch the problem", 18, 19, 40, 41, -1, 2, 1, 4),
       new ChoiceData("Think tactically", 18, 19, 42, 43, -1, 3, 3, 4),
-      new ChoiceData("Continue", 19, 20, 44, -1, -1, -1, -1, -1)
+      new ChoiceData("Continue", 19, VICTORY_NODE, 44, -1, -1, -1, -1, -1)
       // When adding new choices, make sure they don't overlap with current numbers
     };
     // END choices details

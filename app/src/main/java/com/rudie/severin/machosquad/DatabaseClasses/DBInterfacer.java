@@ -317,17 +317,7 @@ public class DBInterfacer extends SQLiteOpenHelper {
     firstNickLast[0] = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_character_firstname));
     firstNickLast[1] = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_character_nickname));
     firstNickLast[2] = cursor.getString(cursor.getColumnIndexOrThrow(PH.tbl_character_lastname));
-    firstNickLast = removeNullNames(firstNickLast);
-    return firstNickLast;
-  }
-
-  private String[] removeNullNames(String[] firstNickLast) {
-    if (firstNickLast[1].equals(PH.NULL)) {
-      firstNickLast[1] = firstNickLast[0];
-    }
-    if (firstNickLast[2].equals(PH.NULL)) {
-      firstNickLast[2] = firstNickLast[0];
-    }
+//    firstNickLast = removeNullNames(firstNickLast);
     return firstNickLast;
   }
 
