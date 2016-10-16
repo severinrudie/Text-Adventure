@@ -30,7 +30,8 @@ public class Character {
     this.inventory = helper.getCharacterInventory(charId);
     this.atNode = helper.getCurrentNode(charId);
     this.hp = helper.getCharacterHp(charId);
-    fullName = firstName + " " + nickName + " " + lastName;
+//    fullName = firstName + " " + nickName + " " + lastName;
+    fullName = buildFullName();
 
     if (Math.max(Math.max(strength, agility), comradery) == strength) {
       bestSkillBlurb = "Strong as an ox";
@@ -39,6 +40,23 @@ public class Character {
     } else {
       bestSkillBlurb = "Widely loved";
     }
+  }
+
+  private String buildFullName() {
+    String first = this.getFirstName();
+    String nick = correctNames(this.getNickName());
+    String last = correctNames(this.getLastName());
+
+    return first + nick + last;
+  }
+
+  private String correctNames(String name) {
+    if (!name.equals(PH.NULL)) {
+      name = " " + name;
+    } else {
+      name = "";
+    }
+    return name;
   }
 
   public String getFullName() {
