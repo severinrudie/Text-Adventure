@@ -30,8 +30,7 @@ public class Character {
     this.inventory = helper.getCharacterInventory(charId);
     this.atNode = helper.getCurrentNode(charId);
     this.hp = helper.getCharacterHp(charId);
-//    fullName = firstName + " " + nickName + " " + lastName;
-    fullName = buildFullName();
+    this.fullName = buildFullName();
 
     if (Math.max(Math.max(strength, agility), comradery) == strength) {
       bestSkillBlurb = "Strong as an ox";

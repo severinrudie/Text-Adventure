@@ -38,6 +38,7 @@ public class LauncherActivity extends AppCompatActivity
 
     Ion.with(imageView)
       .error(R.drawable.buff_bird)
+      .placeholder(R.drawable.buff_bird)
       .load(url);
 
     TextView titleMain1 = (TextView) findViewById(R.id.titlemain1);

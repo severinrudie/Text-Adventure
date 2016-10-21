@@ -149,6 +149,7 @@ public class GameplayFragment extends android.support.v4.app.Fragment {
 
       Ion.with(imageView)
         .error(drawableInt)
+        .placeholder(drawableInt)
         .load(url)
         .withBitmapInfo();
 

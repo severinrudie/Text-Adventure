@@ -124,6 +124,7 @@ public class PopupFragment extends DialogFragment {
       int drawableInt = ImageConstructor.getInstance().getDrawable(image);
       String url = "Dummy URL to load error image";
       Ion.with(imageView)
+        .placeholder(drawableInt)
         .error(drawableInt)
         .load(url)
         .withBitmapInfo();
