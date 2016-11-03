@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
@@ -28,6 +29,7 @@ public class LauncherActivity extends AppCompatActivity
 
   private boolean fragmentCreated;
   private boolean dbConstructed;
+  ProgressBar progressBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class LauncherActivity extends AppCompatActivity
     Fabric.with(this, new Answers(), new Crashlytics());
     setContentView(R.layout.activity_launcher);
     dbConstructed = false;
+    progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
     ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
 
@@ -80,10 +83,11 @@ public class LauncherActivity extends AppCompatActivity
   private void launchLoadActivity() {
     Log.d("Sevtest: ", "Trying. dbConstructed == " + dbConstructed);
     if (dbConstructed) {
+      progressBar.setVisibility(View.GONE);
       Intent intent = new Intent(getBaseContext(), LoadActivity.class);
       startActivity(intent);
     } else {
-
+      progressBar.setVisibility(View.VISIBLE);
       Runnable runnable = new Runnable() {
         @Override
         public void run() {
