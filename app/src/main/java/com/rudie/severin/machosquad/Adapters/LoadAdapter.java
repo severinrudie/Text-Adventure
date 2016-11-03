@@ -1,5 +1,6 @@
 package com.rudie.severin.machosquad.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -64,6 +65,7 @@ public class LoadAdapter extends
       public void onClick(View view) {
         Intent intent = new Intent(getContext(), PlayActivity.class);
         intent.putExtra(PH.CURRENT_CHARACTER, character.getCharId());
+        ((Activity)mContext).finish();
         getContext().startActivity(intent);
       }
     });
