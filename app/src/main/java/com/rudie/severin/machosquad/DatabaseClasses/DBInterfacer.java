@@ -27,7 +27,7 @@ All SQL queries are made from this class
 public class DBInterfacer extends SQLiteOpenHelper {
 
   private static final String DATABASE_NAME = "TEXT_GAME_DB";
-  private static final int DATABASE_VERSION = 10;
+  private static final int DATABASE_VERSION = 20;
   private static final boolean DELETE_SAVES_ON_FIRST_UPGRADE = false;
   private static DBInterfacer DB;
   private Context mContext;

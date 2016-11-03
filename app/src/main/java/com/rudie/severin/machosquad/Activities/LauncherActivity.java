@@ -3,8 +3,10 @@ package com.rudie.severin.machosquad.Activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,12 +27,14 @@ public class LauncherActivity extends AppCompatActivity
   implements CharacterSelectFragment.OnCharacterCreatedListener {
 
   private boolean fragmentCreated;
+  private boolean dbConstructed;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Fabric.with(this, new Answers(), new Crashlytics());
     setContentView(R.layout.activity_launcher);
+    dbConstructed = false;
 
     ImageView imageView = (ImageView) findViewById(R.id.imageView_buffEagle_launcherActivity);
 
@@ -67,12 +71,27 @@ public class LauncherActivity extends AppCompatActivity
     loadGame.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getBaseContext(), LoadActivity.class);
-        startActivity(intent);
-//                }
+        launchLoadActivity();
       }
     });
 
+  }
+
+  private void launchLoadActivity() {
+    Log.d("Sevtest: ", "Trying. dbConstructed == " + dbConstructed);
+    if (dbConstructed) {
+      Intent intent = new Intent(getBaseContext(), LoadActivity.class);
+      startActivity(intent);
+    } else {
+
+      Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+          launchLoadActivity();
+        }
+      };
+      new Handler().postDelayed(runnable, 1000);
+    }
   }
 
   private class CreateDbAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -80,6 +99,7 @@ public class LauncherActivity extends AppCompatActivity
     protected Void doInBackground(Void... voids) {
       DBInterfacer helper = DBInterfacer.getInstance(getBaseContext());
       helper.verifyDbExistsOrCreate();
+      dbConstructed = true;
       return null;
     }
   }

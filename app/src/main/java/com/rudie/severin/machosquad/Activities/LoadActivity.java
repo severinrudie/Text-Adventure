@@ -36,28 +36,28 @@ public class LoadActivity extends AppCompatActivity implements LoadAdapter.Refre
     RecyclerView rvLoad = (RecyclerView) findViewById(R.id.recyclerviewLoad);
     rvLoad.setAdapter(adapter);
     rvLoad.setLayoutManager(new LinearLayoutManager(this));
-    onPostResume();
+      onPostResume();
   }
 
   @Override
   protected void onPostResume() {
-    super.onPostResume();
-    TextView textView = (TextView) findViewById(R.id.textView_noCharactersFound_loadActivity);
-    if (characters.size() > 0) {
-      textView.setVisibility(View.GONE);
-    } else {
-      textView.setVisibility(View.VISIBLE);
-    }
+      super.onPostResume();
+      TextView textView = (TextView) findViewById(R.id.textView_noCharactersFound_loadActivity);
+      if (characters.size() > 0) {
+        textView.setVisibility(View.GONE);
+      } else {
+        textView.setVisibility(View.VISIBLE);
+      }
   }
 
   private List<Character> getUniqueCharacters() {
-    DBInterfacer helper = DBInterfacer.getInstance(this);
-    List<Integer> charIds = helper.getUniqueCharacterIds();
-    List<Character> characters = new ArrayList<>();
+      DBInterfacer helper = DBInterfacer.getInstance(this);
+      List<Integer> charIds = helper.getUniqueCharacterIds();
+      List<Character> characters = new ArrayList<>();
 
-    for (Integer i : charIds) {
-      characters.add(new Character(i, this));
-    }
+      for (Integer i : charIds) {
+        characters.add(new Character(i, this));
+      }
     return characters;
   }
 
