@@ -1,0 +1,13 @@
+
+Nodes
+
+Choices
+new ChoiceData(“Save the planet“, 22, 99, 53, -1, -1, -1, -1, -1),
+new ChoiceData(“Escape”, 22, 98, 54, -1, -1, -1, -1, -1),
+
+Popups
+new String[] {"53", "Your mission was to save people, and you’ll die before you let runaway scientists with no regard for safety kill more innocent people.  Motioning to &BuddyFullName&, you take your position at the door.  Using the full physical might of Macho squad helped by the wheezing verbal support of the Nerds, you manage to pry the blast doors open.  With only 1 second left on the clock, you press the “Undo” button, reversing the overload and saving Trapistan to Vote another day.", "NULL", "NULL", "-1", "-1"},
+new String[] {"54", "Your mission was to liberate the Professor, and given the beat down recently applied you can safely say that he’s been liberated from something.  Some days Democracy can thrive on the belief of its people.  Sometimes it requires the sacrifice of an entire planet.  Taking &BuddyFullName& with you, Macho Squad flees to Space just before the Solar Power Plant goes critical, annihilating the entire world.", "NULL", "NULL", "-1", "-1"},
+
+
+
