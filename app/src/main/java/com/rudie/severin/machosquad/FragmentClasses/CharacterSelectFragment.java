@@ -103,6 +103,7 @@ public class CharacterSelectFragment extends DialogFragment
       @Override
       public void onClick(View view) {
         if (editText.getText().toString().length() > 0) {
+
           int currentCharacterId = passCharacterToDb(editText, mStatistics.get(0),
             mStatistics.get(1), mStatistics.get(2));
 

@@ -28,7 +28,7 @@ public class LauncherActivity extends AppCompatActivity
   implements CharacterSelectFragment.OnCharacterCreatedListener {
 
   private boolean fragmentCreated;
-  private boolean dbConstructed;
+  public boolean dbConstructed;
   ProgressBar progressBar;
 
   @Override
@@ -64,9 +64,7 @@ public class LauncherActivity extends AppCompatActivity
     newGame.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        FragmentManager manager = getSupportFragmentManager();
-        CharacterSelectFragment newFragment = CharacterSelectFragment.newInstance();
-        newFragment.show(manager, "dialog");
+        launchNewCharacterFragment();
       }
     });
 
@@ -92,6 +90,25 @@ public class LauncherActivity extends AppCompatActivity
         @Override
         public void run() {
           launchLoadActivity();
+        }
+      };
+      new Handler().postDelayed(runnable, 1000);
+    }
+  }
+
+  private void launchNewCharacterFragment() {
+    Log.d("Sevtest: ", "Trying. dbConstructed == " + dbConstructed);
+    if (dbConstructed) {
+      progressBar.setVisibility(View.GONE);
+      FragmentManager manager = getSupportFragmentManager();
+      CharacterSelectFragment newFragment = CharacterSelectFragment.newInstance();
+      newFragment.show(manager, "dialog");
+    } else {
+      progressBar.setVisibility(View.VISIBLE);
+      Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+          launchNewCharacterFragment();
         }
       };
       new Handler().postDelayed(runnable, 1000);
