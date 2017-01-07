@@ -34,7 +34,7 @@ public class LauncherActivity extends AppCompatActivity {
   public boolean dbConstructed;
   ProgressBar progressBar;
   private CharacterCreatedBus characterCreatedBus;
-  private Disposable busObserver;
+  private CompositeDisposable compositeDisposable;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -66,30 +66,22 @@ public class LauncherActivity extends AppCompatActivity {
     asyncTask.execute();
 
     Button newGame = (Button) findViewById(R.id.buttonLauncherNewGame);
-    newGame.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        launchNewCharacterFragment();
-      }
-    });
+    newGame.setOnClickListener(view -> launchNewCharacterFragment());
 
     Button loadGame = (Button) findViewById(R.id.buttonLauncherLoadSave);
-    loadGame.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        launchLoadActivity();
-      }
-    });
+    loadGame.setOnClickListener(view -> launchLoadActivity());
+
+    compositeDisposable = new CompositeDisposable();
 
     characterCreatedBus = CharacterCreatedBus.getInstance();
-    busObserver = characterCreatedBus.getSubject().subscribe(event -> fragmentCreated = true);
+    compositeDisposable.add(characterCreatedBus.getSubject().subscribe(event -> fragmentCreated = true));
 
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    busObserver.dispose();
+    compositeDisposable.clear();
   }
 
   private void launchLoadActivity() {
