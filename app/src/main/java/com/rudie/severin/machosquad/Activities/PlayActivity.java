@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.rudie.severin.machosquad.Adapters.ChoiceAdapter;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.PopupCompleteBus;
 import com.rudie.severin.machosquad.FragmentClasses.GameplayFragment;
 import com.rudie.severin.machosquad.FragmentClasses.InventoryFragment;
 import com.rudie.severin.machosquad.FragmentClasses.PopupFragment;
@@ -26,7 +27,9 @@ import com.rudie.severin.machosquad.R;
 
 import java.util.List;
 
-public class PlayActivity extends AppCompatActivity implements PopupFragment.PopupCompleteListener {
+import io.reactivex.disposables.CompositeDisposable;
+
+public class PlayActivity extends AppCompatActivity {
 
   static final int inventoryFragmentIndex = 0;
   static final int gamePlayFragmentIndex = 1;
@@ -40,6 +43,8 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
   private DBInterfacer helper;
   private TextView textviewText;
   private int nextNode;
+  private CompositeDisposable compositeDisposable;
+  private PopupCompleteBus popupCompleteBus;
 
   // Inventory needs to be used by the adapter, but updated once every time PlayActivity.changeToNewNode
 // is called.  Private static List is maintained in InventoryActivity.  This is flushed and rebuilt
@@ -69,9 +74,12 @@ public class PlayActivity extends AppCompatActivity implements PopupFragment.Pop
     vpPager.setAdapter(adapterViewPager);
     vpPager.setCurrentItem(gamePlayFragmentIndex);
 
+    compositeDisposable = new CompositeDisposable();
+    popupCompleteBus = PopupCompleteBus.getInstance();
+    compositeDisposable.add(popupCompleteBus.getSubject().subscribe(event -> closePopupNow()));
+
   }  // end onCreate
 
-  @Override
   public void closePopupNow() {
     FragmentManager manager = this.getSupportFragmentManager();
 

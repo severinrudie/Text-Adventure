@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.koushikdutta.ion.Ion;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.PopupCompleteBus;
+import com.rudie.severin.machosquad.EventBus.RefreshLoadListBus;
 import com.rudie.severin.machosquad.InformationHolders.CurrentInventoryAndStats;
 import com.rudie.severin.machosquad.InformationHolders.ImageConstructor;
 import com.rudie.severin.machosquad.InformationHolders.ItemData;
@@ -22,7 +24,6 @@ import com.rudie.severin.machosquad.InformationHolders.PH;
 import com.rudie.severin.machosquad.R;
 
 public class PopupFragment extends DialogFragment {
-  PopupCompleteListener mCallback;
   Context mContext;
   TextView tvText, tvDamage, tvItem;
   Button button;
@@ -145,8 +146,8 @@ public class PopupFragment extends DialogFragment {
   public void onDestroyView() {
     super.onDestroyView();
     try {
-      mCallback = (PopupCompleteListener) mContext;
-      mCallback.closePopupNow();
+      PopupCompleteBus bus = PopupCompleteBus.getInstance();
+      bus.popupIsComplete();
     } catch (ClassCastException e) {
       e.printStackTrace();
       throw new ClassCastException(mContext.toString()
@@ -172,11 +173,6 @@ public class PopupFragment extends DialogFragment {
       + " " + firstLastNick[2]);
     return popupText;
   }
-
-  public interface PopupCompleteListener {
-    void closePopupNow();
-  }
-
 
 }
 
