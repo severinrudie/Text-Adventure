@@ -68,7 +68,6 @@ public class DBInterfacer extends SQLiteOpenHelper {
   @Override
   public void onCreate(SQLiteDatabase db) {
     PH.cleanItemsForDb();
-    PH.replaceNames();
 
     for (String string : PH.create_tables) {
       db.execSQL(string);
