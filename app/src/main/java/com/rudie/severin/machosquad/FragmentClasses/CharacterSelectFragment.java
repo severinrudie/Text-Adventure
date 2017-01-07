@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.rudie.severin.machosquad.Activities.PlayActivity;
 import com.rudie.severin.machosquad.Adapters.CharacterStatisticsAdapter;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.CharacterCreatedBus;
 import com.rudie.severin.machosquad.InformationHolders.PH;
 import com.rudie.severin.machosquad.R;
 import com.rudie.severin.machosquad.Utility.OnStartDragListener;
@@ -114,13 +115,9 @@ public class CharacterSelectFragment extends DialogFragment
           Intent intent = new Intent(getActivity(), PlayActivity.class);
           intent.putExtra(PH.CURRENT_CHARACTER, currentCharacterId);
           startActivity(intent);
-          try {
-            mCallback = (OnCharacterCreatedListener) mContext;
-            mCallback.closeFragmentOnResume();
-          } catch (ClassCastException e) {
-            throw new ClassCastException(mContext.toString()
-              + " must implement PopupCompleteListener");
-          }
+
+          CharacterCreatedBus.getInstance().characterCreated();
+
         } else {
           Toast.makeText(getActivity(), "You gotta enter a name first!", Toast.LENGTH_SHORT).show();
         }
@@ -208,6 +205,8 @@ public class CharacterSelectFragment extends DialogFragment
   public interface OnCharacterCreatedListener {
     void closeFragmentOnResume();
   }
+
+
 
 
 }

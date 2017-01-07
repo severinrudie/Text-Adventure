@@ -1,14 +1,17 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral()
     }
 
     dependencies {
         classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
+apply plugin: 'me.tatarka.retrolambda'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -32,7 +35,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
+apply plugin: 'com.android.application' //or apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -57,6 +68,10 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.1@aar') {
         transitive = true;
     }
+
+    // RX Java
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
 
 //compile 'com.android.support:percent:22.2.0'

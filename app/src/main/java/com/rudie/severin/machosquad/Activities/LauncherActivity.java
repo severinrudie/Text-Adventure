@@ -17,19 +17,24 @@ import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.koushikdutta.ion.Ion;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.CharacterCreatedBus;
 import com.rudie.severin.machosquad.FragmentClasses.CharacterSelectFragment;
 import com.rudie.severin.machosquad.InformationHolders.ImageConstructor;
 import com.rudie.severin.machosquad.R;
 
 import io.fabric.sdk.android.Fabric;
 import io.fabric.sdk.android.services.concurrency.AsyncTask;
+import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
-public class LauncherActivity extends AppCompatActivity
-  implements CharacterSelectFragment.OnCharacterCreatedListener {
+public class LauncherActivity extends AppCompatActivity {
 
   private boolean fragmentCreated;
   public boolean dbConstructed;
   ProgressBar progressBar;
+  private CharacterCreatedBus characterCreatedBus;
+  private Disposable busObserver;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,15 @@ public class LauncherActivity extends AppCompatActivity
       }
     });
 
+    characterCreatedBus = CharacterCreatedBus.getInstance();
+    busObserver = characterCreatedBus.getSubject().subscribe(event -> fragmentCreated = true);
+
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    busObserver.dispose();
   }
 
   private void launchLoadActivity() {
@@ -136,8 +150,12 @@ public class LauncherActivity extends AppCompatActivity
     }
   }
 
-  @Override
-  public void closeFragmentOnResume() {
-    fragmentCreated = true;
-  }
+//  @Override
+//  public void closeFragmentOnResume() {
+//    fragmentCreated = true;
+//  }
+
+
+
+
 }
