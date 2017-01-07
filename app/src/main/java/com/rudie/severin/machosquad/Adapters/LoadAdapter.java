@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.rudie.severin.machosquad.Activities.PlayActivity;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.RefreshLoadListBus;
 import com.rudie.severin.machosquad.InformationHolders.Character;
 import com.rudie.severin.machosquad.InformationHolders.PH;
 import com.rudie.severin.machosquad.R;
@@ -23,7 +24,6 @@ import java.util.List;
 public class LoadAdapter extends
   RecyclerView.Adapter<LoadAdapter.ViewHolder> {
 
-  RefreshLoadListListener mCallback;
   private List<Character> characters;
   private Context mContext;
   public LoadAdapter(Context context, List<Character> characterList) {
@@ -81,8 +81,8 @@ public class LoadAdapter extends
               case DialogInterface.BUTTON_POSITIVE:
                 DBInterfacer.getInstance(getContext())
                   .deleteCharacterFromDb(character.getCharId());
-                mCallback = (RefreshLoadListListener) mContext;
-                mCallback.refreshLoadListNow();
+                RefreshLoadListBus bus = RefreshLoadListBus.getInstance();
+                bus.refreshLoadList();
                 break;
 
               case DialogInterface.BUTTON_NEGATIVE:
@@ -111,10 +111,6 @@ public class LoadAdapter extends
   @Override
   public int getItemCount() {
     return characters.size();
-  }
-
-  public interface RefreshLoadListListener {
-    public void refreshLoadListNow();
   }
 
   public static class ViewHolder extends RecyclerView.ViewHolder {

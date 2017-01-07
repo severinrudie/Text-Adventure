@@ -7,23 +7,23 @@ import io.reactivex.subjects.PublishSubject;
  * Created by erikrudie on 1/6/17.
  */
 
-public final class CharacterCreatedBus {
+public final class RefreshLoadListBus {
 
   // private constructor to prevent instantiation (Singleton)
-  private CharacterCreatedBus() {
+  private RefreshLoadListBus() {
   }
 
   private PublishSubject<Boolean> subject = PublishSubject.create();
-  private static CharacterCreatedBus bus;
+  private static RefreshLoadListBus bus;
 
-  public static CharacterCreatedBus getInstance() {
+  public static RefreshLoadListBus getInstance() {
     if (bus == null) {
-      bus = new CharacterCreatedBus();
+      bus = new RefreshLoadListBus();
     }
     return bus;
   }
 
-  public void characterCreated() {
+  public void refreshLoadList() {
     subject.onNext(true);
   }
 

@@ -10,15 +10,20 @@ import android.widget.Toast;
 
 import com.rudie.severin.machosquad.Adapters.LoadAdapter;
 import com.rudie.severin.machosquad.DatabaseClasses.DBInterfacer;
+import com.rudie.severin.machosquad.EventBus.RefreshLoadListBus;
 import com.rudie.severin.machosquad.InformationHolders.Character;
 import com.rudie.severin.machosquad.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadActivity extends AppCompatActivity implements LoadAdapter.RefreshLoadListListener {
+import io.reactivex.disposables.CompositeDisposable;
+
+public class LoadActivity extends AppCompatActivity {
 
   List<Character> characters;
+  RefreshLoadListBus refreshLoadListBus;
+  CompositeDisposable compositeDisposable;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,16 @@ public class LoadActivity extends AppCompatActivity implements LoadAdapter.Refre
     refreshLoadList();
 
     Toast.makeText(this, "Long press a saved game to delete it", Toast.LENGTH_SHORT).show();
+
+    compositeDisposable = new CompositeDisposable();
+    refreshLoadListBus = RefreshLoadListBus.getInstance();
+    compositeDisposable.add(refreshLoadListBus.getSubject().subscribe(event -> refreshLoadList()));
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    compositeDisposable.clear();
   }
 
   public void refreshLoadList() {
@@ -61,8 +76,4 @@ public class LoadActivity extends AppCompatActivity implements LoadAdapter.Refre
     return characters;
   }
 
-  @Override
-  public void refreshLoadListNow() {
-    refreshLoadList();
-  }
 }
